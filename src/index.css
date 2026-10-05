@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ───────── Tipografías (carpeta utils/Tipografías → copiadas a assets/fonts) ───────── */
+@font-face { font-family: 'Diagramm'; src: url('./assets/fonts/Diagramm-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Diagramm'; src: url('./assets/fonts/Diagramm-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'Diagramm'; src: url('./assets/fonts/Diagramm-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'Diagramm'; src: url('./assets/fonts/Diagramm-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+
+@font-face { font-family: 'IBM Plex Sans'; src: url('./assets/fonts/IBMPlexSans-Light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'IBM Plex Sans'; src: url('./assets/fonts/IBMPlexSans-Regular.ttf') format('truetype'); font-weight: 400; font-display: swap; }
+@font-face { font-family: 'IBM Plex Sans'; src: url('./assets/fonts/IBMPlexSans-Medium.ttf') format('truetype'); font-weight: 500; font-display: swap; }
+@font-face { font-family: 'IBM Plex Sans'; src: url('./assets/fonts/IBMPlexSans-SemiBold.ttf') format('truetype'); font-weight: 600; font-display: swap; }
+@font-face { font-family: 'IBM Plex Sans'; src: url('./assets/fonts/IBMPlexSans-Bold.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+:root {
+  --azul: #2400FF;
+  --naranja: #FF6B3B;
+  --lima: #C4FD36;
+  --lila: #C172FF;
+  --noche: #1A1A30;
+  --gris: #FAFAFA;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  background-color: var(--noche);
+}
+
+@layer base {
+  body {
+    font-family: 'IBM Plex Sans', system-ui, sans-serif;
+    color: var(--gris);
+    -webkit-font-smoothing: antialiased;
+  }
+  /* Títulos siempre en Diagramm, como en la guía */
+  h1, h2, h3, h4 {
+    font-family: 'Diagramm', 'IBM Plex Sans', system-ui, sans-serif;
+    letter-spacing: -0.02em;
+  }
+  ::selection {
+    background: var(--lima);
+    color: var(--noche);
+  }
+}
+
+/* ───────── Motivos gráficos de la identidad ───────── */
+@layer utilities {
+  /* Patrón de rectángulos tipo ajedrez (franjas de las láminas) */
+  .bg-checker-naranja {
+    background: conic-gradient(var(--naranja) 25%, var(--noche) 0 50%, var(--naranja) 0 75%, var(--noche) 0) 0 0 / 40px 20px;
+  }
+  .bg-checker-azul {
+    background: conic-gradient(var(--azul) 25%, var(--noche) 0 50%, var(--azul) 0 75%, var(--noche) 0) 0 0 / 40px 20px;
+  }
+  .bg-checker-lima {
+    background: conic-gradient(var(--lima) 25%, var(--noche) 0 50%, var(--lima) 0 75%, var(--noche) 0) 0 0 / 40px 20px;
+  }
+
+  /* Grillas finas (la cuadrícula de fondo de las láminas) */
+  .bg-grid-azul {
+    background-image:
+      linear-gradient(rgba(36, 0, 255, 0.45) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(36, 0, 255, 0.45) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .bg-grid-noche {
+    background-image:
+      linear-gradient(rgba(26, 26, 48, 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 26, 48, 0.22) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .bg-grid-gris {
+    background-image:
+      linear-gradient(rgba(26, 26, 48, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 26, 48, 0.1) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+}
