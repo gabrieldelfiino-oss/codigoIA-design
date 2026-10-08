@@ -4,143 +4,203 @@
     "titulo": "Brian Mackern",
     "subtitulo": "Artista visual, mediático y músico; más de veinte años trabajando con técnicas digitales",
     "temporada": "Código IA 2023",
+    "tema": "arte",
     "linkYoutube": "https://www.youtube.com/watch?v=wAjnCrJdQfI",
     "linkInstagram": "",
-    "personalidad": ["Brian Mackern (artista visual, mediático, músico y compositor)"]
+    "personalidad": [
+      "Brian Mackern (artista visual, mediático, músico y compositor)"
+    ]
   },
   {
     "id": 1,
     "titulo": "Silvina Cortés",
     "subtitulo": "Artista plástico-digital que usa IA en el proceso creativo de sus obras",
     "temporada": "Código IA 2023",
+    "tema": "arte",
     "linkYoutube": "https://www.youtube.com/watch?v=XMmT9zQ4lGg",
     "linkInstagram": "",
-    "personalidad": ["Silvina Cortés Lasalle (artista plástico-digital, docente en Universidad ORT)"]
+    "personalidad": [
+      "Silvina Cortés Lasalle (artista plástico-digital, docente en Universidad ORT)"
+    ]
   },
   {
     "id": 2,
     "titulo": "Patricia Díaz",
     "subtitulo": "Abogada especialista en tecnología desde la perspectiva de Derechos Humanos",
     "temporada": "Código IA 2023",
+    "tema": "humanidad",
     "linkYoutube": "https://www.youtube.com/watch?v=raYeEsaKVxI",
     "linkInstagram": "",
-    "personalidad": ["Patricia Díaz Charquero (Presidenta de Data Uruguay)"]
+    "personalidad": [
+      "Patricia Díaz Charquero (Presidenta de Data Uruguay)"
+    ]
   },
   {
     "id": 3,
     "titulo": "Álvaro Moré",
     "subtitulo": "Director de Young & Rubicam Uruguay; incorpora IA generativa en campañas publicitarias",
     "temporada": "Código IA 2023",
+    "tema": "comunicacion",
     "linkYoutube": "https://www.youtube.com/watch?v=VdIDp2m5ZqY",
     "linkInstagram": "",
-    "personalidad": ["Álvaro Moré (Director de Young & Rubicam Uruguay)"]
+    "personalidad": [
+      "Álvaro Moré (Director de Young & Rubicam Uruguay)"
+    ]
   },
   {
     "id": 4,
     "titulo": "Camila Rodríguez",
     "subtitulo": "Entrevista sobre EMOTIA, performance que decodifica emociones en sonido y color",
     "temporada": "Código IA Radio",
+    "tema": "arte",
     "linkYoutube": "https://www.youtube.com/watch?v=adHCE-IF6cc",
     "linkInstagram": "",
-    "personalidad": ["Camila Rodríguez (artista digital, docente en Universidad ORT)"]
+    "personalidad": [
+      "Camila Rodríguez (artista digital, docente en Universidad ORT)"
+    ]
   },
   {
     "id": 5,
     "titulo": "Diego Parker Fernández",
     "subtitulo": "Entrevista sobre \"No me mata la muerte\", cortometraje hecho con IA por estudiantes de ORT",
     "temporada": "Código IA Radio",
+    "tema": "arte",
     "linkYoutube": "https://www.youtube.com/watch?v=3wrcgCvlGgM",
     "linkInstagram": "",
-    "personalidad": ["Diego Parker Fernández (guionista y director de cine)"]
+    "personalidad": [
+      "Diego Parker Fernández (guionista y director de cine)"
+    ]
   },
   {
     "id": 6,
     "titulo": "Gerson Da Silva",
     "subtitulo": "Entrevista sobre IA en educación y videojuegos como herramienta pedagógica",
     "temporada": "Código IA Radio",
+    "tema": "humanidad",
     "linkYoutube": null,
     "linkInstagram": "",
-    "personalidad": ["Gerson Da Silva (Director de Game Design, Ironhide Game Studios)"]
+    "personalidad": [
+      "Gerson Da Silva (Director de Game Design, Ironhide Game Studios)"
+    ]
   },
   {
     "id": 7,
     "titulo": "Marcelo Ubal",
     "subtitulo": "Entrevista sobre robótica e IA, en el marco del programa Fuga de Radio",
     "temporada": "Código IA Radio",
+    "tema": "humanidad",
     "linkYoutube": "https://www.youtube.com/watch?v=UMA-UtLA07U",
     "linkInstagram": "",
-    "personalidad": ["Marcelo Ubal (coordinador del Posgrado en Robótica e IA, UTEC)"]
+    "personalidad": [
+      "Marcelo Ubal (coordinador del Posgrado en Robótica e IA, UTEC)"
+    ]
   },
   {
     "id": 8,
     "titulo": "La IA en la industria cinematográfica",
     "subtitulo": "Cómo la IA generativa reconfigura la producción, edición y creación audiovisual",
     "temporada": "Temporada 2",
+    "tema": "comunicacion",
     "linkYoutube": "https://www.youtube.com/watch?v=edpGXLU42lk",
     "linkInstagram": "",
-    "personalidad": ["Ángel Cardozo (comunicador audiovisual, docente FIC)"]
+    "personalidad": [
+      "Ángel Cardozo (comunicador audiovisual, docente FIC)"
+    ]
   },
   {
     "id": 9,
     "titulo": "Educación terciaria e IA",
     "subtitulo": "Cómo las herramientas de IA transforman los procesos de enseñanza y aprendizaje",
     "temporada": "Temporada 2",
+    "tema": "humanidad",
     "linkYoutube": "https://www.youtube.com/watch?v=yZzL3UySJkA",
     "linkInstagram": "",
-    "personalidad": ["María Gladys Ceretta (Decana de la FIC, Udelar)"]
+    "personalidad": [
+      "María Gladys Ceretta (Decana de la FIC, Udelar)"
+    ]
   },
   {
     "id": 10,
     "titulo": "Arte e IA",
     "subtitulo": "Debates sobre creatividad, propiedad intelectual y el rol del artista frente a la IA",
     "temporada": "Temporada 2",
+    "tema": "arte",
     "linkYoutube": "https://www.youtube.com/watch?v=cBE3rYGvhM0",
     "linkInstagram": "",
-    "personalidad": ["Valeria Lepra (docente e investigadora en Artes, Udelar)"]
+    "personalidad": [
+      "Valeria Lepra (docente e investigadora en Artes, Udelar)"
+    ]
   },
   {
     "id": 11,
     "titulo": "Gamificación, educación e IA",
     "subtitulo": "Videojuegos educativos potenciados por IA en procesos pedagógicos",
     "temporada": "Temporada 2",
+    "tema": "arte",
     "linkYoutube": "https://www.youtube.com/watch?v=k0dzjYkArHI",
     "linkInstagram": "",
-    "personalidad": ["Daniel Argente (artista e investigador digital)", "Marcos Umpiérrez (artista)"]
+    "personalidad": [
+      "Daniel Argente (artista e investigador digital)",
+      "Marcos Umpiérrez (artista)"
+    ]
   },
   {
     "id": 12,
     "titulo": "Amar en tiempos de IA",
     "subtitulo": "Cómo la IA impacta en las relaciones personales, la salud mental y el inconsciente",
     "temporada": "Temporada 3",
+    "tema": "humanidad",
+    "pregunta": "¿Se puede amar a una IA?",
+    "respuesta": "Aplicaciones que simulan parejas perfectas, voces que te enamoran, compañía instantánea bajo demanda. La pregunta dejó de ser si esto es posible; ahora queremos saber: ¿qué estamos perdiendo en el camino?",
     "linkYoutube": "https://www.youtube.com/watch?v=ot_mh51pXKI",
     "linkInstagram": "",
-    "personalidad": ["Camila Jurfest (psicóloga, sexóloga clínica)", "Jorge Bafico (psicoanalista)"]
+    "personalidad": [
+      "Camila Jurfest (psicóloga, sexóloga clínica)",
+      "Jorge Bafico (psicoanalista)"
+    ]
   },
   {
     "id": 13,
     "titulo": "Del diván al chatbot",
     "subtitulo": "Qué pasa cuando le contás tus dramas a una máquina que nunca duerme ni juzga",
     "temporada": "Temporada 3",
+    "tema": "humanidad",
+    "pregunta": "¿Tu terapeuta puede ser un algoritmo?",
+    "respuesta": "Del diván al chatbot: exploramos qué pasa cuando le contás tus dramas más profundos a una máquina que nunca duerme, nunca juzga… y nunca es humana.",
     "linkYoutube": "https://www.youtube.com/watch?v=OJWXrCOCNxU",
     "linkInstagram": "",
-    "personalidad": ["Alma Pérez Abella (psicóloga)", "Joaquín Vigna (ingeniero en sistemas, IA)"]
+    "personalidad": [
+      "Alma Pérez Abella (psicóloga)",
+      "Joaquín Vigna (ingeniero en sistemas, IA)"
+    ]
   },
   {
     "id": 14,
     "titulo": "Infancia e IA",
     "subtitulo": "¿La IA está formando a nuestros niños? Efectos en el desarrollo cognitivo",
     "temporada": "Temporada 3",
+    "tema": "humanidad",
+    "pregunta": "¿La IA está formando a nuestros niños? ¿Y qué efectos tiene en su desarrollo cognitivo?",
+    "respuesta": "Conversamos con educadores, psicólogos y familias que conviven con pantallas, algoritmos y contenidos automatizados en la crianza cotidiana. Entre la practicidad y la preocupación.",
     "linkYoutube": "https://www.youtube.com/watch?v=mBiDh9dXgAU",
     "linkInstagram": "",
-    "personalidad": ["Juan Carlos Valle-Lisboa (neurocientífico)", "Emiliano Pereiro (Ceibal)"]
+    "personalidad": [
+      "Juan Carlos Valle-Lisboa (neurocientífico)",
+      "Emiliano Pereiro (Ceibal)"
+    ]
   },
   {
     "id": 15,
     "titulo": "Fraudes digitales e IA",
     "subtitulo": "Deepfakes, estafas y voces clonadas: cuando la IA se cruza con tu billetera",
     "temporada": "Temporada 3",
+    "tema": "finanzas",
+    "pregunta": "¿Tu billetera está segura?",
     "linkYoutube": "https://www.youtube.com/watch?v=_WIWDdQCecY",
     "linkInstagram": "",
-    "personalidad": ["Héctor Álvarez (ingeniero en sistemas)", "Reynaldo De la Fuente (ciberseguridad)"]
+    "personalidad": [
+      "Héctor Álvarez (ingeniero en sistemas)",
+      "Reynaldo De la Fuente (ciberseguridad)"
+    ]
   }
 ]

@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import programas from '../../data/programas.json'
 import { getYoutubeThumbnail } from '../../utils/youtube'
+import RouterLink from '../utils/RouterLink'
 
 // Orden de las filas: de la más nueva a la más vieja.
 const GRUPOS = ['Temporada 3', 'Temporada 2', 'Código IA Radio', 'Código IA 2023']
+// Cuántas filas (temporadas) se ven antes de necesitar tocar "Ver más".
+const FILAS_INICIALES = 2
 
 function ArrowDownIcon() {
   return (
@@ -25,6 +29,10 @@ function ArrowDownIcon() {
  * lleva directo al video en YouTube.
  */
 export default function AllSection() {
+  const [expandido, setExpandido] = useState(false)
+  const hayMas = GRUPOS.length > FILAS_INICIALES
+  const gruposVisibles = expandido ? GRUPOS : GRUPOS.slice(0, FILAS_INICIALES)
+
   return (
     <section id="todos-los-programas" className="w-full bg-noche py-20">
       <div className="mx-auto max-w-7xl px-6 sm:px-10">
@@ -37,10 +45,22 @@ export default function AllSection() {
       </div>
 
       <div className="mx-auto flex max-w-7xl flex-col gap-12">
-        {GRUPOS.map((temporada) => (
+        {gruposVisibles.map((temporada) => (
           <FilaProgramas key={temporada} temporada={temporada} />
         ))}
       </div>
+
+      {hayMas && (
+        <div className="mx-auto mt-12 flex max-w-7xl justify-center px-6 sm:px-10">
+          <button
+            type="button"
+            onClick={() => setExpandido((v) => !v)}
+            className="border-2 border-gris px-6 py-2.5 font-mono text-xs font-medium uppercase tracking-wider text-gris transition-colors duration-300 hover:border-lima hover:bg-lima hover:text-noche sm:text-sm"
+          >
+            {expandido ? "Ver menos" : "Ver más programas"}
+          </button>
+        </div>
+      )}
     </section>
   )
 }
@@ -66,7 +86,6 @@ function FilaProgramas({ temporada }) {
 
 function TarjetaPrograma({ programa }) {
   const thumb = getYoutubeThumbnail(programa.linkYoutube)
-  const disabled = !programa.linkYoutube
 
   const contenido = (
     <>
@@ -89,18 +108,14 @@ function TarjetaPrograma({ programa }) {
     </>
   )
 
-  if (disabled) {
-    return <div className="group block w-64 shrink-0 cursor-default sm:w-80 lg:w-[calc((100%-3rem)/4)]">{contenido}</div>
-  }
-
+  // Antes llevaba directo a YouTube; ahora entra a la ficha propia del
+  // programa (/programa/:id), un nivel de profundidad nuevo del sitio.
   return (
-    <a
-      href={programa.linkYoutube}
-      target="_blank"
-      rel="noopener noreferrer"
+    <RouterLink
+      to={`/programa/${programa.id}`}
       className="group block w-64 shrink-0 sm:w-80 lg:w-[calc((100%-3rem)/4)]"
     >
       {contenido}
-    </a>
+    </RouterLink>
   )
 }

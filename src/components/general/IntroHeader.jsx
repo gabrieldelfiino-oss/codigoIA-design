@@ -8,16 +8,19 @@ import Nav from './Nav'
 // difuminado (ver transition en BrandTitle, ~1.1s) para que no se corten.
 const INTRO_DURATION_MS = 2200
 
-export default function IntroHeader({ onIntroDone }) {
-  const [introDone, setIntroDone] = useState(false)
+// `skip`: la intro ya se vio en esta carga (ej. al volver desde la ficha de un
+// programa); arranca directo en el header chico, sin animación ni espera.
+export default function IntroHeader({ onIntroDone, skip = false }) {
+  const [introDone, setIntroDone] = useState(skip)
 
   useEffect(() => {
+    if (skip) return
     const timer = setTimeout(() => {
       setIntroDone(true)
       onIntroDone?.()
     }, INTRO_DURATION_MS)
     return () => clearTimeout(timer)
-  }, [onIntroDone])
+  }, [onIntroDone, skip])
 
   return (
     <>
