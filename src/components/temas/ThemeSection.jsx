@@ -1,3 +1,4 @@
+import { useState } from "react";
 import ThemeMap from "./ThemeMap";
 import ThemeMapMovil from "./ThemeMapMovil";
 import RouterLink from "../utils/RouterLink";
@@ -13,15 +14,22 @@ const PUNTOS = ["bg-lila", "bg-lima", "bg-naranja", "bg-azul"];
  */
 export default function ThemeSection() {
   const temas = TEMAS.filter((t) => t.tipo === "tema");
+  // Modo inmersivo (PC): al interactuar con el mapa, la sección se oscurece y
+  // el mapa muestra sus destellos. Lo maneja ThemeMap.
+  const [inm, setInm] = useState(false);
 
   return (
-    <section id="temas" className="seccion-curva tx tx-puntos-claro bg-gris text-noche">
+    <section
+      id="temas"
+      data-inmersivo={inm}
+      className="group seccion-curva tx tx-puntos-claro bg-gris text-noche transition-[background-color,color] duration-700 motion-reduce:transition-none data-[inmersivo=true]:bg-[#070716] data-[inmersivo=true]:text-gris data-[inmersivo=true]:[--tx-img:radial-gradient(rgba(250,250,250,0.16)_1.2px,transparent_1.7px)]"
+    >
       <div className="mx-auto max-w-6xl px-6 py-14 sm:px-10 sm:py-20">
-        <p className="mb-4 font-mono text-xs uppercase tracking-widest text-azul">/Mapa de temas</p>
+        <p className="mb-4 font-mono text-xs uppercase tracking-widest text-azul transition-colors duration-700 group-data-[inmersivo=true]:text-lima">/Mapa de temas</p>
         <h2 className="max-w-4xl font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
-          Todo se conecta con la <span className="text-azul">IA</span>
+          Todo se conecta con la <span className="text-azul transition-colors duration-700 group-data-[inmersivo=true]:text-lima">IA</span>
         </h2>
-        <p className="mt-4 max-w-xl text-base text-noche/75">
+        <p className="mt-4 max-w-xl text-base text-noche/75 transition-colors duration-700 group-data-[inmersivo=true]:text-gris/75">
           <span className="hidden lg:inline">
             Pasá el cursor o tabulá por un nodo para iluminar sus caminos. Hacé
             clic en cualquiera para ver los programas de ese tema.
@@ -31,8 +39,8 @@ export default function ThemeSection() {
           </span>
         </p>
 
-        <div className="mt-10 hidden overflow-hidden rounded-3xl shadow-suave-lg lg:block">
-          <ThemeMap />
+        <div className="mt-10 hidden overflow-hidden rounded-3xl shadow-suave-lg transition-shadow duration-700 group-data-[inmersivo=true]:shadow-[0_0_90px_rgba(196,253,54,0.2),0_30px_80px_rgba(0,0,0,0.5)] lg:block">
+          <ThemeMap inmersivo={inm} alCambiarInmersivo={setInm} />
         </div>
 
         <div className="mt-8 lg:hidden">

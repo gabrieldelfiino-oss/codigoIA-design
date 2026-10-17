@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ARISTAS, CENTRO, NODOS, getVecinos } from "../../servicios/mapa";
 import { getProgramasDeTema } from "../../servicios/temas";
 import RouterLink from "../utils/RouterLink";
@@ -46,6 +46,16 @@ const trazoRecto = (e) => {
   return `M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}`;
 };
 
+// Chispas del modo inmersivo: posiciones fijas repartidas por el mapa (no al
+// azar, para que no cambien entre renders).
+const CHISPAS = Array.from({ length: 22 }, (_, i) => ({
+  left: `${(i * 53 + 17) % 100}%`,
+  top: `${(i * 37 + 11) % 100}%`,
+  size: 2 + (i % 3),
+  delay: `${((i * 0.37) % 3.6).toFixed(2)}s`,
+  color: ["#C4FD36", "#C172FF", "#FAFAFA"][i % 3],
+}));
+
 // Cuánto se corre cada capa con el mouse (px): lo cercano más, lo lejano menos.
 const paralaje = (id) => ((PROFUNDIDAD[id] - 0.55) * 40).toFixed(1);
 
@@ -60,9 +70,24 @@ const paralaje = (id) => ((PROFUNDIDAD[id] - 0.55) * 40).toFixed(1);
  * núcleo y sus subtemas. Al hacer clic se abre la página del tema (ThemePage).
  * Los nodos, sus posiciones y las conexiones salen de temas.json y mapa.json.
  */
-export default function ThemeMap() {
+export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
   const [activo, setActivo] = useState(null);
   const raiz = useRef(null);
+
+  // Modo inmersivo: con el mouse (o el teclado) adentro del mapa la sección se
+  // oscurece y aparecen el aura y las chispas. Hay una pequeña espera para que
+  // no se dispare si el cursor solo cruza el mapa.
+  const intencion = useRef(null);
+  const entrar = (ev) => {
+    if (ev.pointerType && ev.pointerType !== "mouse") return;
+    clearTimeout(intencion.current);
+    intencion.current = setTimeout(() => alCambiarInmersivo?.(true), 220);
+  };
+  const salir = () => {
+    clearTimeout(intencion.current);
+    intencion.current = setTimeout(() => alCambiarInmersivo?.(false), 150);
+  };
+  useEffect(() => () => clearTimeout(intencion.current), []);
   const encendidos = new Set(activo ? [activo, ...getVecinos(activo)] : []);
 
   const aristaEncendida = (e) => {
@@ -99,7 +124,18 @@ export default function ThemeMap() {
       ref={raiz}
       className="relative aspect-[1200/720] w-full overflow-hidden bg-[#050512] [perspective:1400px]"
       onPointerMove={mover}
-      onPointerLeave={soltar}
+      onPointerEnter={entrar}
+      onPointerLeave={() => {
+        soltar();
+        salir();
+      }}
+      onFocus={() => {
+        clearTimeout(intencion.current);
+        alCambiarInmersivo?.(true);
+      }}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) salir();
+      }}
     >
       {/* Universo: noche profunda con nebulosas muy suaves (lima, azul, lila y
           un toque de naranja). Se mueve al revés que la escena. */}
@@ -140,6 +176,41 @@ export default function ThemeMap() {
             "radial-gradient(circle 240px at var(--px, 50%) var(--py, 50%), rgba(196,253,54,0.11), transparent 70%)",
         }}
       />
+      {/* Magia al interactuar: un aura que se expande desde el centro y chispas
+          que titilan. Aparecen con el modo inmersivo. */}
+      <div
+        aria-hidden="true"
+        className={`pointer-events-none absolute inset-0 transition-opacity duration-700 ${
+          inmersivo ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        <div className="absolute left-1/2 top-1/2 h-[130%] w-[130%] -translate-x-1/2 -translate-y-1/2">
+          <div
+            className="h-full w-full rounded-full transition-transform duration-1000 ease-out"
+            style={{
+              transform: `scale(${inmersivo ? 1 : 0.4})`,
+              background:
+                "radial-gradient(circle, rgba(196,253,54,0.16) 0%, rgba(193,114,255,0.12) 24%, transparent 50%)",
+            }}
+          />
+        </div>
+        {!REDUCIR_MOVIMIENTO &&
+          CHISPAS.map((c, i) => (
+            <span
+              key={i}
+              className="mapa-chispa absolute rounded-full"
+              style={{
+                left: c.left,
+                top: c.top,
+                width: c.size,
+                height: c.size,
+                background: c.color,
+                boxShadow: `0 0 10px 2px ${c.color}`,
+                animationDelay: c.delay,
+              }}
+            />
+          ))}
+      </div>
       {/* Viñeta: oscurece los bordes para dar hondura. */}
       <div
         aria-hidden="true"
@@ -333,6 +404,13 @@ export default function ThemeMap() {
                   </span>
                 </span>
               </span>
+              {/* Onda de luz que sale del nodo al apuntarlo. */}
+              {enfocado && !REDUCIR_MOVIMIENTO && (
+                <span
+                  aria-hidden="true"
+                  className="mapa-onda pointer-events-none absolute left-1/2 top-1/2 h-14 w-14 rounded-full border border-lima/60"
+                />
+              )}
               {/* Cantidad de programas: aparece al apuntar al nodo. */}
               <span
                 aria-hidden="true"
