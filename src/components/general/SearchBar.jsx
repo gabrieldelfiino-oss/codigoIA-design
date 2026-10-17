@@ -123,37 +123,54 @@ export default function SearchBar() {
         <ul
           id="resultados-busqueda"
           role="listbox"
-          className="absolute right-0 top-full z-10 mt-2 max-h-[70vh] w-80 max-w-[calc(100vw-3rem)] overflow-y-auto rounded-2xl border border-gris/20 bg-noche shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)]"
+          className="absolute right-0 top-full z-10 mt-3 flex max-h-[70vh] w-96 max-w-[calc(100vw-3rem)] flex-col gap-1 overflow-y-auto rounded-3xl border border-gris/25 bg-[#26263b] p-2 text-gris shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)]"
         >
           {resultados.length === 0 ? (
             <li className="px-4 py-3 text-sm text-gris/70">
               Sin resultados para «{texto.trim()}»
             </li>
           ) : (
-            resultados.map((resultado, i) => (
-              <li key={`${resultado.tipo}-${resultado.id}`} role="option" aria-selected={i === indice}>
-                <a
-                  href={resultado.to}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    ir(resultado);
-                  }}
-                  onMouseEnter={() => setIndice(i)}
-                  className={[
-                    "block px-4 py-2.5 transition-colors",
-                    i === indice ? "bg-lima text-noche" : "text-gris",
-                  ].join(" ")}
-                >
-                  <span className="block font-mono text-[10px] uppercase tracking-widest opacity-70">
-                    {ETIQUETA_TIPO[resultado.tipo]}
-                    {resultado.detalle ? ` · ${resultado.detalle}` : ""}
-                  </span>
-                  <span className="block truncate text-sm font-medium">
-                    {resultado.titulo}
-                  </span>
-                </a>
-              </li>
-            ))
+            resultados.map((resultado, i) => {
+              const activo = i === indice;
+              return (
+                <li key={`${resultado.tipo}-${resultado.id}`} role="option" aria-selected={activo}>
+                  {/* Misma fila que en "Todos los programas": hover gris, título lima y flecha. */}
+                  <a
+                    href={resultado.to}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      ir(resultado);
+                    }}
+                    onMouseEnter={() => setIndice(i)}
+                    className={`flex min-h-14 items-center gap-4 rounded-2xl px-4 py-2.5 transition-colors ${
+                      activo ? "bg-gris/10" : ""
+                    }`}
+                  >
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-mono text-[10px] uppercase tracking-widest text-gris/55">
+                        {ETIQUETA_TIPO[resultado.tipo]}
+                        {resultado.detalle ? ` · ${resultado.detalle}` : ""}
+                      </span>
+                      <span
+                        className={`block truncate font-display text-lg font-medium leading-tight transition-colors ${
+                          activo ? "text-lima" : ""
+                        }`}
+                      >
+                        {resultado.titulo}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden
+                      className={`shrink-0 transition-all ${
+                        activo ? "translate-x-1 text-lima" : "text-gris/55"
+                      }`}
+                    >
+                      →
+                    </span>
+                  </a>
+                </li>
+              );
+            })
           )}
         </ul>
       )}

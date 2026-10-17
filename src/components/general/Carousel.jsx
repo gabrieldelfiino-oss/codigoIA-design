@@ -49,6 +49,18 @@ export default function SeasonCarousel() {
     return () => clearTimeout(timer);
   }, [index, slides.length, pausado, reducir]);
 
+  // Le avisa al header si se está viendo el banner del slogan (cuando no, el
+  // slogan viaja al header) y vuelve al primer banner al tocar el logo.
+  const esHero = slides[index]?.tipo === "hero";
+  useEffect(() => {
+    window.dispatchEvent(new CustomEvent("carrusel-slide", { detail: { hero: esHero } }));
+  }, [esHero]);
+  useEffect(() => {
+    const alInicio = () => setIndex(0);
+    window.addEventListener("carrusel-inicio", alInicio);
+    return () => window.removeEventListener("carrusel-inicio", alInicio);
+  }, []);
+
   const actual = slides[index];
   if (!actual) return null;
 
@@ -88,15 +100,12 @@ export default function SeasonCarousel() {
               <span className="mb-6 inline-flex w-fit items-center rounded-full border border-gris/25 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-gris/80">
                 Un programa de FIC · Udelar
               </span>
-              {/* --eslogan (0 → 1) lo escribe IntroHeader al hacer scroll: el título se
-                  desvanece y sube mientras el slogan aparece en el header. */}
+              {/* --eslogan-h2 (0 → 1) lo escribe IntroHeader: el título se desvanece
+                  mientras el slogan sale de acá y viaja al header. */}
               <h2
-                className="max-w-4xl origin-left font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-7xl xl:text-[5.25rem]"
-                style={{
-                  opacity: "calc(1 - var(--eslogan, 0) * 1.15)",
-                  transform:
-                    "translateY(calc(var(--eslogan, 0) * -40px)) scale(calc(1 - var(--eslogan, 0) * 0.1))",
-                }}
+                id="eslogan-hero"
+                className="max-w-4xl font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-7xl xl:text-[5.25rem]"
+                style={{ opacity: "calc(1 - var(--eslogan-h2, 0))" }}
               >
                 El programa que te ayuda a no estar{" "}
                 <Heartbeat className="text-lima">re perdido</Heartbeat> con la IA
