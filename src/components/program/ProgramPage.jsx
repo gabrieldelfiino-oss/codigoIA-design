@@ -230,7 +230,7 @@ export default function ProgramPage({ id }) {
                           className="group overflow-hidden rounded-3xl border border-gris/15 bg-gris/5 text-left transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-lila/60"
                         >
                           <div
-                            className={`relative flex aspect-[4/3] items-center justify-center overflow-hidden font-display text-6xl font-semibold text-noche ${AVATARES[i % AVATARES.length]}`}
+                            className={`relative flex aspect-[2/1] items-center justify-center overflow-hidden font-display text-4xl font-semibold text-noche ${AVATARES[i % AVATARES.length]}`}
                           >
                             {iniciales(persona.nombre)}
                           </div>
