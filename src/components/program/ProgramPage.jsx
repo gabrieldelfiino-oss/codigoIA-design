@@ -244,7 +244,7 @@ export default function ProgramPage({ id }) {
                               <p className="mt-1 text-sm text-gris/70">{persona.profesion}</p>
                             )}
                             <p className="mt-3 font-mono text-xs uppercase tracking-wider text-lima">
-                              Conocelo/a →
+                              Conocé su perfil →
                             </p>
                           </div>
                         </button>
