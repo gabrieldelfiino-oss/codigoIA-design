@@ -47,13 +47,22 @@ export default function ThemeSection() {
           <ThemeMapMovil />
         </div>
 
-        <p className="mt-8 font-mono text-xs uppercase tracking-widest text-noche/60 lg:hidden">/Lista de temas</p>
-        <ul className="mt-3 flex flex-wrap gap-3 lg:hidden">
+        {/* Lista de temas en celular: la misma información del mapa, como desplegable
+            (arranca cerrado, igual que "Sobre el proyecto" y "Escribinos"). */}
+        <details className="group mt-8 rounded-3xl border border-noche/10 bg-white text-noche shadow-suave lg:hidden">
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-3xl px-6 py-4 font-display text-xl font-semibold tracking-tight [&::-webkit-details-marker]:hidden">
+            Lista de temas
+            <span
+              aria-hidden
+              className="relative h-9 w-9 shrink-0 rounded-full bg-lima transition-transform duration-200 group-hover:scale-110 before:absolute before:left-1/2 before:top-1/2 before:h-0.5 before:w-4 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-noche before:content-[''] after:absolute after:left-1/2 after:top-1/2 after:h-4 after:w-0.5 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-noche after:content-[''] group-open:after:hidden"
+            />
+          </summary>
+          <ul className="flex flex-wrap gap-3 px-6 pb-6 pt-1">
           {temas.map((t, i) => (
             <li key={t.id}>
               <RouterLink
                 to={`/temas/${t.id}`}
-                className="inline-flex min-h-11 items-center gap-2.5 rounded-full border border-noche/10 bg-white px-5 py-2 text-base font-medium shadow-suave transition-transform duration-200 hover:-translate-y-0.5"
+                className="inline-flex min-h-11 items-center gap-2.5 rounded-full border border-noche/10 bg-gris px-5 py-2 text-base font-medium transition-transform duration-200 hover:-translate-y-0.5"
               >
                 <span aria-hidden className={`h-2.5 w-2.5 rounded-full ${PUNTOS[i % PUNTOS.length]}`} />
                 {t.nombre}
@@ -61,6 +70,7 @@ export default function ThemeSection() {
             </li>
           ))}
         </ul>
+        </details>
       </div>
     </section>
   );
