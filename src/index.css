@@ -120,6 +120,7 @@ html, body, #root {
       border-radius: 3.5rem 3.5rem 0 0;
     }
   }
+}
 
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
