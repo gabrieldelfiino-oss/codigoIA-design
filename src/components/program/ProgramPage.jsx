@@ -42,7 +42,7 @@ function TituloResaltado({ texto }) {
   const ultima = palabras.pop();
   return (
     <>
-      {palabras.join(" ")} <span className="text-lima">{ultima}</span>
+      {palabras.join(" ")} <span className="resaltado bg-lima">{ultima}</span>
     </>
   );
 }
@@ -52,13 +52,13 @@ function Desplegable({ titulo, abierto = true, ultimo = false, children }) {
   return (
     <details
       open={abierto}
-      className={`group border-t-2 border-gris/25 ${ultimo ? "border-b-2" : ""}`}
+      className={`group border-t-2 border-gris/40 ${ultimo ? "border-b-2" : ""}`}
     >
       <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 py-5 font-display text-xl font-bold sm:text-2xl [&::-webkit-details-marker]:hidden">
         {titulo}
         <span
           aria-hidden
-          className="relative h-[34px] w-[34px] shrink-0 border-2 border-gris/40 bg-lima before:absolute before:left-1/2 before:top-1/2 before:h-0.5 before:w-3.5 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-noche before:content-[''] after:absolute after:left-1/2 after:top-1/2 after:h-3.5 after:w-0.5 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-noche after:content-[''] group-open:after:hidden"
+          className="relative h-[34px] w-[34px] shrink-0 border-2 border-noche bg-lima transition-transform duration-200 group-hover:-rotate-6 before:absolute before:left-1/2 before:top-1/2 before:h-0.5 before:w-3.5 before:-translate-x-1/2 before:-translate-y-1/2 before:bg-noche before:content-[''] after:absolute after:left-1/2 after:top-1/2 after:h-3.5 after:w-0.5 after:-translate-x-1/2 after:-translate-y-1/2 after:bg-noche after:content-[''] group-open:after:hidden"
         />
       </summary>
       <div className="pb-6 text-base leading-relaxed text-gris/85 sm:text-[17px]">{children}</div>
@@ -85,10 +85,10 @@ export default function ProgramPage({ id }) {
 
   return (
     <div className="min-h-screen w-full bg-noche text-gris">
-      <PageHeader conVolver={false} />
-
       <main>
         {!programa ? (
+          <>
+          <PageHeader conVolver={false} />
           <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:px-10">
             <p className={`${ETIQUETA} text-lima`}>/No encontrado</p>
             <h1 className="mt-4 font-display text-3xl font-medium sm:text-5xl">
@@ -101,32 +101,37 @@ export default function ProgramPage({ id }) {
               Volver al inicio
             </RouterLink>
           </div>
+          </>
         ) : (
           <>
-            {/* Título */}
+            {/* Título: hero lila con halftone, como el boceto */}
+            <div className="relative overflow-hidden border-b-2 border-gris/20 bg-lila text-noche">
+            <div aria-hidden className="halftone-noche halftone-fade pointer-events-none absolute inset-0 rotate-180 opacity-60" />
+            <div className="relative">
+            <PageHeader conVolver={false} claro />
             <section>
-              <div className="mx-auto max-w-7xl px-6 pb-10 pt-6 sm:px-10">
+              <div className="mx-auto max-w-7xl px-6 pb-14 pt-6 sm:px-10 sm:pb-16">
                 <div className="flex max-w-4xl flex-col gap-5">
-                  <span className={`${ETIQUETA} self-start bg-gris px-3 py-2 text-noche`}>
+                  <span className={`${ETIQUETA} self-start border-2 border-noche bg-noche px-3 py-2 text-lima`}>
                     /Programa {String(numero).padStart(2, "0")}
                     {temporada ? ` · ${temporada.titulo}` : ""}
                   </span>
-                  <h1 className="font-display text-4xl font-bold uppercase leading-[0.97] tracking-tight sm:text-6xl">
+                  <h1 className="font-display text-5xl font-bold uppercase leading-[0.92] tracking-tight sm:text-7xl lg:text-8xl">
                     <TituloResaltado texto={programa.titulo} />
                   </h1>
                   {programa.pregunta && (
-                    <p className="max-w-2xl text-xl font-medium leading-snug text-gris/90 sm:text-2xl">
+                    <p className="max-w-2xl text-xl font-medium leading-snug sm:text-2xl">
                       {programa.pregunta}
                     </p>
                   )}
                   {programa.subtitulo && (
-                    <p className="max-w-2xl text-base text-gris/70">{programa.subtitulo}</p>
+                    <p className="max-w-2xl text-base text-noche/80">{programa.subtitulo}</p>
                   )}
                   {(fecha || programa.duracion) && (
-                    <div className="inline-flex flex-wrap items-center gap-4 self-start border-2 border-gris/30 px-4 py-3 font-mono text-sm uppercase">
+                    <div className="inline-flex flex-wrap items-center gap-4 self-start border-2 border-noche bg-white px-4 py-3 font-mono text-sm uppercase shadow-[4px_4px_0_0_#1A1A30]">
                       {fecha && <span>{fecha}</span>}
                       {programa.duracion && (
-                        <span className="border border-gris/40 px-2.5 py-0.5 text-lima">
+                        <span className="border-2 border-noche bg-lima px-2.5 py-0.5">
                           {programa.duracion}
                         </span>
                       )}
@@ -135,12 +140,14 @@ export default function ProgramPage({ id }) {
                 </div>
               </div>
             </section>
+            </div>
+            </div>
 
             {/* Video grande + descripción · invitados al costado */}
             <section>
-              <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-14 pt-2 sm:px-10 lg:grid-cols-12 lg:gap-6">
+              <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-12 sm:px-10 lg:grid-cols-12 lg:gap-6">
                 <div className="flex flex-col gap-8 lg:col-span-9">
-                  <div className="aspect-video w-full border-2 border-gris/30 bg-noche shadow-[10px_10px_0_0_rgba(196,253,54,0.3)]">
+                  <div className="aspect-video w-full border-2 border-gris bg-noche shadow-[10px_10px_0_0_#C4FD36]">
                     {programa.linkYoutube ? (
                       <iframe
                         src={getYoutubeEmbedUrl(programa.linkYoutube)}
@@ -198,7 +205,7 @@ export default function ProgramPage({ id }) {
                             <RouterLink
                               key={t.id}
                               to={`/temas/${t.id}`}
-                              className="border-2 border-gris/30 px-3 py-2 font-mono text-xs uppercase tracking-wider transition-colors hover:border-lima hover:text-lima"
+                              className="btn-brutal btn-brutal-gris bg-noche px-3 py-2 font-mono text-xs uppercase tracking-wider text-gris hover:bg-lima hover:text-noche"
                             >
                               {t.nombre}
                             </RouterLink>
@@ -219,12 +226,13 @@ export default function ProgramPage({ id }) {
                           type="button"
                           onClick={() => setPersonaAbierta(persona)}
                           aria-label={`Ver perfil de ${persona.nombre}`}
-                          className="border-2 border-gris/25 text-left transition-colors hover:border-lima"
+                          className="group border-2 border-gris/40 bg-noche text-left shadow-[6px_6px_0_0_rgba(250,250,250,0.18)] transition-[transform,box-shadow,border-color] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:border-lima hover:shadow-[10px_10px_0_0_#C4FD36]"
                         >
                           <div
-                            className={`flex aspect-[4/3] items-center justify-center font-display text-5xl font-bold text-noche ${AVATARES[i % AVATARES.length]}`}
+                            className={`relative flex aspect-[4/3] items-center justify-center overflow-hidden border-b-2 border-gris/40 font-display text-6xl font-bold text-noche ${AVATARES[i % AVATARES.length]}`}
                           >
-                            {iniciales(persona.nombre)}
+                            <span aria-hidden className="halftone-noche absolute inset-0 opacity-60" />
+                            <span className="relative">{iniciales(persona.nombre)}</span>
                           </div>
                           <div className="px-4 pb-4 pt-3">
                             <p className="font-display text-xl font-bold leading-tight">

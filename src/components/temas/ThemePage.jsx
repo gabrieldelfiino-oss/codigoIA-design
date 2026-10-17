@@ -22,16 +22,17 @@ export default function ThemePage({ id }) {
 
   return (
     <div className="min-h-screen w-full bg-noche text-gris">
-      <PageHeader conVolver={false} />
-
       <main>
         {!tema ? (
+          <>
+          <PageHeader conVolver={false} />
           <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:px-10">
             <p className={`${ETIQUETA} text-lima`}>/No encontrado</p>
             <h1 className="mt-4 font-display text-3xl font-medium sm:text-5xl">
               No encontramos ese tema
             </h1>
           </div>
+          </>
         ) : (
           <Contenido tema={tema} />
         )}
@@ -47,26 +48,36 @@ function Contenido({ tema }) {
 
   return (
     <>
-      <section>
-        <div className="mx-auto max-w-7xl px-6 pb-4 pt-6 sm:px-10">
-          <h1 className="mb-3 font-display text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
-            {tema.nombre}
-          </h1>
-          {tema.descripcion && (
-            <p className="max-w-2xl text-base text-gris/80 sm:text-lg">
-              {tema.descripcion}
-            </p>
-          )}
+      <div className="relative overflow-hidden border-b-2 border-gris/20 bg-lila text-noche">
+        <div aria-hidden className="halftone-noche halftone-fade pointer-events-none absolute inset-0 rotate-180 opacity-60" />
+        <div className="relative">
+          <PageHeader conVolver={false} claro />
+          <section>
+            <div className="mx-auto max-w-7xl px-6 pb-14 pt-6 sm:px-10 sm:pb-16">
+              <span className={`${ETIQUETA} mb-5 inline-block border-2 border-noche bg-noche px-3 py-1.5 text-lima`}>
+                /Tema
+              </span>
+              <h1 className="mb-4 font-display text-6xl font-semibold uppercase leading-[0.9] tracking-tight sm:text-8xl">
+                <span className="resaltado bg-lima">{tema.nombre}</span>
+              </h1>
+              {tema.descripcion && (
+                <p className="max-w-2xl text-lg sm:text-xl">
+                  {tema.descripcion}
+                </p>
+              )}
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
 
       {citas.length > 0 && (
-        <section>
-          <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
-            <h2 className={`${ETIQUETA} mb-6 text-lima`}>
+        <section className="relative overflow-hidden border-b-2 border-noche bg-lima text-noche">
+          <div aria-hidden className="halftone-noche halftone-fade pointer-events-none absolute inset-0 opacity-60" />
+          <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-10 sm:py-20">
+            <h2 className={`${ETIQUETA} mb-8 inline-block border-2 border-noche bg-noche px-3 py-1.5 text-lima`}>
               /Citas destacadas sobre {tema.nombre}
             </h2>
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
               {citas.map((cita) => (
                 <CitaCard key={cita.id} cita={cita} onReproducir={setVideo} />
               ))}
@@ -77,7 +88,7 @@ function Contenido({ tema }) {
 
       <section>
         <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
-          <h2 className={`${ETIQUETA} mb-6 text-lima`}>
+          <h2 className={`${ETIQUETA} mb-8 inline-block bg-gris px-3 py-1.5 text-noche`}>
             /Programas que tocan este tema · {programas.length}
           </h2>
           {programas.length === 0 ? (
@@ -113,7 +124,7 @@ function TarjetaPrograma({ programa }) {
   const bajada = getBajada(programa);
 
   return (
-    <article className="grid gap-4 border-2 border-gris/20 p-4">
+    <article className="grid gap-4 border-2 border-gris/40 bg-noche p-4 shadow-[6px_6px_0_0_rgba(250,250,250,0.18)] transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#C4FD36]">
       <div className="flex flex-wrap items-center gap-3">
         {temporada && (
           <span className={`${ETIQUETA} bg-lima px-2 py-1 text-[11px] text-noche`}>
