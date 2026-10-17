@@ -1,4 +1,4 @@
-# PROJECT_STATE — Rediseño visual Código IA
+﻿# PROJECT_STATE — Rediseño visual Código IA
 
 _Actualizado: 17/10/2026 16:30 (Montevideo)_
 
@@ -17,6 +17,12 @@ _Actualizado: 17/10/2026 16:30 (Montevideo)_
 
 **PENDIENTE:**
 - Paso 4 — Mapa de Temas "3D" (`src/components/temas/ThemeMap.jsx`, datos en `src/data/mapa.json` + `src/servicios/mapa.js`): fondo oscuro, esferas de color con brillo, líneas finas, profundidad/desenfoque, inspirado en la foto que pasó Gabi (red de nodos luminosos). Mantener la paleta actual. Nodos siguen enlazando a `/temas/:id`. Respetar `prefers-reduced-motion`; en móvil ya hay chips (`lg:hidden` en `ThemeSection`). Hoy sigue con nodos cuadrados y `border-2`.
+- **Cambios pedidos por Gabi (17/10/2026), anotados para después, sin urgencia:**
+  1. Reducir el tamaño de títulos y subtítulos (y de algunas partes de la página): que no esté tan maximizado ni repartido por toda la pantalla, que haya aire; "sigue medio grotesco".
+  2. Buscador interactivo: en reposo solo la lupa; al pasar el cursor se despliega la barra con placeholder "busca algo...".
+  3. Menú hamburguesa: que se abra al pasar el cursor por arriba (ya funciona con mouse; revisar). Principio general: **todo debe reaccionar al hover**; si vale la pena, aplicarlo sin consultar.
+  4. Panel del menú hamburguesa: se probó una versión unida al botón y translúcida (commit 358cb2d) y a Gabi no le gustó; se dejó como estaba. PENDIENTE: volver a pensarlo (unificar botón y panel, sensación de transparencia) con otra propuesta.
+  5. Slogan "El programa que te ayuda a no estar re perdido con la IA": al bajar del hero en el home, que viaje al header, centrado entre el logo y el buscador, de forma dinámica y achicándose (scroll).
 - Esperando feedback de Gabi sobre pasos 2 y 3.
 - Pendientes heredados del HANDOFF (no tocados): citas lorem en `citas.json`, "+20 programas" fijo (hay 16), formulario de contacto sin envío, temas cine/videojuegos/publicidad sin nodo, `PENULTIMA` y `ControlesReproduccion.jsx` sin uso.
 
@@ -54,3 +60,4 @@ _Actualizado: 17/10/2026 16:30 (Montevideo)_
 - Foto de referencia del mapa 3D: Gabi la adjuntó en el chat (red de nodos esféricos luminosos sobre fondo oscuro, "libre de derechos generado por IA"). No está guardada en el repo; si se continúa en Code, pedirla de nuevo.
 
 **PRÓXIMO PASO:** Construir el mapa 3D (paso 4) y publicar; luego pedir feedback global y cerrar el PR #1 / abrir uno nuevo con la rama final.
+
