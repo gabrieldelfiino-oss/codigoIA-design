@@ -2,6 +2,7 @@ import { getBajada, getTemporada } from "../../servicios/programas";
 import { useState } from "react";
 import { getCitasDeTema } from "../../servicios/citas";
 import { getProgramasDeTema, getTema } from "../../servicios/temas";
+import { getVecinos } from "../../servicios/mapa";
 import { getYoutubeThumbnail } from "../../servicios/youtube";
 import { formatFecha } from "../../servicios/texto";
 import Orbes from "../utils/Orbes";
@@ -42,9 +43,29 @@ export default function ThemePage({ id }) {
   );
 }
 
+// Conexiones del mapa: de un tema salen sus subtemas y los temas con los que
+// comparte subtemas; de un subtema, los temas en los que aparece.
+function getConexiones(tema) {
+  const directos = getVecinos(tema.id).map(getTema).filter(Boolean);
+  if (tema.tipo !== "tema") {
+    return [{ titulo: "Aparece en los temas", items: directos }];
+  }
+  const cruzados = new Map();
+  for (const sub of directos) {
+    for (const otro of getVecinos(sub.id).map(getTema)) {
+      if (otro && otro.id !== tema.id) cruzados.set(otro.id, otro);
+    }
+  }
+  return [
+    { titulo: "Subtemas", items: directos },
+    { titulo: "Se cruza con", items: [...cruzados.values()] },
+  ].filter((g) => g.items.length > 0);
+}
+
 function Contenido({ tema }) {
   const programas = getProgramasDeTema(tema.id);
   const citas = getCitasDeTema(tema.id);
+  const conexiones = getConexiones(tema).filter((g) => g.items.length > 0);
   const [video, setVideo] = useState(null);
 
   return (
@@ -65,6 +86,31 @@ function Contenido({ tema }) {
                 <p className="max-w-2xl text-lg text-gris/80 sm:text-xl">
                   {tema.descripcion}
                 </p>
+              )}
+              {conexiones.length > 0 && (
+                <div className="mt-8 grid gap-5">
+                  {conexiones.map((grupo) => (
+                    <div key={grupo.titulo}>
+                      <h2 className={`${ETIQUETA} mb-3 text-gris/60`}>/{grupo.titulo}</h2>
+                      <ul className="flex flex-wrap gap-2">
+                        {grupo.items.map((item) => (
+                          <li key={item.id}>
+                            <RouterLink
+                              to={`/temas/${item.id}`}
+                              className={`inline-flex min-h-10 items-center rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-200 ${
+                                item.tipo === "tema"
+                                  ? "border-lila/50 bg-lila/10 text-lila hover:bg-lila hover:text-noche"
+                                  : "border-gris/30 bg-gris/5 text-gris hover:border-lima hover:bg-lima hover:text-noche"
+                              }`}
+                            >
+                              {item.nombre}
+                            </RouterLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
           </section>

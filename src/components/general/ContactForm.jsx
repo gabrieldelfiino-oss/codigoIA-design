@@ -20,7 +20,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contacto" className="seccion-curva bg-azul text-gris">
+    <section id="contacto" className="seccion-curva tx tx-cuadricula bg-azul text-gris">
     <div className="mx-auto max-w-xl px-6 py-14 sm:px-10 sm:py-20">
       <h2 className="mb-8 font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
         Contacto

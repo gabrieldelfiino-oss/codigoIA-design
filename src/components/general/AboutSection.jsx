@@ -9,7 +9,7 @@ export default function AboutSection() {
   const { sobre } = proyecto
 
   return (
-    <section id="sobre-el-proyecto" className="seccion-curva bg-gris text-noche">
+    <section id="sobre-el-proyecto" className="seccion-curva tx tx-puntos-claro bg-gris text-noche">
       <div className="mx-auto max-w-3xl px-6 py-14 sm:px-10 sm:py-20">
         <details className="group rounded-3xl border border-noche/10 bg-white shadow-suave">
           <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-3xl px-6 py-4 font-display text-xl font-semibold tracking-tight sm:px-8 sm:text-2xl [&::-webkit-details-marker]:hidden">

@@ -118,6 +118,19 @@ export default function ThemeMap() {
           filter: "blur(6px)",
         }}
       />
+      {/* Cuadrícula fina, apenas visible, que se desvanece hacia los bordes. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-[4%] transition-[translate] duration-500 ease-out"
+        style={{
+          translate: "calc(var(--mx, 0) * -14px) calc(var(--my, 0) * -14px)",
+          backgroundImage:
+            "linear-gradient(rgba(250,250,250,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(250,250,250,0.06) 1px, transparent 1px)",
+          backgroundSize: "44px 44px",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, transparent 85%)",
+          maskImage: "radial-gradient(ellipse 70% 65% at 50% 50%, #000 0%, transparent 85%)",
+        }}
+      />
       {/* Foco de luz que sigue al cursor. */}
       <div
         aria-hidden="true"

@@ -14,7 +14,7 @@ export default function AditionalSection() {
   if (episodios.length === 0) return null;
 
   return (
-    <section id="cuarta-temporada" className="seccion-curva bg-white text-noche">
+    <section id="cuarta-temporada" className="seccion-curva tx tx-cuadricula-claro bg-white text-noche">
       <div className="mx-auto max-w-5xl px-6 py-14 sm:px-10 sm:py-20">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,2fr)] lg:gap-12">
           <div className="lg:sticky lg:top-28 lg:self-start">

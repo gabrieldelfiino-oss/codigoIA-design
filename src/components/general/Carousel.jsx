@@ -89,6 +89,7 @@ export default function SeasonCarousel() {
             className="absolute inset-0 bg-noche"
           >
             <Orbes />
+            <div aria-hidden="true" className="tx tx-puntos absolute inset-0" />
             <Spin
               className="pointer-events-none absolute -right-32 -top-32 h-[70vw] max-h-[560px] w-[70vw] max-w-[560px] text-gris/[0.06]"
               durationSeconds={60}

@@ -195,6 +195,52 @@ html, body, #root {
   }
 }
 
+/* ───────── Texturas de la identidad: puntos y cuadrícula ─────────
+   Un velo muy suave detrás del contenido: .tx lo activa (necesita que el
+   elemento esté posicionado) y un modificador elige el motivo. La máscara lo
+   desvanece hacia abajo para que se sienta como textura y no como patrón. */
+@layer components {
+  .tx {
+    isolation: isolate;
+  }
+  .tx::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image: var(--tx-img);
+    background-size: var(--tx-size);
+    -webkit-mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, #000 0%, transparent 90%);
+    mask-image: radial-gradient(ellipse 85% 75% at 50% 25%, #000 0%, transparent 90%);
+  }
+  /* Puntos claros sobre fondo oscuro. */
+  .tx-puntos {
+    --tx-img: radial-gradient(rgba(250, 250, 250, 0.2) 1.2px, transparent 1.7px);
+    --tx-size: 18px 18px;
+  }
+  /* Puntos oscuros sobre fondo claro. */
+  .tx-puntos-claro {
+    --tx-img: radial-gradient(rgba(26, 26, 48, 0.16) 1.1px, transparent 1.6px);
+    --tx-size: 14px 14px;
+  }
+  /* Cuadrícula de líneas finas sobre fondo oscuro o de color. */
+  .tx-cuadricula {
+    --tx-img:
+      linear-gradient(rgba(250, 250, 250, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(250, 250, 250, 0.1) 1px, transparent 1px);
+    --tx-size: 36px 36px;
+  }
+  /* Cuadrícula sobre fondo claro. */
+  .tx-cuadricula-claro {
+    --tx-img:
+      linear-gradient(rgba(26, 26, 48, 0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 26, 48, 0.07) 1px, transparent 1px);
+    --tx-size: 36px 36px;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     @keyframes aparecer {
