@@ -32,7 +32,7 @@ export default function ThemePage({ id }) {
           <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:px-10">
             <p className={`${ETIQUETA} text-lima`}>/No encontrado</p>
             <h1 className="mt-4 font-display text-3xl font-medium sm:text-5xl">
-              No encontramos ese tema
+              Uy, acá no hay nada.
             </h1>
           </div>
           </>
@@ -234,7 +234,7 @@ function TarjetaPrograma({ programa }) {
               to={`/programa/${programa.id}`}
               className={`${BOTON} border-lima bg-lima text-noche hover:border-gris hover:bg-gris`}
             >
-              Ver ficha completa
+              Mirá el programa completo
             </RouterLink>
             {programa.linkYoutube && (
               <a
@@ -243,7 +243,7 @@ function TarjetaPrograma({ programa }) {
                 rel="noopener noreferrer"
                 className={`${BOTON} border-gris text-gris hover:border-lima hover:bg-lima hover:text-noche`}
               >
-                ▶ Ver en YouTube
+                ▶ Miralo en YouTube
               </a>
             )}
           </div>

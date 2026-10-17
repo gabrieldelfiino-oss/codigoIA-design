@@ -41,7 +41,7 @@ export default function AllSection() {
           Todos los programas
         </h2>
         <p className="mt-3 max-w-xl text-base text-gris/70">
-          Abrí una temporada para ver sus programas y entrar a cada ficha.
+          Elegí una temporada y metete.
         </p>
 
         <div className="mt-8 flex flex-col gap-3">

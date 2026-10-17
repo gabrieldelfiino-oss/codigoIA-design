@@ -27,7 +27,7 @@ export default function ContactForm() {
     <div className="mx-auto max-w-3xl px-6 py-14 sm:px-10 sm:py-20">
       <details className="group rounded-3xl border border-noche/10 bg-white shadow-suave">
         <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-3xl px-6 py-4 font-display text-xl font-semibold tracking-tight sm:px-8 sm:text-2xl [&::-webkit-details-marker]:hidden">
-          Contacto
+          Escribinos
           <span
             aria-hidden
             className={`relative h-9 w-9 shrink-0 rounded-full bg-lima transition-transform duration-200 group-hover:scale-110 before:h-0.5 before:w-4 after:h-4 after:w-0.5 group-open:after:hidden ${LINEA}`}
@@ -60,7 +60,7 @@ export default function ContactForm() {
           type="submit"
           className="mt-4 w-fit rounded-full bg-noche px-8 py-3.5 text-sm font-medium text-gris transition duration-200 hover:-translate-y-0.5 hover:bg-lima hover:text-noche"
         >
-          Enviar
+          Mandalo
         </button>
       </form>
       </details>

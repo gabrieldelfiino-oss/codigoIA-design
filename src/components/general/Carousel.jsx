@@ -129,7 +129,7 @@ export default function SeasonCarousel() {
               <div className="mt-9 flex flex-wrap items-center gap-3">
                 <a href="https://www.youtube.com/@ProyectoFIC_codigoIA" className={BTN_PRIMARIO}>
                   <YoutubeIcon />
-                  Ver programas
+                  Mirá los programas
                 </a>
                 <span className="rounded-full border border-gris/25 px-4 py-2 font-mono text-xs uppercase tracking-wider text-gris/70">
                   +20 programas
@@ -172,7 +172,7 @@ export default function SeasonCarousel() {
 
               <div className="mt-4 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
                 <RouterLink to={`/programa/${actual.id}`} className={BTN_PRIMARIO}>
-                  Ver ficha
+                  Mirá el programa
                 </RouterLink>
                 {actual.linkYoutube && (
                   <a
@@ -182,7 +182,7 @@ export default function SeasonCarousel() {
                     className={BTN_SECUNDARIO}
                   >
                     <YoutubeIcon />
-                    Ver en YouTube
+                    Miralo en YouTube
                   </a>
                 )}
               </div>

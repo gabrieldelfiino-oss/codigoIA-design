@@ -101,7 +101,7 @@ export default function SearchBar() {
           ref={campo}
           type="search"
           value={texto}
-          placeholder="Busca algo..."
+          placeholder="¿Qué buscás?"
           role="combobox"
           aria-expanded={abierto && hayConsulta}
           aria-controls="resultados-busqueda"

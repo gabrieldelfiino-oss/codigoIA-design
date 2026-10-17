@@ -287,12 +287,12 @@ function Ficha({ activo, className = "" }) {
             to={`/temas/${nodo.id}`}
             className="shrink-0 rounded-full bg-lima px-5 py-2.5 text-sm font-medium text-noche transition-transform duration-200 active:scale-95"
           >
-            Ver tema →
+            Meterse en el tema →
           </RouterLink>
         </div>
       ) : (
         <p className="text-center font-mono text-[11px] uppercase tracking-widest text-gris/60">
-          Tocá un nodo para iluminar sus caminos
+          Tocá un nodo y mirá cómo se conecta todo
         </p>
       )}
     </div>

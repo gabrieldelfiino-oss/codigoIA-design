@@ -27,7 +27,7 @@ export default function ThemeSection() {
             clic en cualquiera para ver los programas de ese tema.
           </span>
           <span className="lg:hidden">
-            Tocá un nodo para iluminar sus caminos y abrí el tema desde la ficha de abajo.
+            Tocá un nodo y mirá cómo se conecta todo. Después metete en el tema desde la ficha de abajo.
           </span>
         </p>
 

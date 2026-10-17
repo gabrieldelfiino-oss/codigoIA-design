@@ -4,7 +4,7 @@ import RouterLink from "./RouterLink";
 /**
  * Cabecera simple de las páginas de segundo nivel (ficha de programa, página
  * de tema): isotipo que lleva a la home y, si `conVolver`, botón "← Volver".
- * Al pasar el cursor (o enfocar) el isotipo gira y aparece "← Inicio".
+ * Al pasar el cursor (o enfocar) el isotipo gira y aparece "← Volver a casa".
  */
 export default function PageHeader({ conVolver = true, claro = false }) {
   return (
@@ -19,7 +19,7 @@ export default function PageHeader({ conVolver = true, claro = false }) {
           aria-hidden
           className="-translate-x-2 font-mono text-xs uppercase tracking-widest opacity-0 transition-[opacity,transform] duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100 motion-reduce:transition-none"
         >
-          ← Inicio
+          ← Volver a casa
         </span>
       </RouterLink>
       {conVolver && (

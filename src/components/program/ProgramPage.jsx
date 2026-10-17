@@ -94,7 +94,7 @@ export default function ProgramPage({ id }) {
           <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:px-10">
             <p className={`${ETIQUETA} text-lima`}>/No encontrado</p>
             <h1 className="mt-4 font-display text-3xl font-medium sm:text-5xl">
-              No encontramos ese programa
+              Nos perdimos.
             </h1>
             <RouterLink
               to="/"
@@ -244,7 +244,7 @@ export default function ProgramPage({ id }) {
                               <p className="mt-1 text-sm text-gris/70">{persona.profesion}</p>
                             )}
                             <p className="mt-3 font-mono text-xs uppercase tracking-wider text-lima">
-                              Ver perfil →
+                              Conocelo/a →
                             </p>
                           </div>
                         </button>

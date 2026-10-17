@@ -4,10 +4,10 @@ import { AnimatePresence, motion } from 'framer-motion'
 // Un link por sección de la home, en el mismo orden en que aparecen en la página.
 const LINKS = [
   { href: '#temas', label: 'Temas' },
-  { href: '#cuarta-temporada', label: 'Última temporada' },
-  { href: '#todos-los-programas', label: 'Todos los programas' },
-  { href: '#sobre-el-proyecto', label: 'Sobre el proyecto' },
-  { href: '#contacto', label: 'Contacto' },
+  { href: '#cuarta-temporada', label: 'Lo último' },
+  { href: '#todos-los-programas', label: 'Todo el catálogo' },
+  { href: '#sobre-el-proyecto', label: 'De qué va esto' },
+  { href: '#contacto', label: 'Escribinos' },
 ]
 
 // Alto del header fijo: la sección queda justo debajo.

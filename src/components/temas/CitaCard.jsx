@@ -27,7 +27,7 @@ export default function CitaCard({ cita, onReproducir }) {
           onClick={() => onReproducir(cita)}
           className="w-full shrink-0 rounded-full bg-azul px-5 py-2.5 text-center text-sm font-medium text-gris transition duration-200 hover:-translate-y-0.5 hover:bg-noche sm:w-auto"
         >
-          ▶ Reproducir {formatTiempo(cita.inicio)}
+          ▶ Escuchá este momento ({formatTiempo(cita.inicio)})
         </button>
       </figcaption>
       <blockquote className="px-6 pb-6 pt-1 font-serif text-xl italic leading-relaxed sm:text-2xl">
