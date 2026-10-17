@@ -6,7 +6,7 @@ const TIPOS = { correo: "email", mensaje: "textarea" }
 const AUTOCOMPLETE = { nombre: "name", correo: "email" }
 
 const CLASE_CAMPO =
-  "rounded-2xl border border-gris/30 bg-gris/10 px-5 py-3 text-base text-gris transition-colors placeholder:text-gris/70 focus:border-lima focus:bg-gris/15 focus:outline-none"
+  "rounded-2xl border border-noche/25 bg-gris/45 px-5 py-3 text-base text-noche transition-colors placeholder:text-noche/70 focus:border-noche focus:bg-gris/70 focus:outline-none"
 
 /**
  * Formulario de contacto: por ahora solo UI, sin envío real.
@@ -20,7 +20,7 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contacto" className="seccion-curva tx tx-cuadricula bg-azul text-gris">
+    <section id="contacto" className="seccion-curva tx tx-cuadricula-claro bg-lila text-noche">
     <div className="mx-auto max-w-xl px-6 py-14 sm:px-10 sm:py-20">
       <h2 className="mb-8 font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
         Contacto
@@ -50,7 +50,7 @@ export default function ContactForm() {
         )}
         <button
           type="submit"
-          className="mt-4 w-fit rounded-full bg-lima px-8 py-3.5 text-sm font-medium text-noche transition duration-200 hover:-translate-y-0.5 hover:bg-gris"
+          className="mt-4 w-fit rounded-full bg-noche px-8 py-3.5 text-sm font-medium text-gris transition duration-200 hover:-translate-y-0.5 hover:bg-lima hover:text-noche"
         >
           Enviar
         </button>
