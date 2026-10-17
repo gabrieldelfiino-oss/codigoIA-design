@@ -28,10 +28,23 @@ const PROFUNDIDAD = Object.fromEntries(
 );
 PROFUNDIDAD[CENTRO.id] = 1;
 
-// Tonos del vidrio ("r,g,b"): los temas brillan en lima neón, los subtemas en
-// blanco suave y todo se enciende en lima al resaltarlo.
+// Tonos del vidrio ("r,g,b"): los temas en violeta, los subtemas en blanco
+// suave y todo se enciende en lima neón al resaltarlo.
 const LIMA = "196,253,54";
-const TONO = { tema: LIMA, subtema: "250,250,250" };
+const LILA = "193,114,255";
+const TONO = { tema: LILA, subtema: "250,250,250" };
+
+// Las conexiones son rectas, de centro a centro (no usan los puntos de control
+// de mapa.json, que las curvaban). El viewBox del svg es 1200 × 720.
+const PUNTOS = Object.fromEntries(
+  NODOS.map((n) => [n.id, [(n.mapa.x / 100) * 1200, (n.mapa.y / 100) * 720]])
+);
+PUNTOS[CENTRO.id] = [600, 360];
+const trazoRecto = (e) => {
+  const [x1, y1] = PUNTOS[e.de];
+  const [x2, y2] = PUNTOS[e.a];
+  return `M${x1.toFixed(1)} ${y1.toFixed(1)} L${x2.toFixed(1)} ${y2.toFixed(1)}`;
+};
 
 // Cuánto se corre cada capa con el mouse (px): lo cercano más, lo lejano menos.
 const paralaje = (id) => ((PROFUNDIDAD[id] - 0.55) * 40).toFixed(1);
@@ -163,7 +176,7 @@ export default function ThemeMap() {
             return (
               <g key={`${e.de}-${e.a}`}>
                 <path
-                  d={e.d}
+                  d={trazoRecto(e)}
                   strokeWidth={lit ? 1.8 : 0.8 + prof * 0.5}
                   strokeDasharray={lit ? "7 6" : undefined}
                   strokeLinecap="round"
@@ -186,7 +199,7 @@ export default function ThemeMap() {
                 {/* Pulso de luz que recorre la línea de vez en cuando. */}
                 {!lit && !activo && !REDUCIR_MOVIMIENTO && (
                   <path
-                    d={e.d}
+                    d={trazoRecto(e)}
                     pathLength="100"
                     strokeWidth="1.8"
                     strokeLinecap="round"
@@ -293,14 +306,14 @@ export default function ThemeMap() {
                     ].join(" ")}
                     style={{
                       "--tono": lit ? LIMA : TONO[nodo.tipo],
-                      "--brillo": esTema ? 0.2 : 0.08 + prof * 0.06,
+                      "--brillo": esTema ? 0.32 : 0.08 + prof * 0.06,
                       transform: `scale(${enfocado ? 1.14 : esTema ? 1 : 0.88 + prof * 0.12})`,
                       textShadow: lit ? "0 0 14px rgba(196,253,54,0.8)" : "0 1px 8px rgba(3,3,16,0.8)",
                     }}
                   >
                     <span
                       className={`h-1.5 w-1.5 shrink-0 rounded-full transition-[background-color,box-shadow] duration-300 ${
-                        lit ? "bg-lima shadow-[0_0_10px_2px_rgba(196,253,54,0.9)]" : esTema ? "bg-lima/80" : "bg-gris/60"
+                        lit ? "bg-lima shadow-[0_0_10px_2px_rgba(196,253,54,0.9)]" : esTema ? "bg-lila shadow-[0_0_8px_1px_rgba(193,114,255,0.8)]" : "bg-gris/60"
                       }`}
                     />
                     {nodo.nombre}
