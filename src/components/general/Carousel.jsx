@@ -67,6 +67,19 @@ export default function SeasonCarousel() {
   const anterior = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
   const siguiente = () => setIndex((i) => (i + 1) % slides.length);
 
+  // Gesto de deslizar (en celular): un barrido horizontal cambia de banner; el
+  // scroll vertical de la página sigue funcionando (pan-y).
+  const gesto = {
+    drag: "x",
+    dragConstraints: { left: 0, right: 0 },
+    dragElastic: 0.18,
+    style: { touchAction: "pan-y" },
+    onDragEnd: (_, { offset, velocity }) => {
+      if (offset.x < -60 || velocity.x < -500) siguiente();
+      else if (offset.x > 60 || velocity.x > 500) anterior();
+    },
+  };
+
   return (
     <section
       id="carrusel"
@@ -76,7 +89,7 @@ export default function SeasonCarousel() {
       onMouseLeave={() => setPausado(false)}
       onFocus={() => setPausado(true)}
       onBlur={() => setPausado(false)}
-      className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-noche text-gris sm:h-[74vh]"
+      className="relative h-[min(560px,calc(100svh-5rem))] min-h-[520px] w-full overflow-hidden bg-noche text-gris sm:h-[74vh] sm:min-h-[500px]"
     >
       <AnimatePresence mode="wait">
         {actual.tipo === "hero" ? (
@@ -86,6 +99,7 @@ export default function SeasonCarousel() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.99 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            {...gesto}
             className="absolute inset-0 bg-noche"
           >
             <Orbes />
@@ -130,25 +144,33 @@ export default function SeasonCarousel() {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.99 }}
             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            {...gesto}
             className="absolute inset-0 bg-noche"
           >
-            <img
-              src={getYoutubeThumbnail(actual.linkYoutube, "maxresdefault")}
-              alt=""
-              className="h-full w-full object-cover opacity-60"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-noche via-noche/60 to-transparent" />
+            {/* En celular la miniatura va entera arriba (16:9, sin recortar) y el
+                texto debajo; desde sm queda de fondo a pantalla completa. */}
+            <div className="absolute inset-x-0 top-0 aspect-video sm:inset-0 sm:aspect-auto">
+              <img
+                src={getYoutubeThumbnail(actual.linkYoutube, "maxresdefault")}
+                alt=""
+                draggable={false}
+                className="h-full w-full object-cover opacity-80 sm:opacity-60"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-noche via-noche/10 to-transparent sm:via-noche/60" />
+            </div>
 
-            <div className="absolute bottom-36 left-6 right-6 sm:bottom-40 sm:left-12 sm:right-12">
-              <span className="mb-4 inline-flex rounded-full bg-lila px-3.5 py-1 font-mono text-xs uppercase tracking-wider text-noche">
+            <div className="absolute inset-x-6 bottom-32 top-[calc(56.25vw-1.25rem)] overflow-hidden sm:inset-x-12 sm:bottom-40 sm:top-auto sm:overflow-visible">
+              <span className="mb-2 inline-flex rounded-full bg-lila px-3.5 py-1 font-mono text-xs uppercase tracking-wider text-noche sm:mb-4">
                 Programa {String(index).padStart(2, "0")}
               </span>
-              <h2 className="max-w-2xl font-display text-3xl font-semibold leading-[1.02] sm:text-5xl">
+              <h2 className="max-w-2xl font-display text-2xl font-semibold leading-[1.05] sm:text-5xl">
                 {actual.titulo}
               </h2>
-              <p className="mt-4 max-w-xl text-base text-gris/85 sm:text-lg">{getBajada(actual)}</p>
+              <p className="mt-2 line-clamp-2 max-w-xl text-sm text-gris/85 sm:mt-4 sm:line-clamp-none sm:text-lg">
+                {getBajada(actual)}
+              </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-4 flex flex-wrap gap-2 sm:mt-6 sm:gap-3">
                 <RouterLink to={`/programa/${actual.id}`} className={BTN_PRIMARIO}>
                   Ver ficha
                 </RouterLink>

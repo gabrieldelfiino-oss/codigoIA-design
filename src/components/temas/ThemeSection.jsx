@@ -1,4 +1,5 @@
 import ThemeMap from "./ThemeMap";
+import ThemeMapMovil from "./ThemeMapMovil";
 import RouterLink from "../utils/RouterLink";
 import { TEMAS } from "../../servicios/temas";
 
@@ -25,14 +26,21 @@ export default function ThemeSection() {
             Pasá el cursor o tabulá por un nodo para iluminar sus caminos. Hacé
             clic en cualquiera para ver los programas de ese tema.
           </span>
-          <span className="lg:hidden">Elegí un tema para ver los programas que lo tocan.</span>
+          <span className="lg:hidden">
+            Tocá un nodo para iluminar sus caminos y abrí el tema desde la ficha de abajo.
+          </span>
         </p>
 
         <div className="mt-10 hidden overflow-hidden rounded-3xl shadow-suave-lg lg:block">
           <ThemeMap />
         </div>
 
-        <ul className="mt-10 flex flex-wrap gap-3 lg:hidden">
+        <div className="mt-8 lg:hidden">
+          <ThemeMapMovil />
+        </div>
+
+        <p className="mt-8 font-mono text-xs uppercase tracking-widest text-noche/60 lg:hidden">/Lista de temas</p>
+        <ul className="mt-3 flex flex-wrap gap-3 lg:hidden">
           {temas.map((t, i) => (
             <li key={t.id}>
               <RouterLink
