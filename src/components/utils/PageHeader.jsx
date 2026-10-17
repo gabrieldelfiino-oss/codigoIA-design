@@ -9,7 +9,7 @@ export default function PageHeader({ conVolver = true, claro = false }) {
   return (
     <header className="flex items-center justify-between px-6 py-5 sm:px-10">
       <RouterLink to="/" aria-label="Volver al inicio" className={claro ? "text-noche" : "text-gris"}>
-        <Isotipo className="h-8 w-8 sm:h-9 sm:w-9" />
+        <Isotipo className="h-8 w-8 text-naranja sm:h-9 sm:w-9" />
       </RouterLink>
       {conVolver && (
       <RouterLink

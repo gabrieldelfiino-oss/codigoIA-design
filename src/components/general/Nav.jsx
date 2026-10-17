@@ -26,7 +26,7 @@ function irA(href) {
 
 /**
  * Menú (derecha del header): un panel chico que se abre al costado, bajo el
- * botón. Al pasar el cursor por un link la página baja sola a esa sección;
+ * botón. Se abre al pasar el cursor por el botón. Al pasar el cursor por un link la página baja sola a esa sección;
  * al hacer clic se queda ahí y el panel se cierra.
  */
 export default function Nav() {
@@ -34,6 +34,8 @@ export default function Nav() {
   const [activo, setActivo] = useState(null)
   const raiz = useRef(null)
   const timer = useRef(null)
+  const cierre = useRef(null)
+  const ultimoPuntero = useRef(null)
 
   useEffect(() => {
     if (!open) return
@@ -47,9 +49,24 @@ export default function Nav() {
       document.removeEventListener('pointerdown', alPresionar)
       document.removeEventListener('keydown', alTeclear)
       clearTimeout(timer.current)
+      clearTimeout(cierre.current)
       setActivo(null)
     }
   }, [open])
+
+  // Con mouse el panel se abre al pasar el cursor y se cierra al salir (con una
+  // pequeña espera para no cerrarse si el cursor cruza el espacio entre botón y panel).
+  // Con teclado o pantalla táctil se mantiene el clic como alternativa.
+  const alEntrar = (e) => {
+    if (e.pointerType !== 'mouse') return
+    clearTimeout(cierre.current)
+    setOpen(true)
+  }
+  const alSalir = (e) => {
+    if (e.pointerType !== 'mouse') return
+    clearTimeout(cierre.current)
+    cierre.current = setTimeout(() => setOpen(false), 250)
+  }
 
   const previsualizar = (href) => {
     setActivo(href)
@@ -58,12 +75,22 @@ export default function Nav() {
   }
 
   return (
-    <div ref={raiz} className="relative">
+    <div
+      ref={raiz}
+      className="relative"
+      onPointerEnter={alEntrar}
+      onPointerLeave={alSalir}
+    >
       <motion.button
         type="button"
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
         aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
+        onPointerDown={(e) => { ultimoPuntero.current = e.pointerType }}
+        onClick={() => {
+          // Con mouse ya se abrió al pasar el cursor: el clic no debe cerrarlo.
+          if (ultimoPuntero.current === 'mouse') { ultimoPuntero.current = null; setOpen(true); return }
+          setOpen((v) => !v)
+        }}
         className="group relative z-[60] flex h-5 w-7 flex-col justify-center gap-[5px]"
       >
         <motion.span
