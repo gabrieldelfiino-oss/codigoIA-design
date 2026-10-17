@@ -1,0 +1,26 @@
+{
+  "nombre": "Código IA",
+  "tituloSitio": "Código IA | FIC – Udelar",
+  "url": "https://codigoia.uy",
+  "sobre": {
+    "proyecto": "Código.ia es un proyecto de divulgación transmedia de la Facultad de Información y Comunicación (FIC), de la Universidad de la República (Udelar), que aborda la temática de la Inteligencia Artificial en diversos campos y áreas de conocimiento. Este proyecto surge como parte de la Práctica Pre Profesional (PPP) vinculada a la Unidad Curricular «Comunicación e Inteligencia Artificial» del Instituto de Comunicación.",
+    "efi": "Además, Código.ia cuenta con un Espacio de Formación Integral (EFI). Los EFI son espacios de trabajo donde la extensión se combina con la enseñanza y la investigación, en donde interactúan universitarios y no universitarios. Estos espacios forman parte integral de la educación académica, permitiendo a los participantes establecer contacto con diversas realidades y aplicar los conocimientos adquiridos en el aula, así como generar nuevos conocimientos."
+  },
+  "institucion": {
+    "facultad": "Facultad de Información y Comunicación (FIC)",
+    "universidad": "Universidad de la República (Udelar)"
+  },
+  "redes": {
+    "youtube": "https://www.youtube.com/channel/UCoB5ZY5DohkX1Qi19Ju5y_A",
+    "instagram": "https://www.instagram.com/codigo.ia/"
+  },
+  "contacto": {
+    "campos": [
+      { "id": "nombre", "etiqueta": "Tu nombre", "opcional": false },
+      { "id": "correo", "etiqueta": "Tu correo electrónico", "opcional": false },
+      { "id": "asunto", "etiqueta": "Asunto", "opcional": false },
+      { "id": "mensaje", "etiqueta": "Tu mensaje (opcional)", "opcional": true }
+    ]
+  },
+  "copyright": "Copyright © 2025"
+}

@@ -1,0 +1,254 @@
+[
+  {
+    "id": "infancia",
+    "nombre": "Infancia",
+    "descripcion": "Cómo la IA entra en la crianza, las pantallas y los primeros aprendizajes de niñas y niños.",
+    "color": null,
+    "orden": 1,
+    "tipo": "tema",
+    "mapa": {
+      "x": 50.0,
+      "y": 23.61
+    }
+  },
+  {
+    "id": "educacion",
+    "nombre": "Educación",
+    "descripcion": "Cómo la IA cambia la forma de enseñar y de aprender, desde la infancia hasta la universidad.",
+    "color": null,
+    "orden": 2,
+    "tipo": "tema",
+    "mapa": {
+      "x": 65.91,
+      "y": 31.34
+    }
+  },
+  {
+    "id": "chatbots",
+    "nombre": "Chatbots",
+    "descripcion": "Asistentes conversacionales: qué pueden hacer, para qué se usan y qué cambian en nuestras rutinas.",
+    "color": null,
+    "orden": 3,
+    "tipo": "tema",
+    "mapa": {
+      "x": 72.5,
+      "y": 50.0
+    }
+  },
+  {
+    "id": "musica",
+    "nombre": "Música",
+    "descripcion": "La IA en la composición, la producción sonora y la creación musical.",
+    "color": null,
+    "orden": 4,
+    "tipo": "tema",
+    "mapa": {
+      "x": 65.91,
+      "y": 68.66
+    }
+  },
+  {
+    "id": "arte",
+    "nombre": "Arte",
+    "descripcion": "La IA en la producción artística y en los procesos creativos.",
+    "color": null,
+    "orden": 5,
+    "tipo": "tema",
+    "mapa": {
+      "x": 50.0,
+      "y": 76.39
+    }
+  },
+  {
+    "id": "amor",
+    "nombre": "Amor",
+    "descripcion": "Parejas simuladas, citas mediadas por algoritmos y compañía bajo demanda.",
+    "color": null,
+    "orden": 6,
+    "tipo": "tema",
+    "mapa": {
+      "x": 34.09,
+      "y": 68.66
+    }
+  },
+  {
+    "id": "salud-mental",
+    "nombre": "Salud mental",
+    "descripcion": "La IA en las relaciones personales, la terapia y la intimidad.",
+    "color": null,
+    "orden": 7,
+    "tipo": "tema",
+    "mapa": {
+      "x": 27.5,
+      "y": 50.0
+    }
+  },
+  {
+    "id": "fraudes",
+    "nombre": "Fraudes digitales",
+    "descripcion": "Estafas hechas a medida, voces clonadas y deepfakes: cuando la IA se cruza con tu billetera.",
+    "color": null,
+    "orden": 8,
+    "tipo": "tema",
+    "mapa": {
+      "x": 34.09,
+      "y": 31.34
+    }
+  },
+  {
+    "id": "pantallas",
+    "nombre": "Pantallas y crianza",
+    "descripcion": "Pantallas, algoritmos y contenidos automatizados en la crianza cotidiana.",
+    "color": null,
+    "orden": 9,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 50.0,
+      "y": 8.33
+    }
+  },
+  {
+    "id": "pensamiento-computacional",
+    "nombre": "Pensamiento computacional",
+    "descripcion": "Enseñar a pensar con y sobre las máquinas en el sistema educativo.",
+    "color": null,
+    "orden": 10,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 64.67,
+      "y": 11.37
+    }
+  },
+  {
+    "id": "rol-docente",
+    "nombre": "Rol docente",
+    "descripcion": "Qué le toca hacer a docentes y a instituciones frente a la IA.",
+    "color": null,
+    "orden": 11,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 80.86,
+      "y": 24.35
+    }
+  },
+  {
+    "id": "chatbots-aprendizaje",
+    "nombre": "Chatbots en el aprendizaje",
+    "descripcion": "ChatGPT y otros asistentes en los procesos de estudio y evaluación.",
+    "color": null,
+    "orden": 12,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 88.57,
+      "y": 42.76
+    }
+  },
+  {
+    "id": "voces-sinteticas",
+    "nombre": "Voces sintéticas",
+    "descripcion": "Voces generadas o clonadas con IA, de la música a la estafa.",
+    "color": null,
+    "orden": 13,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 85.5,
+      "y": 67.61
+    }
+  },
+  {
+    "id": "creatividad-autoria",
+    "nombre": "Creatividad y autoría",
+    "descripcion": "Dilemas éticos, propiedad intelectual y autoría en la era de la IA generativa.",
+    "color": null,
+    "orden": 14,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 64.67,
+      "y": 88.63
+    }
+  },
+  {
+    "id": "compania-vinculos",
+    "nombre": "Compañía y vínculos",
+    "descripcion": "Vínculos afectivos con sistemas que simulan compañía.",
+    "color": null,
+    "orden": 15,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 36.6,
+      "y": 89.15
+    }
+  },
+  {
+    "id": "citas-algoritmos",
+    "nombre": "Citas y algoritmos",
+    "descripcion": "Aplicaciones y algoritmos que median cómo conocemos a otras personas.",
+    "color": null,
+    "orden": 16,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 19.14,
+      "y": 75.65
+    }
+  },
+  {
+    "id": "terapia-algoritmos",
+    "nombre": "Terapia con algoritmos",
+    "descripcion": "Qué pasa cuando el espacio terapéutico lo ocupa un chatbot.",
+    "color": null,
+    "orden": 17,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 10.86,
+      "y": 51.45
+    }
+  },
+  {
+    "id": "privacidad-datos",
+    "nombre": "Privacidad de datos",
+    "descripcion": "Fraudes, vigilancia, datos personales y derechos humanos frente a la IA.",
+    "color": null,
+    "orden": 18,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 35.33,
+      "y": 11.37
+    }
+  },
+  {
+    "id": "deepfakes",
+    "nombre": "Deepfakes y estafas",
+    "descripcion": "Contenido falso y verosímil generado con IA, y cómo reconocerlo.",
+    "color": null,
+    "orden": 19,
+    "tipo": "subtema",
+    "mapa": {
+      "x": 16.08,
+      "y": 29.17
+    }
+  },
+  {
+    "id": "cine",
+    "nombre": "Cine y audiovisual",
+    "descripcion": "La IA en la producción, edición y narración audiovisual.",
+    "color": null,
+    "orden": 20,
+    "tipo": "tema"
+  },
+  {
+    "id": "videojuegos",
+    "nombre": "Videojuegos",
+    "descripcion": "Videojuegos y gamificación, y su cruce con la IA y la educación.",
+    "color": null,
+    "orden": 21,
+    "tipo": "tema"
+  },
+  {
+    "id": "publicidad",
+    "nombre": "Publicidad e industria",
+    "descripcion": "La IA generativa en la publicidad y en la industria creativa.",
+    "color": null,
+    "orden": 22,
+    "tipo": "tema"
+  }
+]

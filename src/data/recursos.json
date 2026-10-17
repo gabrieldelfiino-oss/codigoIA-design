@@ -1,0 +1,33 @@
+[
+  { "id": "r-001", "programaId": "amar-en-tiempos-de-ia", "tipo": "video", "titulo": "Amar en tiempos de IA", "url": "https://www.youtube.com/watch?v=ot_mh51pXKI", "plataforma": "youtube", "orden": 1 },
+
+  { "id": "r-002", "programaId": "del-divan-al-chatbot", "tipo": "video", "titulo": "Del diván al chatbot", "url": "https://www.youtube.com/watch?v=OJWXrCOCNxU", "plataforma": "youtube", "orden": 1 },
+
+  { "id": "r-003", "programaId": "infancia-e-ia", "tipo": "video", "titulo": "Infancia e IA, ¿aliada o amenaza en los procesos de aprendizaje?", "url": "https://www.youtube.com/watch?v=mBiDh9dXgAU", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-004", "programaId": "infancia-e-ia", "tipo": "video", "titulo": "El aula y la IA", "url": "https://www.youtube.com/watch?v=OEBzgS5DmNc", "plataforma": "youtube", "orden": 2 },
+
+  { "id": "r-005", "programaId": "fraudes-digitales-e-ia", "tipo": "video", "titulo": "Fraudes digitales e IA: cuando la inteligencia artificial se cruza con tu billetera", "url": "https://www.youtube.com/watch?v=_WIWDdQCecY", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-006", "programaId": "fraudes-digitales-e-ia", "tipo": "pieza", "titulo": "Evitá fraudes digitales: consejos para no caer en engaños con IA", "url": "https://drive.google.com/file/d/1ljE8ATxtFz1gJcGvdM8qV60ZiH69izXy/preview", "plataforma": "drive", "orden": 2 },
+
+  { "id": "r-007", "programaId": "ia-en-la-industria-cinematografica", "tipo": "video", "titulo": "La IA en la industria cinematográfica", "url": "https://www.youtube.com/watch?v=edpGXLU42lk", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-008", "programaId": "educacion-terciaria-e-ia", "tipo": "video", "titulo": "Educación terciaria e IA", "url": "https://www.youtube.com/watch?v=yZzL3UySJkA&list=PLST4zdr192bnBHGvFNJwOMfwePV3pEmcq", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-009", "programaId": "arte-e-ia", "tipo": "video", "titulo": "Arte e IA", "url": "https://www.youtube.com/watch?v=cBE3rYGvhM0", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-010", "programaId": "gamificacion-educacion-e-ia", "tipo": "video", "titulo": "Gamificación, educación e IA", "url": "https://www.youtube.com/watch?v=k0dzjYkArHI", "plataforma": "youtube", "orden": 1 },
+
+  { "id": "r-011", "programaId": "camila-rodriguez", "tipo": "audio", "titulo": "Entrevista Uni Radio", "url": null, "plataforma": "unir-radio", "orden": 1 },
+  { "id": "r-012", "programaId": "camila-rodriguez", "tipo": "video", "titulo": "Camila Rodríguez", "url": "https://www.youtube.com/watch?v=adHCE-IF6cc", "plataforma": "youtube", "orden": 2 },
+
+  { "id": "r-013", "programaId": "diego-parker", "tipo": "audio", "titulo": "Entrevista Uni Radio", "url": null, "plataforma": "unir-radio", "orden": 1 },
+  { "id": "r-014", "programaId": "diego-parker", "tipo": "video", "titulo": "Diego Parker Fernández", "url": "https://www.youtube.com/watch?v=3wrcgCvlGgM", "plataforma": "youtube", "orden": 2 },
+
+  { "id": "r-015", "programaId": "gerson-da-silva", "tipo": "audio", "titulo": "Entrevista Uni Radio", "url": null, "plataforma": "unir-radio", "orden": 1 },
+  { "id": "r-016", "programaId": "gerson-da-silva", "tipo": "video", "titulo": "Gerson Da Silva", "url": "https://www.youtube.com/watch?v=5modp8zEwcY", "plataforma": "youtube", "orden": 2 },
+
+  { "id": "r-017", "programaId": "marcelo-ubal", "tipo": "audio", "titulo": "Entrevista Uni Radio", "url": null, "plataforma": "unir-radio", "orden": 1 },
+  { "id": "r-018", "programaId": "marcelo-ubal", "tipo": "video", "titulo": "Marcelo Ubal", "url": "https://www.youtube.com/watch?v=UMA-UtLA07U", "plataforma": "youtube", "orden": 2 },
+
+  { "id": "r-019", "programaId": "brian-mackern", "tipo": "video", "titulo": "Brian Mackern", "url": "https://www.youtube.com/watch?v=wAjnCrJdQfI", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-020", "programaId": "silvina-cortes", "tipo": "video", "titulo": "Silvina Cortés", "url": "https://www.youtube.com/watch?v=XMmT9zQ4lGg", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-021", "programaId": "patricia-diaz", "tipo": "video", "titulo": "Patricia Díaz", "url": "https://www.youtube.com/watch?v=raYeEsaKVxI", "plataforma": "youtube", "orden": 1 },
+  { "id": "r-022", "programaId": "alvaro-more", "tipo": "video", "titulo": "Álvaro Moré", "url": "https://www.youtube.com/watch?v=VdIDp2m5ZqY", "plataforma": "youtube", "orden": 1 }
+]

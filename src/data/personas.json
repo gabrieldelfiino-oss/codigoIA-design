@@ -1,0 +1,322 @@
+[
+  {
+    "id": "p-jurfest",
+    "nombre": "Camila Jurfest",
+    "profesion": "Psicóloga, Sexóloga Clínica y Terapeuta Sexual Cognitiva",
+    "biografia": "Camila Jurfest es Licenciada en Psicología, egresada de la Universidad Católica del Uruguay (UCU), Sexóloga Clínica formada en la Sociedad Uruguaya de Sexología (SUS Uruguay) y Terapeuta Sexual Cognitiva, Comportamental y Sistémica por la Universidad de Buenos Aires (UBA). Su trayectoria profesional está orientada a promover una sexualidad y una salud mental libres de mitos y prejuicios.\n\nCuenta con experiencia en consultorio privado, talleres comunitarios y docencia. Además, ha acompañado tanto a personas de manera individual, como a parejas.\n\nEn su práctica clínica, combina enfoques de la terapia cognitivo-conductual, la sexología clínica, el mindfulness y la psicoeducación. Su metodología se caracteriza por tres pilares:\n- No patologizante: trabajar sobre dificultades sin imponer etiquetas.\n- Colaborativo: la experiencia del paciente es el centro del proceso terapéutico.\n- Centrado en el presente y la acción: definir objetivos claros y proponer ejercicios aplicables a la vida diaria.\n\nAdemás de realizar consultas, dentro de las cuales ofrece sesiones presenciales en Montevideo y online, Camila se dedica a la investigación y la educación. Participa en charlas, talleres y genera contenido en redes sociales (@camila.sexoyterapia), con el objetivo de acercar información científica y accesible sobre salud sexual y mental a un público amplio.\n\nFuente: https://www.camilajurfest.com",
+    "actividadActual": null,
+    "relacionIA": "Como Psicóloga, se especializa en trabajar y analizar cómo estas nuevas tecnologías pueden incidir en las relaciones de las personas.",
+    "institucion": null,
+    "foto": null,
+    "links": {
+      "instagram": "https://www.instagram.com/camila.sexoyterapia/",
+      "linkedin": null,
+      "web": "https://www.camilajurfest.com"
+    }
+  },
+  {
+    "id": "p-bafico",
+    "nombre": "Jorge Bafico",
+    "profesion": "Psicoanalista, Doctor en Psicología, miembro de la AMP (Asociación Mundial de Psicoanálisis), miembro del GLM (Grupo Lacaniano Montevideo)",
+    "biografia": "Jorge Bafico es psicoanalista, escritor y artista visual. Doctor en Psicología por la Universidad del Salvador (Argentina), miembro de la Asociación Mundial de Psicoanálisis (AMP) y del Grupo Lacaniano Montevideo (GLM). Desde 1993 ejerce su práctica clínica y se desempeña como docente en la Facultad de Psicología de la Universidad de la República (UDELAR).\n\nSu trayectoria artística surge como una extensión de su experiencia vital y su trabajo con el inconsciente.\n\nAutor de once libros, entre ellos *Tan cerca de brillar* (Sudamericana, 2021), obra que inspiró la muestra *Generaciones*, Bafico transita los límites entre el arte, la escritura y la psicología, entendiendo la creación como una forma de continuar viviendo y de transformar el silencio en expresión.\n\nFuente: https://jorgebafico.com/biografia/",
+    "actividadActual": null,
+    "relacionIA": "Como Psicoanalista, analiza cómo estas nuevas tecnologías pueden incidir en el inconsciente y si pueden afectar raíces emocionales.",
+    "institucion": "Facultad de Psicología, Universidad de la República",
+    "foto": null,
+    "links": {
+      "instagram": null,
+      "linkedin": null,
+      "web": "https://jorgebafico.com/biografia/"
+    }
+  },
+  {
+    "id": "p-perez-abella",
+    "nombre": "Alma Pérez Abella",
+    "profesion": "Psicóloga, egresada de la Universidad de la República y Magíster en Psicoanálisis por la UBA",
+    "biografia": "Alma Perez Abella es Licenciada en Psicologia, egresada de la Universidad de la República del Uruguay. Se especializó con una maestría en la Universidad de Buenos Aires (UBA) en Psicoanálisis.\n\nEn sus inicios trabajó con asesorías en el área de RRHH, lo que la llevó a conocer distintos países como Chile, Argentina, España. Sin embargo, siempre apostó por el psicoanálisis y la atención a pacientes. Es autora del libro “Los afectos, el pudor y lo femenino”, publicado en 2018 (editorial Grama).\n\nTambién realizó publicaciones en donde expone avances sobre temas de interés vinculados a la clínica, el malestar de la cultura y la salud mental. Creó, junto con otros de sus compañeros en su tiempo de estudiante, la primera revista de la facultad de psicología hecha por y para los estudiantes. También participó en la creación de la “Revista de Psicoanálisis Lituaria”, así como también en la revista digital Cine al Diván, entre otras grandes publicaciones.\n\nActualmente está a cargo de una materia en la Universidad Católica, atiende pacientes en ámbito privado hace más de 20 años, supervisa casos de otros profesionales en formación y asesora a profesionales que trabajan en equipos psicopedagógicos en colegios.",
+    "actividadActual": null,
+    "relacionIA": "Inició en asesorías de RRHH en distintos países, pero se consolidó en la clínica psicoanalítica. Es autora de “Los afectos, el pudor y lo femenino” y actualmente combina docencia universitaria con más de veinte años de práctica clínica, supervisión y asesoría a equipos psicopedagógicos.",
+    "institucion": "Universidad Católica",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-vigna",
+    "nombre": "Joaquín Vigna",
+    "profesion": "Ingeniero en Sistemas con Diploma de Especialización en Inteligencia Artificial por la Universidad ORT Uruguay. Profesor asociado en el área de algoritmos y docente del Taller de Inteligencia Artificial en la misma universidad",
+    "biografia": "Joaquín Vigna es Ingeniero en Sistemas y cuenta con un Diploma de Especialización en Inteligencia Artificial por la Universidad ORT Uruguay. Se desempeña como profesor asociado en el área de “algoritmos”, dentro de la Cátedra de Teoría de la Computación de la misma universidad, donde también es docente del Taller de Inteligencia Artificial.\n\nSu labor docente se centra en la aplicación práctica de los conceptos de agentes inteligentes basados en la obra de Sutton y Barto, guiando a los estudiantes en la implementación de algoritmos de aprendizaje por refuerzo. Trabaja con métodos como Monte Carlo, Q-learning y Deep Q-Learning, utilizando Python y entornos de simulación como Gymnasium para la experimentación y validación de modelos.\n\nAdemás, es cofundador de Broken Rubik, empresa vinculada al desarrollo tecnológico e innovación, ayudando a desarrollar y mantener sitios web y sistemas de e-commerce que están integrados dentro de NetSuite (plataforma de software empresarial de Oracle). Su perfil combina la formación académica, la docencia y la práctica profesional en el área de la IA aplicada y el aprendizaje automático, con un enfoque en la transferencia de conocimiento y el desarrollo de soluciones basadas en datos.",
+    "actividadActual": null,
+    "relacionIA": "Su trabajo se centra en la enseñanza práctica de agentes inteligentes y aprendizaje por refuerzo, aplicando métodos como Monte Carlo, Q-learning y Deep Q-Learning con Python y entornos de simulación. Además, es cofundador de Broken Rubik, empresa dedicada al desarrollo tecnológico y soluciones de e-commerce, combinando docencia, investigación y práctica profesional en IA aplicada y aprendizaje automático.",
+    "institucion": "Universidad ORT Uruguay",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-valle-lisboa",
+    "nombre": "Juan Carlos Valle-Lisboa",
+    "profesion": "Neurocientífico, investigador y docente de la Universidad de la República. Licenciado en Bioquímica, Magíster en Biofísica y Doctor en Ciencias Biológicas",
+    "biografia": "Valle-Lisboa ha dedicado su carrera a comprender y explicar cómo pensamos y aprendemos. Sus investigaciones se centran en las redes neurobiológicas de la cognición, con un énfasis en el procesamiento y adquisición del lenguaje. Actualmente dirige el Centro Interdisciplinario en Cognición para la Enseñanza y el Aprendizaje, donde aplica sus estudios en la educación, específicamente Inicial y Primaria.\n\nFuente: https://cibpsi.psico.edu.uy/cibpsi.psico.edu.uy/es/institucional/index.html\n\nDr. Juan Carlos Valle-Lisboa, es científico y académico uruguayo, actualmente Profesor Agregado de Biofísica y Biología de Sistemas en la Facultad de Ciencias de la Universidad de la República (UDELAR). Su Doctorado en Ciencias Biológicas en 2007, titulado “Las redes neuronales y el procesamiento del lenguaje natural”, estableció su línea de trabajo en la Neurobiología Teórica y Computacional, un campo que integra Biofísica con el estudio de Redes Neuronales, Aprendizaje y Representación.\n\nLa investigación fundamental del Dr. Valle Lisboa se centra en la modelización computacional de la cognición, buscando establecer cuáles son las restricciones que los procesos cognitivos imponen a la neurobiología subyacente. Para abordar este desafío, utiliza modelos de redes neuronales artificiales, importando técnicas del procesamiento del lenguaje natural y la búsqueda de información para entender cómo el cerebro interpreta el lenguaje y almacena conocimiento.\n\nEs Co director del Centro Interdisciplinario en Cognición para la Enseñanza y el Aprendizaje (CICEA) en la UDELAR, un cargo que ocupa desde 2018. Dentro del CICEA, lidera el Grupo «Desarrollo del lenguaje y aprendizaje de la lectura», donde se enfoca en transferir teorías neurocientíficas y cognitivas al contexto educativo, desarrollanso y validando herramientas tecnológicas esenciales para la educación inicial y primaria en conjunto con Ceibal.\n\nActualmente, es el Director de la Maestría en Ciencias Cognitivas y Director del Espacio Interdisciplinario Gestión de la Investigación, y dirigió el Centro de Investigación Básica en Psicología (CIBPSI) de la Facultad de Psicología, donde sigue siendo colaborador y responsable de la Línea de Lenguaje.\n\nFuentes:\nhttps://cicea.ei.udelar.edu.uy/equipo/dr-juan-carlos-valle-lisboa/\nhttps://www.anii.org.uy/upcms/files/cv-juan-valle-lisboa.pdf\nhttps://cibpsi.psico.edu.uy/cibpsi.psico.edu.uy/es/users/juancvl/index.html",
+    "actividadActual": "Investigador en el desarrollo del lenguaje y aprendizaje de la lectura, director de la Maestría en Ciencias Cognitivas, Co director del Centro Interdisciplinario en Cognición para la Enseñanza y el Aprendizaje.",
+    "relacionIA": "Su trabajo se enfoca en las redes neurobiológicas de la cognición, con un énfasis en el procesamiento y adquisición del lenguaje, con el objetivo de establecer cuáles son las restricciones computacionales que la cognición impone a la neurobiología, donde el fenómeno de la IA generativa atraviesa su investigación.",
+    "institucion": "Universidad de la República",
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/11/Juan1-removebg-preview.png",
+    "links": null
+  },
+  {
+    "id": "p-pereiro",
+    "nombre": "Emiliano Pereiro",
+    "profesion": "Investigador y referente en la implementación de habilidades de Pensamiento Computacional en conjunto con el sistema educativo uruguayo. Docente de posgrado de Educación en Universidad Torcuato Di Tella",
+    "biografia": "Inteligencia Artificial del Plan Ceibal, referente en la incorporación de la tecnología al sistema educativo uruguayo. Desde su práctica, impulsa propuestas que buscan acercar la inteligencia artificial y la programación a las aulas, combinando la técnica y una mirada ética y cognitiva.\n\nFormado como sociólogo, Emiliano ha trabajado en la intersección entre educación, pensamiento crítico y tecnología, ayudando a docentes y estudiantes a comprender cómo los algoritmos influyen en la manera en que aprendemos, pensamos y tomamos decisiones.\n\nEmiliano Pereiro es Licenciado en Sociología por la Universidad de la República y magíster en Políticas Educativas por la Universidad Torcuato Di Tella. Actualmente se desempeña como Jefe del área de Pensamiento Computacional e Inteligencia Artificial de Ceibal y docente de Posgrados de la Universidad Torcuato Di Tella (Argentina).\n\nSe define como rioplatense y militante por la incorporación del pensamiento computacional y la inteligencia artificial en la educación. Ha realizado conferencias y escrito publicaciones sobre inteligencia artificial en la educación. También ha escrito columnas de opinión sobre Educación y Tecnología en Infobae.\n\nFuentes:\nhttps://ceibal.edu.uy/institucional/articulos/jefe-de-pensamiento-computacional-e-inteligencia-artificial/\nhttps://www.lagaceta.com.ar/nota/1095871/sociedad/modelo-uruguayo-muestra-se-puede-integrar-ia-aula.html",
+    "actividadActual": "Se desarrolla profesionalmente en Ceibal, el centro de innovación educativa con tecnologías digitales del Estado uruguayo. Desde el 2019 se desempeña como Jefe del área de Pensamiento Computacional e Inteligencia Artificial de Ceibal, la cual desarrolla y acompaña propuestas pedagógicas orientadas a la promoción de esta competencia en los espacios educativos de Primaria y Secundaria.",
+    "relacionIA": "Su trabajo se enfoca en acercar el pensamiento computacional a los procesos de aprendizaje y enseñanza en la educación pública en Uruguay. Previo a la explosión del ChatGPT, en el año 2021, junto con su equipo de Ceibal desarrollaron un primer piloto denominado “Enseñar a las máquinas a aprender”. Desde su rol busca producir conocimiento y aplicabilidad de las herramientas digitales en los espacios educativos.",
+    "institucion": "Ceibal",
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/11/EMILIANO1-removebg-preview.png",
+    "links": null
+  },
+  {
+    "id": "p-alvarez",
+    "nombre": "Héctor Álvarez",
+    "profesion": "Ingeniero en sistemas",
+    "biografia": "Héctor Álvarez es ingeniero en sistemas. Hasta 2019 se desempeñó como Gerente Técnico en Teleimpresores S.A., liderando proyectos de vigilancia, control de acceso y seguridad electrónica. Mediante sus diseños puso en marcha centros de monitoreo para organismos públicos y grandes corporaciones como: Abitab, Banco Itaú, ANDA y la Dirección de Casinos. Por otra parte desarrolló los primeros sistemas de videograbación a bordo de ómnibus en Uruguay (CUTCSA, 2007).\n\nSu capacidad de analizar y solucionar problemas es mediante la creatividad y el pensamiento lateral, acostumbra a buscar soluciones mediante múltiples enfoques en un mismo problema.\n\nEl primer equipo de grabación de video digital, diseñado para vehículos, que se instaló en Uruguay en 2007, fue de diseño y fabricación propia en Uruguay con componentes de 5 países distintos. En años anteriores, diseñó e implementó dispositivos eléctricos, electromecánicos y electrónicos, en diversas áreas.\n\nEn 2018, implementó y configuró el Centro de Monitoreo de Casinos del estado, con alcance a todo el país.\n\nFuentes:\nHéctor César Alvarez Sorriba – Experto en Diseño e Implementación de Sistemas Electrónicos | LinkedIn https://share.google/znGNXwu4I4VM4nE5P",
+    "actividadActual": "Gerente de Asesoría Técnica, Diseñador de proyectos, Analista de productos y tecnologías.",
+    "relacionIA": null,
+    "institucion": null,
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/11/WhatsApp_Image_2025-10-19_at_20.10.27-removebg-preview-231x300.png",
+    "links": null
+  },
+  {
+    "id": "p-de-la-fuente",
+    "nombre": "Reynaldo De la Fuente",
+    "profesion": "Ingeniero en Informática, MBA (Máster en Administración de Empresas), especialista en ciberseguridad y protección de datos",
+    "biografia": "Reynaldo De la Fuente Abdala es experto en ciberseguridad y director de la empresa Datasec, la cuál fue fundada por su padre Reynaldo J. de la Fuente. Al brindar servicios y tecnología de seguridad informática para las empresas, representa una figura clave en el debate y la difusión de información sobre amenazas digitales en el país.\n\nCuenta con más de 25 años de experiencia liderando equipos en la implementación y mantenimiento de marcos de referencia y normas internacionales. Ha trabajado en organizaciones tanto grandes como medias. Uno de los temas que trabaja hace mucho tiempo es la continuidad operativa, la cual es la capacidad que tienen las empresas para mantener sus funciones y servicios más importantes en funcionamiento minimizando riesgos imprevistos.\n\nLideró proyectos críticos en sectores como banca, salud y organismos públicos, con presencia en más de 15 países, aportando soluciones en entornos altamente exigentes.\n\nPosee certificaciones internacionales CISA, CISSP y CRISC, además de una Maestría en Administración de Empresas.\n\nAl tener todas estas cualidades demuestra un enfoque holístico en el ámbito de la gestión y seguridad.\n\nFuentes:\nPerfil | LinkedIn https://share.google/LcXLczOLCOue9IyMk\nEmpresarios de Acá – Reynaldo de la Fuente – Director Datasec – Bloque 1 y 2 https://www.youtube.com/watch?v=903oYUNWIm0",
+    "actividadActual": "Director de Datasec, docente en la Universidad Católica del Uruguay (UCU) y delegado de protección de datos para instituciones clave.",
+    "relacionIA": null,
+    "institucion": "Datasec",
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/11/Reynaldo-C-683x1024-removebg-preview-200x300.png",
+    "links": null
+  },
+  {
+    "id": "p-ceretta",
+    "nombre": "María Gladys Ceretta",
+    "profesion": "Doctora en documentación, Máster en Investigación en Documentación, Licenciada en Bibliotecología, escribana, autora y docente",
+    "biografia": "Ceretta es una destacada académica y referente en el ámbito de la información y la comunicación. Su carrera en la UDELAR comenzó en 1980, desempeñándose en roles como docente y directora de la Escuela Universitaria de Bibliotecología (EUBCA) en diversas ocasiones. Actualmente, ocupa el cargo de Decana de la FIC, habiendo sido elegida por primera vez en 2016 y reelecta para un nuevo mandato en 2022.\n\nEn cuanto a su formación académica, obtuvo su título en Bibliotecología en la UDELAR en 1979 y continuó sus estudios en la Facultad de Derecho, donde se graduó como Procuradora en 1998 y Escribana en 2002. Además, completó tres posgrados en la Universidad Carlos III de Madrid: una maestría y un doctorado en Documentación, y un posdoctorado en Investigación sobre alfabetización en información y competencias lectoras.\n\nSu amplia experiencia la convierte en una referente clave para analizar cómo la IA está transformando el proceso de aprendizaje de los estudiantes en la educación terciaria. Como Decana de la FIC, un centro de estudio donde la comunicación mediada por tecnología se ha vuelto clave, Ceretta ha sido testigo y partícipe de este proceso, observando de primera mano la transformación que afecta no solo la forma en que los estudiantes y docentes se comunican y acceden al conocimiento, sino también la manera en que se estructuran los procesos educativos, planteando nuevos retos y oportunidades para la enseñanza y el aprendizaje.",
+    "actividadActual": "Decana de la Facultad de Información y Comunicación (FIC) de la Universidad de la República (UDELAR).",
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/03/Gladys-Ceretta.png",
+    "links": null
+  },
+  {
+    "id": "p-lepra",
+    "nombre": "Valeria Lepra",
+    "profesion": "Magíster en Educación Artística en la Universidad Nacional de Rosario, Argentina y Licenciada en Artes Plásticas y Visuales de la UDELAR",
+    "biografia": "Con una sólida trayectoria en el campo artístico, Valeria Lepra combina su labor investigativa con la enseñanza en educación terciaria. Desde la perspectiva estética, Lepra reflexiona sobre el papel de las herramientas tecnológicas en la construcción de nuevas formas de expresión, aportando una mirada crítica y académica a la evolución del arte en la actualidad.",
+    "actividadActual": "Docente del Departamento de Estéticas en la Facultad de Artes en Montevideo, Uruguay. Investigadora del grupo ACTO (Arte, Comunidad y Territorios Organizados) y participante del Núcleo de investigación en cultura visual, educación y construcción de identidad.",
+    "relacionIA": null,
+    "institucion": "Facultad de Artes",
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/03/Valeria-Lepra.png",
+    "links": null
+  },
+  {
+    "id": "p-argente",
+    "nombre": "Daniel Argente",
+    "profesion": "Artista e investigador",
+    "biografia": "Daniel fue Profesor Titular del Instituto Escuela Nacional de Bellas Artes (Universidad de la República-Uruguay), donde también trabajó como Coordinador de la Licenciatura de Lenguajes y Medios Audiovisuales, en Arte Digital y Electrónico y del Área de Lenguajes Computarizados (UdelaR).\n\nEncargado de los módulos de Producción Audiovisual Interactiva y Producción Audiovisual Cinética (UdelaR). Evaluador nombrado por el MEC para la Licenciatura de Ingeniería Audiovisual (Universidad Católica del Uruguay) y para la Licenciatura en Animación y Videojuegos (ORT).\n\nIntegra el Comité Organizador del Seminario Internacional de Narrativas Hiper/Textuales (NHT) que organizan el Área Transdepartamental de Artes Multimediales del IUNA, la Escuela Nacional de Bellas Artes de la UdelaR (ROU) y la Universidad Nacional de San Juan (Argentina).\n\nExpuso instalaciones de new media e infográficas en diversas salas de Uruguay; La Habana, Cuba; Maracaibo, Venezuela; Madrid, Segovia, España y Francia. Realizó documentales para el Museo Reina Sofía de Madrid, el Museo del Vidrio en la Granja de San Ildefonso de Segovia, España, Fundación Zelmar Michelini, Uruguay entre otras. Artista sonoro-visual Integrante del grupo artístico de investigación sonoro-visual-hardware-hacker Esto no es Magritte junto al artista Marcos Umpiérrez que viene realizando desde 2009 diversas presentaciones a nivel nacional y regional.",
+    "actividadActual": "Artista digital y electrónico, investigador de artes mediales y transmedia",
+    "relacionIA": null,
+    "institucion": null,
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/03/Daniel-Argente.png",
+    "links": null
+  },
+  {
+    "id": "p-cardozo",
+    "nombre": "Ángel Cardozo",
+    "profesion": "Comunicador Audiovisual",
+    "biografia": "Ángel es licenciado y especialista en comunicación, con más de dos décadas de experiencia en la producción estratégica de contenidos para el desarrollo, la innovación y el cambio social, poniendo especial énfasis en el campo digital. Desde la academia hasta la industria, combina storytelling, diseño y producción audiovisual para potenciar la visibilidad de proyectos en el sector público y privado. Lidera iniciativas que conectan la tecnología, la creatividad y la comunicación estratégica para transformar ideas en impactos.\n\nLidera proyectos audiovisuales diversos tales como documental, institucional, ficción, videoclip, y animación desde el 2004. En 2012 funda PAMBÚ, donde trabaja como profesional con servicios relacionados a la comunicación estratégica y realiza producciones vinculadas al rubro audiovisual.",
+    "actividadActual": "Docente de la Facultad de Información y Comunicación de la UDELAR del área audiovisual.",
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": "https://codigoia.uy/wp-content/uploads/2025/03/Angel-Cardozo.png",
+    "links": null
+  },
+  {
+    "id": "p-rodriguez",
+    "nombre": "Camila Rodríguez",
+    "profesion": "Artista digital",
+    "biografia": null,
+    "actividadActual": "Asistente Docente en la Universidad ORT",
+    "relacionIA": null,
+    "institucion": "Universidad ORT",
+    "foto": "https://codigoia.uy/wp-content/uploads/2024/11/Camila-Rodriguez.png",
+    "links": null
+  },
+  {
+    "id": "p-parker",
+    "nombre": "Diego Parker Fernández",
+    "profesion": "Guionista y director de cine uruguayo y docente",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": null,
+    "foto": "https://codigoia.uy/wp-content/uploads/2024/11/Diego-Parker-Fernandez.png",
+    "links": null
+  },
+  {
+    "id": "p-da-silva",
+    "nombre": "Gerson Da Silva",
+    "profesion": "Director de Game Design en Ironhide Game Studios",
+    "biografia": "Director de Game Design en Ironhide Game Studios, el estudio de videojuegos más grande de Uruguay. Está en la industria de los videojuegos hace 14 años pero comenzó su trayectoria dirigiendo partidas de juegos de rol, es decir juegos de mesa.\n\nSus inicios surgieron con el Plan Ceibal y allí desarrolló los Cazaproblemas junto al equipo de Trojan Chicken, un juego que enseña a los más chicos a resolver problemas matemáticos.\n\nActualmente trabaja con la saga de videojuegos Kingdom Rush dentro del departamento de diseño de juegos en Ironhide Game Studios, y además en Tótem Games, responsable del desarrollo de Water 2025, un videojuego de concientización por el cuidado del agua.",
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Ironhide Game Studios",
+    "foto": "https://codigoia.uy/wp-content/uploads/2024/11/Gerson-Da-Silva.png",
+    "links": null
+  },
+  {
+    "id": "p-ubal",
+    "nombre": "Marcelo Ubal",
+    "profesion": "Profesor y coordinador del Posgrado en Robótica e Inteligencia Artificial en UTEC",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "UTEC",
+    "foto": "https://codigoia.uy/wp-content/uploads/2024/11/Marcelo-Ubal.png",
+    "links": null
+  },
+  {
+    "id": "p-mackern",
+    "nombre": "Brian Mackern",
+    "profesion": "Artista visual",
+    "biografia": "Es artista visual, músico y compositor enfocado en la creación mediante el uso de técnicas digitales. Tiene más de veinte años de trayectoria en la música y la creación audiovisual. Es creador de estructuras y entornos sonoros visuales autogenerativos y reactivos.\n\nHa desarrollado la mayor parte de su producción artística en el área de la Net.art y Sound art. Desde 1999 realiza trabajos como video-data jockey a través de experimentos musicales con proyecciones, datos y colaborando con artistas sonoros y musicales. A su vez, ha compuesto música para piezas de teatro, video, films y ha diseñado entornos sonoros para performances. También es docente en la Escuela de Bellas Artes, de la Universidad de la República.\n\nPresentó su trabajó y brindó talleres en diversos países de Latinoamérica y Europa. Expuso en prestigiosos festivales de arte a nivel internacional, recibiendo reconocimientos por parte de diversas instituciones. Mackern también es conocido por su contribución a la preservación del net.art, medio artístico amenazado por la constante renovación y obsolescencia que amparan sus herramientas.\n\nSu práctica artística indaga en esferas definidas por los recuerdos y la rememoración, las geografías y cartografías urbanas, el ruido, las mezclas, el error. Su trabajo, principalmente está relacionado con procesos y estructuras que atraviesan el entorno digital y el físico, explorando el diseño de interfaces, la creación de juguetes sonoros, las transposiciones digitales de la representación, el net art, el arte sonoro y la arqueología digital.",
+    "actividadActual": "Artista mediático, desarrollador y diseñador digital de proyectos artísticos Net, docente, músico y compositor",
+    "relacionIA": null,
+    "institucion": "Escuela de Bellas Artes, Universidad de la República",
+    "foto": "https://codigoia.uy/wp-content/uploads/2023/12/WhatsApp-Image-2023-05-19-at-15.53.3411.png",
+    "links": null
+  },
+  {
+    "id": "p-cortes",
+    "nombre": "Silvina Cortés Lasalle",
+    "profesion": "Artista plástico-digital",
+    "biografia": "Silvina Cortés Lasalle es una joven artista nacida en Montevideo, Uruguay, Licenciada en Diseño, Arte y Tecnología en la Universidad ORT, además de ser Analista en Tecnologías de la Información.\n\nEn el 2022, con tan solo 24 años de edad, fue seleccionada para ser partícipe de los Talleres Inmersivos XR en Tierra del Fuego, Argentina. En dicha instancia formó parte de una residencia de investigación y creación de realidad extendida en lo que refiere a hologramas, videojuegos y mundos virtuales. Cabe destacar que Silvina fue la única mujer en el evento, además de ser la única representante uruguaya.\n\nSu trayectoria artística se extiende desde el año 2010 hasta la actualidad incluyendo más de 15 exposiciones y reconocimientos tanto dentro de nuestro país como en el plano internacional.\n\nEntre los premios destacados se encuentran:\n- Premio al Desempeño Académico (Universidad ORT Uruguay).\n- Primer Premio – Certamen de Arte Contemporáneo Emergente (Mombó Art Gallery, Sevilla, España).\n- Nancy Rothwell Award for Specimen Drawing Shortlist (Royal Society of Biology, London, England).\n\nLa relación de Silvina con la tecnología surge a partir de su expertise como Desarrolladora de Software Full Stack, Diseñadora Gráfica y UX/UI (UX: experiencia de usuario; UI: interfaz de usuario) dentro de Urudata Software, como Profesora Asistente en la Licenciatura en Diseño, Arte y Tecnología en la ORT y como Diseñadora, Productora y Desarrolladora Independiente. En la actualidad, Silvina continúa ampliando sus conocimientos en las artes plásticas, aprendiendo nuevas técnicas en base al uso de vidrio y cerámica.\n\nFuentes utilizadas para la ficha: (Cortés, 2023). Entrevistada por Emilio Velázquez, Juan Lans. https://uy.linkedin.com/in/silvina-cortes-lasalle https://www.behance.net/scorteslasalle",
+    "actividadActual": null,
+    "relacionIA": "Desde pequeña tiene un vínculo fuerte con el arte, y usa IA en el proceso creativo de sus obras, usualmente para bajar a tierra ideas de una forma más práctica y con menores costos. Además, desde su rol como docente en la Universidad ORT Uruguay, incentiva a nuevas generaciones a utilizar estas herramientas.",
+    "institucion": "Universidad ORT Uruguay",
+    "foto": "https://codigoia.uy/wp-content/uploads/2023/12/Sin-titulo-1-1.png",
+    "links": {
+      "instagram": null,
+      "linkedin": "https://uy.linkedin.com/in/silvina-cortes-lasalle",
+      "web": "https://www.behance.net/scorteslasalle"
+    }
+  },
+  {
+    "id": "p-diaz",
+    "nombre": "Patricia Díaz",
+    "profesion": "Abogada especialista en el análisis de la tecnología desde la perspectiva de Derechos humanos y Magíster en Relaciones Internacionales",
+    "biografia": "Patricia Díaz Charquero, abogada uruguaya, destaca como especialista en tecnología desde la perspectiva de los Derechos Humanos y Magíster en Relaciones Internacionales. Es Presidenta de Data Uruguay organización de la sociedad civil que trabaja en temas de Gobierno Abierto, Datos Abiertos, Tecnología Cívica, Transparencia, Acceso a la Información y co-creación de política pública. Tiene como misión contribuir a una sociedad más justa a través del uso de datos abiertos y tecnología cívica. También es miembro activo de Creative Commons Uruguay, organización sin ánimo de lucro que persigue el intercambio y utilización legal de contenidos cubiertos por los derechos de autor y promueve una internet abierta y accesible.\n\nPatricia es Coordinadora e investigadora del Laboratorio de Datos y Sociedad (Datysoc), siendo esta su actividad principal en la actualidad. Datysoc es un proyecto de Data Uruguay que trabaja temas de Derechos Humanos y tecnología impulsando actividades de investigación/acción en 4 áreas: 1) Acceso a la cultura y el conocimiento, 2) Libertad de expresión en internet, 3) Inclusión digital y ciberfeminismo y 4) Privacidad y vigilancia en entornos digitales.\n\nSu experiencia se centra en temas de propiedad intelectual, privacidad, libertad de expresión en Internet, Datos Abiertos y Ciencia Abierta. Es docente de la asignatura “Ética, tecnología y sociedad” en la Licenciatura de Tecnologías de la Información de la Universidad Tecnológica del Uruguay (UTEC) y es docente de en los siguientes posgrados de la Universidad de la República (UDELAR): Posgrado de Gestión en Tecnología de la Facultad de Ingeniería (asignatura “Propiedad Intelectual”), Posgrado en Sistemas de Información de Facultad de Ciencias Económicas (“Seminario de Derechos Digitales”) y Posgrado en Patrimonio Documental de la Facultad de Información y Comunicación (asignatura Marco legal del Patrimonio Documental). Desde 2015, ejerce como investigadora en el Núcleo de Recursos Educativos Abiertos y Accesibles de Udelar, que se dedica a promover la disponibilidad y accesibilidad de recursos educativos abiertos en Uruguay, promoviendo la colaboración, la adaptabilidad y el uso responsable de estos materiales en la educación.\n\nAdemás, es coautora, junto con Viviana Rangel, del informe “Políticas de inteligencia artificial y derechos de autor en América Latina” (2023), también es autora del informe “Fuera de control. Uso policial del reconocimiento facial automatizado en Uruguay” (2022) y de la “Ampliación del informe y resultados del litigio sobre uso policial del reconocimiento facial automatizado en Uruguay” (2023). Además fue coautora, junto a Jorge Gemetto, del informe «Ciberpatrullaje: los límites difusos de la vigilancia policial en Uruguay», (2023).\n\nOtras publicaciones recientes:\n\nArtículos en revistas científicas:\n- “Algunos desafíos para avanzar en la agenda de la ciencia abierta desde el Sur” (2023) P., Díaz & G. Randall. Integración Y Conocimiento, 12(2), 51–68. https://doi.org/10.61203/2347-0658.v12.n2.42032\n- “Derecho de autor y acceso al conocimiento en América Latina. Base de datos sobre excepciones al derecho de autor y escenarios que evidencian el atraso normativo” (2023). P., Díaz. Informatio. Revista Del Instituto De Información De La Facultad De Información Y Comunicación, 27(1), 69-88. https://doi.org/10.35643/Info.27.1.11\n\nCapítulos de libro:\n- “Fair Learning Analytics: Design, Participation, and Trans-discipline in the Techno-structure” (2023). P. Díaz, & R. Motz in J. Raffaghelli and A. Sangrà. Data Cultures in Higher Education. Cham: Springer International Publishing AG. ISBN: 978-3-031-24193-2. https://link.springer.com/chapter/10.1007/978-3-031-24193-2_3\n- “Stories from Uruguay” in Open Education as a game changer – stories from the pandemic (2020), V. Rodés, & P. Díaz, Polonia: Centrum Cyfrowe, pp. 53–65. Disponible en: https://centrumcyfrowe.pl/wp-content/uploads/sites/16/2021/01/open-education-gamechanger-final.pdf\n- “Contratación de servicios educativos en la nube: Riesgos y recomendaciones desde la perspectiva de la protección de datos personales”. Díaz P., & Fossatti M. . Publicado en C, Cobo; S, Cortesi; L, Brossi; S, Doccetti; A, Lombana; N, Remolina; R, Winocur; y A, Zucchetti. (Eds.) .Jóvenes, transformación digital y nuevas formas de inclusión en América latina (pp. 22-34). Montevideo, Uruguay: Penguin Random House. Available: https://digital.fundacionceibal.edu.uy/jspui/handle/123456789/229\n\nBases de datos:\n- Dataset: “¿Es legal en Latinoamérica? Análisis de casos hipotéticos sobre el impacto de los derechos de autor en la educación, las bibliotecas y archivos y la investigación en América Latina( 2023). Disponible en: https://flexibilidades.datysoc.org/es-legal\n- Informe y Dataset: «Flexibilidades al derecho de autor en América Latina» (2022) P. Díaz. Datysoc & Fundación Karisma. Informe disponible en: https://datysoc.org/wp-content/uploads/2021/04/Flexibilidades-DDAA-Latam.pdf Dataset disponible en: https://flexibilidades.datysoc.org/mapa",
+    "actividadActual": null,
+    "relacionIA": "Como abogada, se especializa en trabajar y analizar cómo estas nuevas tecnologías pueden incidir en los Derechos Humanos de las personas. Trabaja en líneas de investigación relacionadas con derechos humanos, ética, tecnología y sociedad.",
+    "institucion": "Data Uruguay",
+    "foto": "https://codigoia.uy/wp-content/uploads/2023/12/Equipo-Datysoc-Patricia-Diaz-web-ALPHA.png",
+    "links": null
+  },
+  {
+    "id": "p-more",
+    "nombre": "Álvaro Moré",
+    "profesion": "Director de Young & Rubicam Uruguay",
+    "biografia": "Álvaro Moré ha estado inmerso en el mundo de la publicidad desde 1978. Inició su carrera a la temprana edad de 17 años en Capurro Publicidad, donde desempeñó diversos roles en los departamentos de medios, producción y cuentas. En 1992, co-fundó la agencia Diciembre junto a Claudio Invernizzi, la cual más tarde se fusionó con Grey, dando origen a Grey/Diciembre. En 1994, también fue socio de Ginkgo Saatchi & Saatchi.\n\nEn 1995, Moré fundó MADD, una agencia que se convirtió en parte del grupo ADD de Y&R, al asociarse con Young & Rubicam el 1 de enero de 1998. Además de sus logros en la industria publicitaria, Moré desempeñó un papel importante en la fundación de las revistas Comunicación Publicitaria, Mercadeo y Cien Por Ciento.\n\nHa ocupado cargos relevantes en la industria publicitaria de Uruguay, incluyendo la presidencia del Círculo Uruguayo de la Publicidad y la Asociación Uruguaya De Agencias de Publicidad, así como la presidencia del Desachate 20.\n\nMoré también ha sido un defensor activo de la calidad en Uruguay como miembro del Círculo Uruguayo De La Calidad. En la actualidad, se desempeña como director del Young & Rubicam Uruguay, Wunderman Zonamérica y Wunderman Montevideo.\n\nEn el ámbito académico, Moré ha compartido su experiencia como docente en la Universidad Católica y posteriormente como Catedrático de Publicidad en la Universidad ORT desde 1995 hasta 2005. También forma parte del Consejo Consultivo Académico de la Universidad ORT y es miembro del directorio de Endeavor y de Un Techo Para Mi País.\n\nSu destacado desempeño le ha valido el reconocimiento como el mejor director de agencia en los últimos tres años, según una encuesta entre anunciantes realizada por Equipos Mori.\n\nFuentes:\nhttps://www.yr.com.uy/alvaro_more.php\nhttps://www.elpais.com.uy/el-empresario/la-inteligencia-artificial-generativa-llego-a-la-publicidad-uruguaya-agencias-explican-sus-usos\nFoto: https://www.yr.com.uy/alvaro_more.php",
+    "actividadActual": null,
+    "relacionIA": "Como director de una de las agencias publicitarias más reconocidas del país, la incorporación de la IA ha sido una herramienta de eficacia para el desarrollo de diferentes campañas publicitarias. Algunas de estas fueron diseñadas a partir de distintas inteligencias artificiales generativas, como Midjourney, Stablefusion, ChatGPT y Runway.",
+    "institucion": "Young & Rubicam Uruguay",
+    "foto": "https://codigoia.uy/wp-content/uploads/2023/12/ALVARO-MORE.png",
+    "links": null
+  },
+  {
+    "id": "p-gimenez",
+    "nombre": "Santiago Giménez",
+    "profesion": "Estudiante",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-lopez",
+    "nombre": "Lucas Lopez",
+    "profesion": "Estudiante",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-lananguere",
+    "nombre": "Sofía Lananguere",
+    "profesion": "Estudiante",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-besses",
+    "nombre": "Fiorella Besses",
+    "profesion": "Estudiante",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-mendez",
+    "nombre": "Enzo Méndez",
+    "profesion": "Estudiante",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-chavarria",
+    "nombre": "Valentina Chavarría",
+    "profesion": "Estudiante",
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": "Facultad de Información y Comunicación, Universidad de la República",
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-velazquez",
+    "nombre": "Emilio Velázquez",
+    "profesion": null,
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": null,
+    "foto": null,
+    "links": null
+  },
+  {
+    "id": "p-lans",
+    "nombre": "Juan Lans",
+    "profesion": null,
+    "biografia": null,
+    "actividadActual": null,
+    "relacionIA": null,
+    "institucion": null,
+    "foto": null,
+    "links": null
+  }
+]

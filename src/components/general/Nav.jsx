@@ -1,38 +1,78 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
+// Un link por sección de la home, en el mismo orden en que aparecen en la página.
 const LINKS = [
-  { href: '#temporada-3', label: 'Temporada 3', hover: 'hover:bg-lima' },
-  { href: '#temporada-2', label: 'Temporada 2', hover: 'hover:bg-naranja' },
-  { href: '#codigo-ia-radio', label: 'Código IA Radio', hover: 'hover:bg-lila' },
-  { href: '#todos-los-programas', label: 'Todos los programas', hover: 'hover:bg-azul hover:text-gris' },
-  { href: '#contacto', label: 'Contacto', hover: 'hover:bg-gris' },
+  { href: '#temas', label: 'Temas' },
+  { href: '#cuarta-temporada', label: 'Última temporada' },
+  { href: '#todos-los-programas', label: 'Todos los programas' },
+  { href: '#sobre-el-proyecto', label: 'Sobre el proyecto' },
+  { href: '#contacto', label: 'Contacto' },
 ]
 
+// Alto del header fijo: la sección queda justo debajo.
+const ALTO_HEADER = 72
+// Espera antes de scrollear al pasar el cursor, para no disparar scrolls
+// cuando el mouse solo cruza el menú.
+const RETRASO_HOVER_MS = 140
+
+function irA(href) {
+  const el = document.querySelector(href)
+  if (!el) return
+  const reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  const top = el.getBoundingClientRect().top + window.scrollY - ALTO_HEADER
+  window.scrollTo({ top: Math.max(0, top), behavior: reducir ? 'auto' : 'smooth' })
+}
+
 /**
- * Botón de menú (derecha del header) + overlay a pantalla completa con los
- * links a cada sección de la página. Las líneas del botón se transforman
- * en una X cuando el menú está abierto.
+ * Menú (derecha del header): un panel chico que se abre al costado, bajo el
+ * botón. Al pasar el cursor por un link la página baja sola a esa sección;
+ * al hacer clic se queda ahí y el panel se cierra.
  */
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [activo, setActivo] = useState(null)
+  const raiz = useRef(null)
+  const timer = useRef(null)
+
+  useEffect(() => {
+    if (!open) return
+    const alPresionar = (e) => {
+      if (raiz.current && !raiz.current.contains(e.target)) setOpen(false)
+    }
+    const alTeclear = (e) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('pointerdown', alPresionar)
+    document.addEventListener('keydown', alTeclear)
+    return () => {
+      document.removeEventListener('pointerdown', alPresionar)
+      document.removeEventListener('keydown', alTeclear)
+      clearTimeout(timer.current)
+      setActivo(null)
+    }
+  }, [open])
+
+  const previsualizar = (href) => {
+    setActivo(href)
+    clearTimeout(timer.current)
+    timer.current = setTimeout(() => irA(href), RETRASO_HOVER_MS)
+  }
 
   return (
-    <>
+    <div ref={raiz} className="relative">
       <motion.button
         type="button"
         aria-label={open ? 'Cerrar menú' : 'Abrir menú'}
         aria-expanded={open}
         onClick={() => setOpen((v) => !v)}
-        className="group relative z-[60] flex h-5 w-8 flex-col justify-center gap-[6px]"
+        className="group relative z-[60] flex h-5 w-7 flex-col justify-center gap-[5px]"
       >
         <motion.span
-          animate={{ rotate: open ? 45 : 0, y: open ? 4 : 0 }}
+          animate={{ rotate: open ? 45 : 0, y: open ? 3.5 : 0 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="block h-[2px] w-full shrink-0 origin-center bg-gris transition-colors duration-300 group-hover:bg-lima"
         />
         <motion.span
-          animate={{ rotate: open ? -45 : 0, y: open ? -4 : 0 }}
+          animate={{ rotate: open ? -45 : 0, y: open ? -3.5 : 0 }}
           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="block h-[2px] w-full shrink-0 origin-center bg-gris transition-colors duration-300 group-hover:bg-lima"
         />
@@ -40,31 +80,50 @@ export default function Nav() {
 
       <AnimatePresence>
         {open && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-50 flex flex-col justify-center bg-noche px-6 sm:px-12"
+          <motion.nav
+            aria-label="Secciones"
+            initial={{ opacity: 0, scale: 0.94, y: -8 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.94, y: -8 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+            onMouseLeave={() => {
+              clearTimeout(timer.current)
+              setActivo(null)
+            }}
+            style={{ transformOrigin: 'top right' }}
+            className="absolute right-0 top-[calc(100%+1.5rem)] z-[60] w-64 rounded-[22px] border border-gris/15 bg-noche/70 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl"
           >
-            <nav className="flex flex-col items-start gap-2 sm:gap-3">
-              {LINKS.map((link, i) => (
-                <motion.a
+            {LINKS.map((link) => {
+              const sel = activo === link.href
+              return (
+                <a
                   key={link.href}
                   href={link.href}
-                  onClick={() => setOpen(false)}
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.08 * i, ease: [0.22, 1, 0.36, 1] }}
-                  className={`font-display text-4xl font-medium text-gris transition-colors duration-300 sm:text-6xl px-3 -mx-3 hover:text-noche ${link.hover}`}
+                  onMouseEnter={() => previsualizar(link.href)}
+                  onFocus={() => previsualizar(link.href)}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    clearTimeout(timer.current)
+                    irA(link.href)
+                    setOpen(false)
+                  }}
+                  className={`flex items-center justify-between rounded-[14px] px-3.5 py-2.5 font-display text-lg font-medium transition-colors duration-200 ${
+                    sel ? 'bg-lima text-noche' : 'text-gris hover:bg-gris/10'
+                  }`}
                 >
                   {link.label}
-                </motion.a>
-              ))}
-            </nav>
-          </motion.div>
+                  <span
+                    aria-hidden
+                    className={`font-mono text-sm transition-opacity duration-200 ${sel ? 'opacity-100' : 'opacity-0'}`}
+                  >
+                    ↓
+                  </span>
+                </a>
+              )
+            })}
+          </motion.nav>
         )}
       </AnimatePresence>
-    </>
+    </div>
   )
 }

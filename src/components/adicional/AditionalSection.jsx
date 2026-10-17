@@ -1,31 +1,33 @@
-import { getProgramasPorTemporada, TEMPORADAS } from "../../utils/programas";
-import { getYoutubeThumbnail } from "../../utils/youtube";
+import { getProgramasPorTemporada, getTemporada, TEMPORADAS } from "../../servicios/programas";
+import RouterLink from "../utils/RouterLink";
+import Texto from "../utils/Texto";
 
 /**
- * Los 4 episodios de la última temporada, en formato editorial:
- * a la izquierda título + bajada + "Ver todos →" y a la derecha una grilla
- * de 2 columnas con cards. Cada card es un marco naranja con la miniatura
- * del video inset, un play abajo a la izquierda y, debajo del marco, el
- * título del episodio y la pregunta en grande. Fondo blanco; el naranja
- * (el marco de las cards) es el segundo color predominante.
+ * Los episodios de la última temporada, en formato editorial: a la izquierda
+ * la temporada (título, pregunta y presentación, de temporadas.json) y
+ * "Ver todos →"; a la derecha una grilla de 2 columnas con una card por
+ * episodio con número de color, pregunta, resumen y link a su ficha. Fondo blanco.
  */
 export default function AditionalSection() {
+  const temporada = getTemporada(TEMPORADAS.ULTIMA);
   const episodios = getProgramasPorTemporada(TEMPORADAS.ULTIMA).slice(0, 4);
 
   if (episodios.length === 0) return null;
 
   return (
-    <section id="temporada-2" className="relative overflow-hidden bg-white text-noche">
+    <section id="cuarta-temporada" className="relative overflow-hidden bg-white text-noche">
       <div className="mx-auto max-w-7xl px-6 py-16 sm:px-10 sm:py-24">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.1fr)] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <h2 className="font-display text-5xl font-semibold leading-[0.95] tracking-tight sm:text-6xl xl:text-7xl">
-              Cuatro miradas sobre la IA en tu vida privada
-            </h2>
-            <p className="mt-6 max-w-md font-display text-xl font-light leading-snug text-noche/80 sm:text-2xl">
-              Desde los desafíos éticos en el aula hasta las transformaciones
-              en el arte, los videojuegos y el cine.
+            <p className="mb-4 inline-block bg-noche px-3 py-1 font-mono text-xs uppercase tracking-widest text-lima">
+              /{temporada?.titulo}
             </p>
+            <h2 className="font-display text-4xl font-semibold leading-[1] tracking-tight sm:text-5xl xl:text-6xl">
+              {temporada?.subtitulo}
+            </h2>
+            <Texto className="mt-6 max-w-md text-base leading-relaxed text-noche/80 sm:text-lg">
+              {temporada?.descripcion}
+            </Texto>
             <a
               href="#todos-los-programas"
               className="mt-10 inline-flex items-center gap-2 font-display text-lg font-semibold transition-colors hover:text-naranja"
@@ -34,9 +36,9 @@ export default function AditionalSection() {
             </a>
           </div>
 
-          <div className="grid grid-cols-1 gap-x-10 gap-y-14 sm:grid-cols-2">
-            {episodios.map((episodio) => (
-              <Card key={episodio.id} episodio={episodio} />
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {episodios.map((episodio, i) => (
+              <Episodio key={episodio.id} episodio={episodio} numero={i + 1} />
             ))}
           </div>
         </div>
@@ -45,76 +47,36 @@ export default function AditionalSection() {
   );
 }
 
-function Card({ episodio }) {
-  const thumb = episodio.linkYoutube
-    ? getYoutubeThumbnail(episodio.linkYoutube, "maxresdefault")
-    : null;
+const COLORES = [
+  "bg-naranja text-noche",
+  "bg-lila text-noche",
+  "bg-lima text-noche",
+  "bg-azul text-white",
+];
 
-  const contenido = (
-    <>
-      {/* Marco naranja con la miniatura inset */}
-      <div className="relative aspect-[5/4] w-full bg-naranja">
-        <div className="absolute inset-x-[13.3%] bottom-[16.9%] top-[16.6%] overflow-hidden bg-noche">
-          {thumb ? (
-            <img
-              src={thumb}
-              alt={episodio.titulo}
-              loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          ) : (
-            <div className="flex h-full w-full items-center justify-center text-sm text-gris/50">
-              Video no disponible
-            </div>
-          )}
-        </div>
-
-        {/* Línea que baja desde la miniatura al hacer hover */}
+function Episodio({ episodio, numero }) {
+  return (
+    <RouterLink
+      to={`/programa/${episodio.id}`}
+      className="group flex flex-col border-2 border-noche bg-white p-6 shadow-[6px_6px_0_0_#1A1A30] transition-transform duration-300 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#1A1A30]"
+    >
+      <div className="flex items-start justify-between gap-4">
         <span
-          aria-hidden
-          className="absolute bottom-0 left-1/2 h-[16.9%] w-px origin-top scale-y-0 bg-noche transition-transform duration-300 group-hover:scale-y-100"
-        />
-
-        {/* Play */}
-        {episodio.linkYoutube && (
-          <svg
-            aria-hidden
-            viewBox="0 0 24 24"
-            className="absolute bottom-[3.5%] left-[6.5%] h-7 w-7 text-white/90 transition-transform duration-300 group-hover:scale-110 sm:h-8 sm:w-8"
-            fill="currentColor"
-          >
-            <path d="M6 4l14 8-14 8V4z" />
-          </svg>
-        )}
+          className={`grid h-16 w-16 shrink-0 place-items-center border-2 border-noche font-display text-4xl font-bold leading-none ${COLORES[(numero - 1) % COLORES.length]}`}
+        >
+          {String(numero).padStart(2, "0")}
+        </span>
+        <span className="pt-1 text-right font-mono text-xs uppercase tracking-widest text-noche/60">
+          {episodio.titulo}
+        </span>
       </div>
-
-      {/* Meta + pregunta */}
-      <div className="mt-4 flex items-baseline justify-between gap-4 text-base">
-        <span className="truncate font-light">{episodio.titulo}</span>
-        {episodio.linkYoutube && (
-          <span className="shrink-0 font-mono text-xs uppercase tracking-wider text-noche/60 group-hover:text-naranja">
-            YouTube ↗
-          </span>
-        )}
-      </div>
-      <h3 className="mt-1 font-display text-2xl font-semibold leading-[1.1] tracking-tight sm:text-[1.7rem]">
+      <h3 className="mt-6 font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl">
         {episodio.pregunta || episodio.titulo}
       </h3>
-    </>
-  );
-
-  if (!episodio.linkYoutube) {
-    return <div className="group cursor-default">{contenido}</div>;
-  }
-
-  return (
-    <a
-      href={episodio.linkYoutube}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group block"
-    >
-      {contenido}
-    </a>
+      <Texto className="mt-4 text-base leading-relaxed text-noche/75">{episodio.resumen}</Texto>
+      <span className="mt-6 inline-flex items-center gap-2 pt-2 font-mono text-xs font-semibold uppercase tracking-widest transition-colors group-hover:text-naranja">
+        Ver programa <span aria-hidden>→</span>
+      </span>
+    </RouterLink>
   );
 }

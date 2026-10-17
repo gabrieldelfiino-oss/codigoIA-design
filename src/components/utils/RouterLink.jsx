@@ -1,4 +1,4 @@
-import { navigate } from "../../utils/router";
+import { navigate } from "../../servicios/router";
 
 /**
  * Como un <a> normal (se puede abrir en pestaña nueva, copiar el link,

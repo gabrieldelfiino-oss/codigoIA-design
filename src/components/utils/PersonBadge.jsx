@@ -1,7 +1,6 @@
 /**
  * Chip chiquito para mostrar una persona asociada a un programa
- * (ej. "Camila Jurfest (psicóloga, sexóloga clínica)").
- * Se usa en SeasonSection, AditionalSection y RadioSection.
+ * (ej. "Camila Jurfest"). Se usa en ThemeSection y ProgramPage.
  */
 export default function PersonBadge({ children }) {
   return (

@@ -1,206 +1,258 @@
 [
   {
-    "id": 0,
-    "titulo": "Brian Mackern",
-    "subtitulo": "Artista visual, mediático y músico; más de veinte años trabajando con técnicas digitales",
-    "temporada": "Código IA 2023",
-    "tema": "arte",
-    "linkYoutube": "https://www.youtube.com/watch?v=wAjnCrJdQfI",
-    "linkInstagram": "",
-    "personalidad": [
-      "Brian Mackern (artista visual, mediático, músico y compositor)"
-    ]
-  },
-  {
-    "id": 1,
-    "titulo": "Silvina Cortés",
-    "subtitulo": "Artista plástico-digital que usa IA en el proceso creativo de sus obras",
-    "temporada": "Código IA 2023",
-    "tema": "arte",
-    "linkYoutube": "https://www.youtube.com/watch?v=XMmT9zQ4lGg",
-    "linkInstagram": "",
-    "personalidad": [
-      "Silvina Cortés Lasalle (artista plástico-digital, docente en Universidad ORT)"
-    ]
-  },
-  {
-    "id": 2,
-    "titulo": "Patricia Díaz",
-    "subtitulo": "Abogada especialista en tecnología desde la perspectiva de Derechos Humanos",
-    "temporada": "Código IA 2023",
-    "tema": "humanidad",
-    "linkYoutube": "https://www.youtube.com/watch?v=raYeEsaKVxI",
-    "linkInstagram": "",
-    "personalidad": [
-      "Patricia Díaz Charquero (Presidenta de Data Uruguay)"
-    ]
-  },
-  {
-    "id": 3,
-    "titulo": "Álvaro Moré",
-    "subtitulo": "Director de Young & Rubicam Uruguay; incorpora IA generativa en campañas publicitarias",
-    "temporada": "Código IA 2023",
-    "tema": "comunicacion",
-    "linkYoutube": "https://www.youtube.com/watch?v=VdIDp2m5ZqY",
-    "linkInstagram": "",
-    "personalidad": [
-      "Álvaro Moré (Director de Young & Rubicam Uruguay)"
-    ]
-  },
-  {
-    "id": 4,
-    "titulo": "Camila Rodríguez",
-    "subtitulo": "Entrevista sobre EMOTIA, performance que decodifica emociones en sonido y color",
-    "temporada": "Código IA Radio",
-    "tema": "arte",
-    "linkYoutube": "https://www.youtube.com/watch?v=adHCE-IF6cc",
-    "linkInstagram": "",
-    "personalidad": [
-      "Camila Rodríguez (artista digital, docente en Universidad ORT)"
-    ]
-  },
-  {
-    "id": 5,
-    "titulo": "Diego Parker Fernández",
-    "subtitulo": "Entrevista sobre \"No me mata la muerte\", cortometraje hecho con IA por estudiantes de ORT",
-    "temporada": "Código IA Radio",
-    "tema": "arte",
-    "linkYoutube": "https://www.youtube.com/watch?v=3wrcgCvlGgM",
-    "linkInstagram": "",
-    "personalidad": [
-      "Diego Parker Fernández (guionista y director de cine)"
-    ]
-  },
-  {
-    "id": 6,
-    "titulo": "Gerson Da Silva",
-    "subtitulo": "Entrevista sobre IA en educación y videojuegos como herramienta pedagógica",
-    "temporada": "Código IA Radio",
-    "tema": "humanidad",
-    "linkYoutube": null,
-    "linkInstagram": "",
-    "personalidad": [
-      "Gerson Da Silva (Director de Game Design, Ironhide Game Studios)"
-    ]
-  },
-  {
-    "id": 7,
-    "titulo": "Marcelo Ubal",
-    "subtitulo": "Entrevista sobre robótica e IA, en el marco del programa Fuga de Radio",
-    "temporada": "Código IA Radio",
-    "tema": "humanidad",
-    "linkYoutube": "https://www.youtube.com/watch?v=UMA-UtLA07U",
-    "linkInstagram": "",
-    "personalidad": [
-      "Marcelo Ubal (coordinador del Posgrado en Robótica e IA, UTEC)"
-    ]
-  },
-  {
-    "id": 8,
-    "titulo": "La IA en la industria cinematográfica",
-    "subtitulo": "Cómo la IA generativa reconfigura la producción, edición y creación audiovisual",
-    "temporada": "Temporada 2",
-    "tema": "comunicacion",
-    "linkYoutube": "https://www.youtube.com/watch?v=edpGXLU42lk",
-    "linkInstagram": "",
-    "personalidad": [
-      "Ángel Cardozo (comunicador audiovisual, docente FIC)"
-    ]
-  },
-  {
-    "id": 9,
-    "titulo": "Educación terciaria e IA",
-    "subtitulo": "Cómo las herramientas de IA transforman los procesos de enseñanza y aprendizaje",
-    "temporada": "Temporada 2",
-    "tema": "humanidad",
-    "linkYoutube": "https://www.youtube.com/watch?v=yZzL3UySJkA",
-    "linkInstagram": "",
-    "personalidad": [
-      "María Gladys Ceretta (Decana de la FIC, Udelar)"
-    ]
-  },
-  {
-    "id": 10,
-    "titulo": "Arte e IA",
-    "subtitulo": "Debates sobre creatividad, propiedad intelectual y el rol del artista frente a la IA",
-    "temporada": "Temporada 2",
-    "tema": "arte",
-    "linkYoutube": "https://www.youtube.com/watch?v=cBE3rYGvhM0",
-    "linkInstagram": "",
-    "personalidad": [
-      "Valeria Lepra (docente e investigadora en Artes, Udelar)"
-    ]
-  },
-  {
-    "id": 11,
-    "titulo": "Gamificación, educación e IA",
-    "subtitulo": "Videojuegos educativos potenciados por IA en procesos pedagógicos",
-    "temporada": "Temporada 2",
-    "tema": "arte",
-    "linkYoutube": "https://www.youtube.com/watch?v=k0dzjYkArHI",
-    "linkInstagram": "",
-    "personalidad": [
-      "Daniel Argente (artista e investigador digital)",
-      "Marcos Umpiérrez (artista)"
-    ]
-  },
-  {
-    "id": 12,
+    "id": "amar-en-tiempos-de-ia",
+    "temporadaId": "t3",
     "titulo": "Amar en tiempos de IA",
-    "subtitulo": "Cómo la IA impacta en las relaciones personales, la salud mental y el inconsciente",
-    "temporada": "Temporada 3",
-    "tema": "humanidad",
+    "subtitulo": null,
     "pregunta": "¿Se puede amar a una IA?",
-    "respuesta": "Aplicaciones que simulan parejas perfectas, voces que te enamoran, compañía instantánea bajo demanda. La pregunta dejó de ser si esto es posible; ahora queremos saber: ¿qué estamos perdiendo en el camino?",
+    "resumen": "Aplicaciones que simulan parejas perfectas, voces que te enamoran, compañía instantánea bajo demanda. La pregunta dejó de ser si esto es posible; ahora queremos saber: ¿qué estamos perdiendo en el camino?",
+    "descripcion": null,
     "linkYoutube": "https://www.youtube.com/watch?v=ot_mh51pXKI",
-    "linkInstagram": "",
-    "personalidad": [
-      "Camila Jurfest (psicóloga, sexóloga clínica)",
-      "Jorge Bafico (psicoanalista)"
-    ]
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": true,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/11/INVITADOS-WEB-819x1024.png"
   },
   {
-    "id": 13,
+    "id": "del-divan-al-chatbot",
+    "temporadaId": "t3",
     "titulo": "Del diván al chatbot",
-    "subtitulo": "Qué pasa cuando le contás tus dramas a una máquina que nunca duerme ni juzga",
-    "temporada": "Temporada 3",
-    "tema": "humanidad",
+    "subtitulo": null,
     "pregunta": "¿Tu terapeuta puede ser un algoritmo?",
-    "respuesta": "Del diván al chatbot: exploramos qué pasa cuando le contás tus dramas más profundos a una máquina que nunca duerme, nunca juzga… y nunca es humana.",
+    "resumen": "Del diván al chatbot: exploramos qué pasa cuando le contás tus dramas más profundos a una máquina que nunca duerme, nunca juzga… y nunca es humana.",
+    "descripcion": null,
     "linkYoutube": "https://www.youtube.com/watch?v=OJWXrCOCNxU",
-    "linkInstagram": "",
-    "personalidad": [
-      "Alma Pérez Abella (psicóloga)",
-      "Joaquín Vigna (ingeniero en sistemas, IA)"
-    ]
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": true,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/11/2-819x1024.png"
   },
   {
-    "id": 14,
+    "id": "infancia-e-ia",
+    "temporadaId": "t3",
     "titulo": "Infancia e IA",
-    "subtitulo": "¿La IA está formando a nuestros niños? Efectos en el desarrollo cognitivo",
-    "temporada": "Temporada 3",
-    "tema": "humanidad",
+    "subtitulo": "¿Aliada o amenaza en los procesos de aprendizaje?",
     "pregunta": "¿La IA está formando a nuestros niños? ¿Y qué efectos tiene en su desarrollo cognitivo?",
-    "respuesta": "Conversamos con educadores, psicólogos y familias que conviven con pantallas, algoritmos y contenidos automatizados en la crianza cotidiana. Entre la practicidad y la preocupación.",
+    "resumen": "Conversamos con educadores, psicólogos y familias que conviven con pantallas, algoritmos y contenidos automatizados en la crianza cotidiana. Entre la practicidad y la preocupación.",
+    "descripcion": "Sobre el podcast «El aula y la IA»:\n\nPara producir este podcast trabajamos con la herramienta NotebookLM, aprovechando sus funciones de resumen de audio y video. Cargamos como insumos el documento *La inteligencia artificial en la educación* de ANEP, junto con siete fuentes complementarias que incluyen la Estrategia Nacional de IA del Uruguay, artículos de organismos internacionales (CAF, Banco Mundial, ONU/Unesco), notas periodísticas y análisis sobre el uso de IA en educación en Uruguay y la región. Tras realizar varias pruebas para guiar a la herramienta, orientamos todo el proceso a comparar las estrategias de Uruguay en educación e inteligencia artificial con las desarrolladas por otros países.\n\nFuentes utilizadas:\n1. La Inteligencia artificial en la educación, ANEP — https://drive.google.com/file/d/1M0bR22badgo4U7xyFlBL8awK3GXH-QHq/view?usp=sharing\n2. Estrategia Nacional de Inteligencia Artificial del Uruguay 2024 – 2030 — https://www.gub.uy/agencia-gobierno-electronico-sociedad-informacion-conocimiento/comunicacion/publicaciones/estrategia-nacional-inteligencia-artificial-del-uruguay-2024-2030\n3. Inteligencia Artificial generativa: ¿Qué deben hacer los gobiernos de América Latina? — https://www.caf.com/es/blog/inteligencia-artificial-que-deben-hacer-los-gobiernos-de-america-latina/\n4. La inteligencia artificial en la educación, ¿un privilegio para pocos o una oportunidad para todos? — https://blogs.worldbank.org/es/latinamerica/inteligencia-artificial-ia-privilegio-para-pocos-oportunidad-para-todos\n5. La Revolución de la Inteligencia Artificial en la Educación de Uruguay: Innovando el Aprendizaje del Futuro — https://www.agentify.uy/blog/post/la-revolucion-de-la-inteligencia-artificial-en-la-educacion-de-uruguay-innovando-el-aprendizaje-del-futuro/\n6. Uso y recomendaciones acerca de la inteligencia artificial en la educación ANEP — https://www.anep.edu.uy/uso-y-recomendaciones-acerca-de-la-inteligencia-artificial-en-la-educacion\n7. ¿Qué impacto tiene la resolución de la ONU sobre inteligencia artificial en el entorno educativo? — https://www.elcomercio.com/tecnologia/inteligencia-artificial-onu-educacion/\n8. ¿Qué podemos esperar de la Inteligencia Artificial en la educación peruana para este 2025? — https://www.infobae.com/peru/2025/01/08/que-podemos-esperar-de-la-inteligencia-artificial-en-la-educacion-peruana-para-este-2025/",
     "linkYoutube": "https://www.youtube.com/watch?v=mBiDh9dXgAU",
-    "linkInstagram": "",
-    "personalidad": [
-      "Juan Carlos Valle-Lisboa (neurocientífico)",
-      "Emiliano Pereiro (Ceibal)"
-    ]
+    "linkInstagram": null,
+    "fechaPublicacion": "2025-12-10T20:00:00-03:00",
+    "duracion": null,
+    "formato": "video",
+    "destacado": true,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/11/3-819x1024.png"
   },
   {
-    "id": 15,
+    "id": "fraudes-digitales-e-ia",
+    "temporadaId": "t3",
     "titulo": "Fraudes digitales e IA",
-    "subtitulo": "Deepfakes, estafas y voces clonadas: cuando la IA se cruza con tu billetera",
-    "temporada": "Temporada 3",
-    "tema": "finanzas",
+    "subtitulo": "Cuando la inteligencia artificial se cruza con tu billetera",
     "pregunta": "¿Tu billetera está segura?",
+    "resumen": "*Deepfakes*, estafas hechas a medida, voces clonadas de tus seres queridos. Cuando la IA se cruza con tu dinero, el juego cambia.",
+    "descripcion": "Evitá fraudes digitales: consejos para no caer en engaños con IA\n\nCreemos que podemos detectar un fraude… hasta que uno nos toma por sorpresa. A continuación, te compartimos claves sencillas y prácticas para mantenerte alerta y evitar caer en engaños digitales.",
     "linkYoutube": "https://www.youtube.com/watch?v=_WIWDdQCecY",
-    "linkInstagram": "",
-    "personalidad": [
-      "Héctor Álvarez (ingeniero en sistemas)",
-      "Reynaldo De la Fuente (ciberseguridad)"
-    ]
+    "linkInstagram": null,
+    "fechaPublicacion": "2025-12-17T20:00:00-03:00",
+    "duracion": null,
+    "formato": "video",
+    "destacado": true,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/11/4-819x1024.png"
+  },
+  {
+    "id": "ia-en-la-industria-cinematografica",
+    "temporadaId": "t2",
+    "titulo": "La IA en la industria cinematográfica",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": "El avance de la inteligencia artificial generativa está reconfigurando la industria audiovisual. En este episodio de Código IA, conversamos con el realizador **Ángel Cardozo** sobre cómo estas tecnologías impactan en los procesos de producción, edición y creación de contenido en el cine. Desde la automatización de tareas hasta la generación de imágenes y guiones, el episodio recorre los dilemas éticos, las posibilidades de democratización tecnológica y los cambios en los roles profesionales dentro del sector. Una conversación que invita a repensar el futuro del cine desde la mirada de quienes lo hacen posible: quienes narran historias.",
+    "linkYoutube": "https://www.youtube.com/watch?v=edpGXLU42lk",
+    "linkInstagram": null,
+    "fechaPublicacion": "2025-05-24",
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/03/Angel-Cardozo.png"
+  },
+  {
+    "id": "educacion-terciaria-e-ia",
+    "temporadaId": "t2",
+    "titulo": "Educación terciaria e IA",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": "En este episodio de Código IA recibimos a **Gladys Ceretta**, decana de la Facultad de Información y Comunicación de la Universidad de la República, para reflexionar sobre cómo las herramientas de inteligencia artificial están transformando los procesos de enseñanza y aprendizaje. A partir de su experiencia institucional, abordamos temas como los usos actuales de la IA por parte de estudiantes y docentes, la necesidad de una alfabetización digital crítica, los desafíos éticos y la brecha de acceso tecnológico. Una conversación que invita a pensar el rol de las universidades frente a un futuro cada vez más digitalizado.",
+    "linkYoutube": "https://www.youtube.com/watch?v=yZzL3UySJkA&list=PLST4zdr192bnBHGvFNJwOMfwePV3pEmcq",
+    "linkInstagram": null,
+    "fechaPublicacion": "2025-05-17",
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/03/Gladys-Ceretta.png"
+  },
+  {
+    "id": "arte-e-ia",
+    "temporadaId": "t2",
+    "titulo": "Arte e IA",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": "La irrupción de la inteligencia artificial en el mundo del arte genera debates urgentes sobre creatividad, propiedad intelectual y el rol del artista. En este episodio de Código IA, entrevistamos a **Valeria Lepra**, licenciada en Artes Visuales y Plásticas y magíster en Educación Artística, para reflexionar sobre cómo estas nuevas tecnologías están transformando la producción artística. A partir de casos recientes, abordamos temas como la autoría colectiva, el uso de bases de datos con obras protegidas, las tensiones éticas del uso de IA en el arte, y cómo se abren —o se cierran— nuevas posibilidades para los creadores. Una conversación que pone en juego las relaciones entre arte, tecnología y sociedad desde una mirada crítica y pedagógica.",
+    "linkYoutube": "https://www.youtube.com/watch?v=cBE3rYGvhM0",
+    "linkInstagram": null,
+    "fechaPublicacion": "2025-05-10",
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/03/Valeria-Lepra.png"
+  },
+  {
+    "id": "gamificacion-educacion-e-ia",
+    "temporadaId": "t2",
+    "titulo": "Gamificación, educación e IA",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": "La inteligencia artificial y la gamificación están cambiando la forma de enseñar y aprender. En este episodio de Código IA, el investigador y artista digital **Daniel Argente** analiza el potencial de los videojuegos educativos potenciados por IA, y cómo estas herramientas pueden enriquecer los procesos pedagógicos si se integran con una mirada crítica, ética y contextual. Desde experiencias de aula hasta reflexiones sobre modelos pedagógicos y desarrollo de contenidos digitales, este capítulo explora las oportunidades y los riesgos de incorporar IA al aprendizaje lúdico en entornos educativos.",
+    "linkYoutube": "https://www.youtube.com/watch?v=k0dzjYkArHI",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2025/03/Daniel-Argente.png"
+  },
+  {
+    "id": "camila-rodriguez",
+    "temporadaId": "radio",
+    "titulo": "Camila Rodríguez",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": "Camila Rodriguez es una artista digital que se licenció en Diseño, Arte y Tecnología en la Universidad ORT, actualmente también se desempeña como Asistente Docente en dicha institución. Para su trabajo final de grado en este año, Rodriguez presentó el proyecto EMOTIA (*Emot* del latín de emociones e *IA* por inteligencia artificial). Este proyecto que surge de la combinación de diseño, arte, tecnología y neurociencia, consiste en una performance artística que coloca a su creadora como la figura primordial en el espacio donde se presenta ya que los concurrentes que van a ver esta performance, estarán viendo las emociones del momento de la artista, decodificada en sonidos y colores en un constante movimiento. La joven artista digital se presentó en octubre en el Festival Psicología Al Sur, en el Konex de Buenos Aires, y previamente ha expuesto en lugares como el Espacio de Arte Contemporáneo y Magma Futura. Camila, que busca dar a conocer su proyecto, sigue moviendo esta performance por diferentes espacios.",
+    "descripcion": "La entrevista buscó abordar el campo artístico como un espacio donde surgen nuevas expresiones por el avance tecnológico y la inteligencia artificial, redefiniendo la idea de expresión artística.\n\nEl interés de la creadora en el “interfaz cerebro-computadora” la llevó a desarrollar una expresión que implica el uso de la tecnología y la inteligencia artificial como parte fundamental para su creación. En ese sentido se buscó saber más del uso de estas herramientas y cómo la misma vuelven a definir de alguna manera el rol del artista, así como también conocer de qué manera el público recibió esta obra. En la entrevista Camila explica que las herramientas no son más que una ayuda para poder “hacer visible lo que no se ve” refiriéndose a las emociones, pero que si el uso no tuviera un propósito, deja de ser humano. En esa línea la artista explica que a medida que las tecnologías avanzan, surgen formas más efectivas de canalizar su actividad cerebral, pero que los comandos usados con la inteligencia artificial, esos que permiten ilustrar esa base de datos del cerebro, son totalmente gestionados por ella misma, por lo que ella tiene la decisión final de lo que se va a ver en la performance. Por otro lado, también contó que la recepción está siendo muy positiva, aunque no deja de ser una expresión artística aún poco entendida. Por esto mismo es que se le preguntó acerca de su performance en Argentina, algo que recordó con mucho agrado ya que conoció muchas personas interesadas en este tipo de obras. Acerca de eso último, anunció que buscará subir a EMOTIA a otro nivel intentando decodificar la actividad de otras partes del cuerpo como el corazón y sus latidos. Con todo esto, Camila entiende su cuerpo como ese que habla constantemente y que gracias a las nuevas herramientas que le ofrece los tiempos que corren, le van a permitir escalar en su proyecto.",
+    "linkYoutube": "https://www.youtube.com/watch?v=adHCE-IF6cc",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "radio",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2024/11/Camila-Rodriguez.png"
+  },
+  {
+    "id": "diego-parker",
+    "temporadaId": "radio",
+    "titulo": "Diego Parker Fernández",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": "En esta entrevista realizada en el marco del programa Fuga de Radio en UNI Radio 107.7 FM, los estudiantes Santiago Giménez y Lucas Lopez recibieron a Diego “Parker” Fernández, reconocido guionista y director de cine uruguayo y docente. Conversamos que sin lugar a duda la IA expande las posibilidades audiovisuales, pero el rol del ser humano sigue siendo fundamental a la hora de tomar las decisiones creativas, al igual que al abordar temas sensibles, donde la emoción y/o la reflexión siguen siendo el factor preponderante. Esto en el marco del cortometraje “No me mata la muerte”, realizado por estudiantes de la ORT, totalmente con inteligencia artificial, bajo el liderazgo de nuestro entrevistado. El corto presenta la vida de una figura cultural importante: la poeta uruguaya Delmira Agustini. Diego nos habló también del desarrollo del proceso, al igual que la motivación para realizarlo: explorar las posibilidades y los límites de estas nuevas herramientas generativas que están transformando el mundo audiovisual.",
+    "descripcion": "En este programa de Fuga de Radio Santiago Giménez y Lucas Lopez conversaron con Diego “Parker” Fernández sobre el corto “No me mata la muerte”, creado con Inteligencia Artificial. Este fue un producto elaborado por estudiantes de la ORT, siendo dirigidos por el entrevistado, que también es director uruguayo de renombre. Hablamos sobre su motivación para producir el corto y nos explicó que el fin fue explorar las capacidades de la IA para crear productos audiovisuales al igual que probar sus respectivas representaciones históricas que ponen en juego su fidelidad. Fernández demostró concebir la IA como una herramienta que permite explorar las posibilidades audiovisuales y/o complementar el área de producción o postproducción: principalmente las mejoras en los tiempos de producción y las nuevas posibilidades en relación a los costos de elaboración, ya sean técnicos y humanos. También conversamos sobre el uso de la IA en los guiones y la posibilidad de que esto reemplace puestos de trabajo. Fernández dijo que, más que un reemplazo es una herramienta que no debería ser vista con malos ojos, sino a explorar. Su visión principal es que hay que adaptarnos a estos cambios y no cerrarnos a experimentar con la IA, ya que el lugar del humano en el proceso sigue siendo fundamental; más particularmente en el cine, hay que experimentar con estas herramientas, ya que es una industria que se ha modificado fuertemente a través de los años, ya sea tanto en el ámbito técnico como en el ámbito laboral.",
+    "linkYoutube": "https://www.youtube.com/watch?v=3wrcgCvlGgM",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "radio",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2024/11/Diego-Parker-Fernandez.png"
+  },
+  {
+    "id": "gerson-da-silva",
+    "temporadaId": "radio",
+    "titulo": "Gerson Da Silva",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": "“Sobre Inteligencia artificial hay mucho ruido y hay que saber navegar en el ruido” una de entre tantas palabras que nos dejó el entrevistado Gerson DaSilva. A lo largo de la charla se ahondaron varios puntos, desde los aspectos positivos y negativos que presenta la incorporación de los videojuegos con IA en la educación, los desafíos y obstáculos que se presentan para los docentes y el rol de la familia, la disolución del estigma “juego” y su papel como vector que impulsa la resignificación de los videojuegos como herramienta pedagógica. Fundado en la transformación de las estructuras de enseñanza, enfatizando en lo lúdico, en cómo la propuesta del sistema educativo tendrá que ser drásticamente modificada, incorporando las nuevas herramientas que nos ofrece la IA, para una educación de contexto, en base a precedentes. Siendo que según Gerson “la IA vino para quedarse, para ser un refuerzo sobre lo que ya se sabe”, refiriendo a cómo está innovación tecnológica va a potenciar el usufructo del trabajo, ayudando a sacar el mayor jugo posible de algo en cualquier área. Hablamos del rol creativo y como esa chispa inusual de la creatividad deberá ser alimentada por un nuevo sistema académico si no quiere ser opacado por la IA y las esperanzas en ella. Finalmente se reflexionó acerca de los videojuegos y cómo logran transformarse en puentes para la educación, atrayendo al público mediante un modelo más atractivo desde lo digital, abandonado la satanización y elogiando beneficios como la coordinación mano ojo, calculo rápido, entre otra cosas que permiten a los padres abandonar la ilusión y acompañar más a las infancias en el aprendizaje",
+    "descripcion": null,
+    "linkYoutube": "https://www.youtube.com/watch?v=5modp8zEwcY",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "radio",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2024/11/Gerson-Da-Silva.png"
+  },
+  {
+    "id": "marcelo-ubal",
+    "temporadaId": "radio",
+    "titulo": "Marcelo Ubal",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": "En el marco del programa Fuga de Radio de UNI Radio 107.7 FM, los estudiantes Enzo Méndez y Valentina Chavarría recibieron a Marcelo Ubal, profesor y coordinador del Posgrado en Robótica e Inteligencia Artificial en UTEC. En esta entrevista se abordó el impacto de la inteligencia artificial en la educación; de qué manera herramientas como ChatGPT están revolucionando el aprendizaje, los procesos de evaluación en el ámbito universitario, los desafíos y beneficios de estas tecnologías, y proyecciones sobre su futuro en el contexto educativo.",
+    "descripcion": null,
+    "linkYoutube": "https://www.youtube.com/watch?v=UMA-UtLA07U",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "radio",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2024/11/Marcelo-Ubal.png"
+  },
+  {
+    "id": "brian-mackern",
+    "temporadaId": "t1",
+    "titulo": "Brian Mackern",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": null,
+    "linkYoutube": "https://www.youtube.com/watch?v=wAjnCrJdQfI",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2023/12/WhatsApp-Image-2023-05-19-at-15.53.3411.png"
+  },
+  {
+    "id": "silvina-cortes",
+    "temporadaId": "t1",
+    "titulo": "Silvina Cortés",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": null,
+    "linkYoutube": "https://www.youtube.com/watch?v=XMmT9zQ4lGg",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2023/12/Sin-titulo-1-1.png"
+  },
+  {
+    "id": "patricia-diaz",
+    "temporadaId": "t1",
+    "titulo": "Patricia Díaz",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": null,
+    "linkYoutube": "https://www.youtube.com/watch?v=raYeEsaKVxI",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2023/12/Equipo-Datysoc-Patricia-Diaz-web-ALPHA.png"
+  },
+  {
+    "id": "alvaro-more",
+    "temporadaId": "t1",
+    "titulo": "Álvaro Moré",
+    "subtitulo": null,
+    "pregunta": null,
+    "resumen": null,
+    "descripcion": null,
+    "linkYoutube": "https://www.youtube.com/watch?v=VdIDp2m5ZqY",
+    "linkInstagram": null,
+    "fechaPublicacion": null,
+    "duracion": null,
+    "formato": "video",
+    "destacado": false,
+    "imagen": "https://codigoia.uy/wp-content/uploads/2023/12/ALVARO-MORE.png"
   }
 ]

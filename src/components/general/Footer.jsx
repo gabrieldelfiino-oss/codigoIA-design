@@ -1,18 +1,19 @@
+import proyecto from '../../data/proyecto.json'
 import Imagotipo from '../utils/Imagotipo'
 
 /**
  * Pie de página: fondo noche imagotipo oficial,
- * links a redes y copyright.
+ * links a redes y copyright (todo desde proyecto.json).
  */
 export default function Footer() {
   return (
     <footer className="relative w-full bg-noche px-6 py-12 text-gris sm:px-10">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-        <Imagotipo className="w-36 text-gris" label="Código IA" />
+        <Imagotipo className="w-36 text-gris" label={proyecto.nombre} />
 
         <div className="flex gap-6 font-mono text-xs uppercase tracking-widest">
           <a
-            href="https://www.youtube.com/channel/UCoB5ZY5DohkX1Qi19Ju5y_A"
+            href={proyecto.redes.youtube}
             target="_blank"
             rel="noreferrer"
             className="transition-colors hover:text-lima"
@@ -20,7 +21,7 @@ export default function Footer() {
             /YouTube
           </a>
           <a
-            href="https://www.instagram.com/codigo.ia/"
+            href={proyecto.redes.instagram}
             target="_blank"
             rel="noreferrer"
             className="transition-colors hover:text-lima"
@@ -29,7 +30,7 @@ export default function Footer() {
           </a>
         </div>
 
-        <span className="font-mono text-xs uppercase tracking-widest text-gris/50">Copyright © 2026</span>
+        <span className="font-mono text-xs uppercase tracking-widest text-gris/50">{proyecto.copyright}</span>
       </div>
     </footer>
   )

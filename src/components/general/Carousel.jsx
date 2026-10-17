@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { getProgramasPorTemporada, TEMPORADAS } from "../../utils/programas";
-import { getYoutubeThumbnail } from "../../utils/youtube";
+import { getBajada, getProgramasPorTemporada, TEMPORADAS } from "../../servicios/programas";
+import { getYoutubeThumbnail } from "../../servicios/youtube";
 import Isotipo from "../utils/Isotipo";
 import Heartbeat from "../utils/Heartbeat";
 import Spin from "../utils/Spin";
@@ -30,7 +30,7 @@ const HERO_SLIDE = {
 };
 
 /**
- * Carrusel grande con los episodios de la última temporada (Temporada 3).
+ * Carrusel grande con los episodios de la última temporada (TEMPORADAS.ULTIMA).
  * El primer slide es la presentación del programa (igual al Hero de
  * apertura); luego siguen los episodios. Avanza solo cada AUTO_ADVANCE_MS;
  * los puntos de abajo permiten saltar a un slide puntual. El tamaño se
@@ -130,7 +130,7 @@ export default function SeasonCarousel() {
                 {actual.titulo}
               </h2>
               <p className="mt-3 max-w-xl text-sm text-gris/80 sm:text-base">
-                {actual.subtitulo}
+                {getBajada(actual)}
               </p>
 
               {actual.linkYoutube && (

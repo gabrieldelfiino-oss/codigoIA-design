@@ -1,0 +1,153 @@
+{
+  "centro": {
+    "id": "ia",
+    "etiqueta": "IA",
+    "leyenda": "Inteligencia artificial"
+  },
+  "aristas": [
+    {
+      "de": "infancia",
+      "a": "pantallas",
+      "control": [
+        600,
+        169
+      ]
+    },
+    {
+      "de": "educacion",
+      "a": "pensamiento-computacional",
+      "control": [
+        743,
+        199
+      ]
+    },
+    {
+      "de": "infancia",
+      "a": "pensamiento-computacional",
+      "control": [
+        669,
+        177
+      ]
+    },
+    {
+      "de": "educacion",
+      "a": "rol-docente",
+      "control": [
+        819,
+        236
+      ]
+    },
+    {
+      "de": "infancia",
+      "a": "chatbots-aprendizaje",
+      "control": [
+        781,
+        266
+      ]
+    },
+    {
+      "de": "chatbots",
+      "a": "chatbots-aprendizaje",
+      "control": [
+        886,
+        340
+      ]
+    },
+    {
+      "de": "musica",
+      "a": "voces-sinteticas",
+      "control": [
+        841,
+        462
+      ]
+    },
+    {
+      "de": "chatbots",
+      "a": "voces-sinteticas",
+      "control": [
+        871,
+        409
+      ]
+    },
+    {
+      "de": "arte",
+      "a": "creatividad-autoria",
+      "control": [
+        669,
+        543
+      ]
+    },
+    {
+      "de": "musica",
+      "a": "creatividad-autoria",
+      "control": [
+        743,
+        521
+      ]
+    },
+    {
+      "de": "amor",
+      "a": "compania-vinculos",
+      "control": [
+        463,
+        522
+      ]
+    },
+    {
+      "de": "chatbots",
+      "a": "compania-vinculos",
+      "control": [
+        643,
+        470
+      ]
+    },
+    {
+      "de": "amor",
+      "a": "citas-algoritmos",
+      "control": [
+        381,
+        484
+      ]
+    },
+    {
+      "de": "salud-mental",
+      "a": "terapia-algoritmos",
+      "control": [
+        312,
+        364
+      ]
+    },
+    {
+      "de": "chatbots",
+      "a": "terapia-algoritmos",
+      "control": [
+        522,
+        364
+      ]
+    },
+    {
+      "de": "fraudes",
+      "a": "privacidad-datos",
+      "control": [
+        457,
+        199
+      ]
+    },
+    {
+      "de": "infancia",
+      "a": "privacidad-datos",
+      "control": [
+        531,
+        177
+      ]
+    },
+    {
+      "de": "fraudes",
+      "a": "deepfakes",
+      "control": [
+        367,
+        249
+      ]
+    }
+  ]
+}

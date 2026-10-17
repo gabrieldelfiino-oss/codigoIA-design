@@ -1,20 +1,21 @@
-import { useState } from "react";
-import { useRoute } from "./utils/router";
+import { useEffect, useState } from "react";
+import { useRoute } from "./servicios/router";
 import IntroHeader from "./components/general/IntroHeader";
-import HeroSection from "./components/general/HeroSection";
 import ThemeSection from "./components/temas/ThemeSection";
 import SeasonCarousel from "./components/general/Carousel";
-import UltimaSection from "./components/ultima/UltimaSection";
 import AditionalSection from "./components/adicional/AditionalSection";
-import RadioSection from "./components/radio/RadioSection";
 import AllSection from "./components/general/AllSection";
 import AboutSection from "./components/general/AboutSection";
 import ContactForm from "./components/general/ContactForm";
 import Footer from "./components/general/Footer";
 import ProgramPage from "./components/program/ProgramPage";
+import ThemePage from "./components/temas/ThemePage";
 
-// Único "nivel de profundidad" por ahora: la ficha de un programa.
-const RUTA_PROGRAMA = /^\/programa\/(\d+)\/?$/;
+// Único "nivel de profundidad" por ahora: la ficha de un programa. El id es
+// el slug del programa en programas.json (ej. /programa/arte-e-ia).
+const RUTA_PROGRAMA = /^\/programa\/([^/]+)\/?$/;
+// Página de un tema o subtema del mapa; el id es el de temas.json.
+const RUTA_TEMA = /^\/temas\/([^/]+)\/?$/;
 
 // La intro (título grande que se vuelve header) se muestra una sola vez por
 // carga de la página. Vive a nivel de módulo (y no en el estado de Home)
@@ -26,9 +27,14 @@ let introYaVista = false;
 export default function App() {
   const pathname = useRoute();
   const matchPrograma = pathname.match(RUTA_PROGRAMA);
+  const matchTema = pathname.match(RUTA_TEMA);
 
   if (matchPrograma) {
-    return <ProgramPage id={Number(matchPrograma[1])} />;
+    return <ProgramPage id={decodeURIComponent(matchPrograma[1])} />;
+  }
+
+  if (matchTema) {
+    return <ThemePage id={decodeURIComponent(matchTema[1])} />;
   }
 
   return <Home />;
@@ -36,6 +42,13 @@ export default function App() {
 
 function Home() {
   const [introDone, setIntroDone] = useState(introYaVista);
+
+  // Al volver desde otra página con un ancla (ej. "/#temas" desde ThemePage)
+  // baja a esa sección una vez montada la home.
+  useEffect(() => {
+    if (!introDone || !window.location.hash) return;
+    document.querySelector(window.location.hash)?.scrollIntoView();
+  }, [introDone]);
 
   return (
     <div className="min-h-screen w-full bg-negro">
@@ -52,12 +65,9 @@ function Home() {
       {introDone && (
         <>
           <main className="pt-20 sm:pt-24">
-            {/* <HeroSection /> */}
             <SeasonCarousel />
             <ThemeSection />
-            {/* <UltimaSection /> */}
             <AditionalSection />
-            {/* <RadioSection /> */}
             <AllSection />
             <AboutSection />
             <ContactForm />

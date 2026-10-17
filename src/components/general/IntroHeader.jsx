@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import BrandTitle from '../utils/BrandTitle'
 import Nav from './Nav'
+import SearchBar from './SearchBar'
 
 // Cuánto se queda el título grande centrado (ya asentado) antes de
 // "convertirse" en header. Se suma al tiempo que tarda en aparecer
@@ -32,8 +33,9 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
           initial={{ opacity: 0 }}
           animate={{ opacity: introDone ? 1 : 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="ml-auto"
+          className="ml-auto flex min-w-0 items-center gap-4 sm:gap-8"
         >
+          {introDone && <SearchBar />}
           {introDone && <Nav />}
         </motion.div>
       </header>

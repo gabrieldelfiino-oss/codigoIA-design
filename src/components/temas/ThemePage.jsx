@@ -1,0 +1,192 @@
+import { getBajada, getTemporada } from "../../servicios/programas";
+import { useState } from "react";
+import { getCitasDeTema } from "../../servicios/citas";
+import { getProgramasDeTema, getTema } from "../../servicios/temas";
+import { getYoutubeThumbnail } from "../../servicios/youtube";
+import { formatFecha } from "../../servicios/texto";
+import PageHeader from "../utils/PageHeader";
+import RouterLink from "../utils/RouterLink";
+import VideoFlotante from "../utils/VideoFlotante";
+import CitaCard from "./CitaCard";
+
+const ETIQUETA = "font-mono text-xs uppercase tracking-widest";
+const BOTON =
+  "border-2 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider transition-colors duration-300 sm:text-sm";
+
+/**
+ * Página de un tema o subtema (/temas/:id), a donde se llega desde el mapa:
+ * título, bajada y los programas que tocan el tema.
+ */
+export default function ThemePage({ id }) {
+  const tema = getTema(id);
+
+  return (
+    <div className="min-h-screen w-full bg-noche text-gris">
+      <PageHeader conVolver={false} />
+
+      <main>
+        {!tema ? (
+          <div className="mx-auto max-w-4xl px-6 py-24 text-center sm:px-10">
+            <p className={`${ETIQUETA} text-lima`}>/No encontrado</p>
+            <h1 className="mt-4 font-display text-3xl font-medium sm:text-5xl">
+              No encontramos ese tema
+            </h1>
+          </div>
+        ) : (
+          <Contenido tema={tema} />
+        )}
+      </main>
+    </div>
+  );
+}
+
+function Contenido({ tema }) {
+  const programas = getProgramasDeTema(tema.id);
+  const citas = getCitasDeTema(tema.id);
+  const [video, setVideo] = useState(null);
+
+  return (
+    <>
+      <section>
+        <div className="mx-auto max-w-7xl px-6 pb-4 pt-6 sm:px-10">
+          <h1 className="mb-3 font-display text-5xl font-semibold leading-[0.95] tracking-tight sm:text-7xl">
+            {tema.nombre}
+          </h1>
+          {tema.descripcion && (
+            <p className="max-w-2xl text-base text-gris/80 sm:text-lg">
+              {tema.descripcion}
+            </p>
+          )}
+        </div>
+      </section>
+
+      {citas.length > 0 && (
+        <section>
+          <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
+            <h2 className={`${ETIQUETA} mb-6 text-lima`}>
+              /Citas destacadas sobre {tema.nombre}
+            </h2>
+            <div className="grid gap-8 md:grid-cols-2">
+              {citas.map((cita) => (
+                <CitaCard key={cita.id} cita={cita} onReproducir={setVideo} />
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      <section>
+        <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
+          <h2 className={`${ETIQUETA} mb-6 text-lima`}>
+            /Programas que tocan este tema · {programas.length}
+          </h2>
+          {programas.length === 0 ? (
+            <p className="text-gris/70">
+              Todavía no hay programas con este tema.
+            </p>
+          ) : (
+            <div className="grid gap-6">
+              {programas.map((programa) => (
+                <TarjetaPrograma key={programa.id} programa={programa} />
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {video && (
+        <VideoFlotante
+          url={video.programa.linkYoutube}
+          inicio={video.inicio}
+          titulo={video.programa.titulo}
+          onCerrar={() => setVideo(null)}
+        />
+      )}
+    </>
+  );
+}
+
+function TarjetaPrograma({ programa }) {
+  const temporada = getTemporada(programa.temporadaId);
+  const fecha = formatFecha(programa.fechaPublicacion);
+  const thumb = getYoutubeThumbnail(programa.linkYoutube);
+  const bajada = getBajada(programa);
+
+  return (
+    <article className="grid gap-4 border-2 border-gris/20 p-4">
+      <div className="flex flex-wrap items-center gap-3">
+        {temporada && (
+          <span className={`${ETIQUETA} bg-lima px-2 py-1 text-[11px] text-noche`}>
+            {temporada.titulo}
+          </span>
+        )}
+        {fecha && (
+          <span className="font-mono text-[11px] uppercase tracking-wider text-gris/60">
+            {fecha}
+          </span>
+        )}
+      </div>
+
+      <div className="grid items-start gap-4 md:grid-cols-12">
+        <RouterLink
+          to={`/programa/${programa.id}`}
+          aria-label={`Ver ficha de «${programa.titulo}»`}
+          className="group relative block aspect-video w-full overflow-hidden border-2 border-gris/20 bg-noche transition-colors hover:border-lima md:col-span-4"
+        >
+          {thumb ? (
+            <img
+              src={thumb}
+              alt=""
+              loading="lazy"
+              className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          ) : (
+            <span className="flex h-full items-center justify-center text-xs text-gris/30">
+              Sin imagen
+            </span>
+          )}
+          <span
+            aria-hidden
+            className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center border-2 border-noche bg-lima text-xl text-noche transition-colors group-hover:bg-naranja group-hover:text-white"
+          >
+            ▶
+          </span>
+        </RouterLink>
+
+        <div className="md:col-span-8">
+          <h3 className="font-display text-2xl font-semibold leading-[1.1] tracking-tight sm:text-3xl">
+            <RouterLink
+              to={`/programa/${programa.id}`}
+              className="underline-offset-4 decoration-lima decoration-[3px] hover:underline"
+            >
+              {programa.titulo}
+            </RouterLink>
+          </h3>
+          {bajada && (
+            <p className="mt-3 line-clamp-3 max-w-[70ch] text-base text-gris/70">
+              {bajada}
+            </p>
+          )}
+          <div className="mt-5 flex flex-wrap gap-2">
+            <RouterLink
+              to={`/programa/${programa.id}`}
+              className={`${BOTON} border-lima bg-lima text-noche hover:border-gris hover:bg-gris`}
+            >
+              Ver ficha completa
+            </RouterLink>
+            {programa.linkYoutube && (
+              <a
+                href={programa.linkYoutube}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${BOTON} border-gris text-gris hover:border-lima hover:bg-lima hover:text-noche`}
+              >
+                ▶ Ver en YouTube
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </article>
+  );
+}

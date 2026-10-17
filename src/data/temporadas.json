@@ -1,0 +1,34 @@
+[
+  {
+    "id": "t1",
+    "titulo": "Código IA 2023",
+    "subtitulo": null,
+    "descripcion": null,
+    "orden": 1,
+    "color": null
+  },
+  {
+    "id": "radio",
+    "titulo": "Código IA Radio",
+    "subtitulo": null,
+    "descripcion": "Código.ia llegó a la radio universitaria con un ciclo de entrevistas a cargo de estudiantes de la Facultad de Información y Comunicación (FIC). De cara a una nueva edición, y en el marco del programa Fuga de Radio, abordamos la incidencia de la IA en el arte, el cine, los videojuegos y la educación.",
+    "orden": 2,
+    "color": "lila"
+  },
+  {
+    "id": "t2",
+    "titulo": "Temporada 2",
+    "subtitulo": "Cuatro miradas para entender un presente intervenido por la IA",
+    "descripcion": "La inteligencia artificial ya no es un futuro lejano: es una herramienta que transforma nuestra vida cotidiana, nuestras prácticas profesionales y nuestras formas de creación. En esta nueva edición de *Código IA*, exploramos cómo la IA impacta distintos campos del conocimiento y la cultura a través de cuatro episodios temáticos.\n\nDesde los desafíos éticos y educativos en el aula universitaria, pasando por las transformaciones en el arte visual y la autoría, hasta la integración de videojuegos en procesos de aprendizaje y la reconfiguración del cine como industria creativa, esta serie propone una mirada crítica, accesible y actualizada sobre los cruces entre tecnología, sociedad y comunicación.\n\nCon la participación de especialistas como **Gladys Ceretta**, **Valeria Lepra**, **Daniel Argente** y **Ángel Cardozo**, *Código IA* invita a reflexionar sobre los usos, alcances y sentidos que adquiere la inteligencia artificial en nuestras formas de enseñar, crear y narrar.",
+    "orden": 3,
+    "color": "noche"
+  },
+  {
+    "id": "t3",
+    "titulo": "Temporada 3",
+    "subtitulo": "¿Qué ocurre cuando la IA se mete en tu vida privada?",
+    "descripcion": "En este ciclo nos metemos en la intimidad de las personas. Un territorio donde la inteligencia artificial ya no es ciencia ficción, sino parte de la cotidianidad y privacidad humana. Ahí donde nadie te avisó que las reglas estaban cambiando. La inteligencia artificial ya no es el futuro, es el presente. Y nosotros hacemos las preguntas incómodas a los expertos y académicos\n\nCuatro episodios. Cuatro realidades que ya están acá. Creados y producidos por estudiantes de la Facultad de Información y Comunicación (FIC, Udelar), con un enfoque crítico y sin filtro abordamos los siguientes temas:",
+    "orden": 4,
+    "color": "lima"
+  }
+]

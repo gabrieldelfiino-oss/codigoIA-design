@@ -1,0 +1,41 @@
+[
+  { "programaId": "amar-en-tiempos-de-ia", "personaId": "p-jurfest", "rol": "invitado" },
+  { "programaId": "amar-en-tiempos-de-ia", "personaId": "p-bafico", "rol": "invitado" },
+
+  { "programaId": "del-divan-al-chatbot", "personaId": "p-perez-abella", "rol": "invitado" },
+  { "programaId": "del-divan-al-chatbot", "personaId": "p-vigna", "rol": "invitado" },
+
+  { "programaId": "infancia-e-ia", "personaId": "p-valle-lisboa", "rol": "invitado" },
+  { "programaId": "infancia-e-ia", "personaId": "p-pereiro", "rol": "invitado" },
+
+  { "programaId": "fraudes-digitales-e-ia", "personaId": "p-alvarez", "rol": "invitado" },
+  { "programaId": "fraudes-digitales-e-ia", "personaId": "p-de-la-fuente", "rol": "invitado" },
+
+  { "programaId": "ia-en-la-industria-cinematografica", "personaId": "p-cardozo", "rol": "invitado" },
+  { "programaId": "educacion-terciaria-e-ia", "personaId": "p-ceretta", "rol": "invitado" },
+  { "programaId": "arte-e-ia", "personaId": "p-lepra", "rol": "invitado" },
+  { "programaId": "gamificacion-educacion-e-ia", "personaId": "p-argente", "rol": "invitado" },
+
+  { "programaId": "camila-rodriguez", "personaId": "p-rodriguez", "rol": "invitado" },
+
+  { "programaId": "diego-parker", "personaId": "p-parker", "rol": "invitado" },
+  { "programaId": "diego-parker", "personaId": "p-gimenez", "rol": "conduccion" },
+  { "programaId": "diego-parker", "personaId": "p-lopez", "rol": "conduccion" },
+
+  { "programaId": "gerson-da-silva", "personaId": "p-da-silva", "rol": "invitado" },
+  { "programaId": "gerson-da-silva", "personaId": "p-lananguere", "rol": "conduccion" },
+  { "programaId": "gerson-da-silva", "personaId": "p-besses", "rol": "conduccion" },
+
+  { "programaId": "marcelo-ubal", "personaId": "p-ubal", "rol": "invitado" },
+  { "programaId": "marcelo-ubal", "personaId": "p-mendez", "rol": "conduccion" },
+  { "programaId": "marcelo-ubal", "personaId": "p-chavarria", "rol": "conduccion" },
+
+  { "programaId": "brian-mackern", "personaId": "p-mackern", "rol": "invitado" },
+
+  { "programaId": "silvina-cortes", "personaId": "p-cortes", "rol": "invitado" },
+  { "programaId": "silvina-cortes", "personaId": "p-velazquez", "rol": "conduccion" },
+  { "programaId": "silvina-cortes", "personaId": "p-lans", "rol": "conduccion" },
+
+  { "programaId": "patricia-diaz", "personaId": "p-diaz", "rol": "invitado" },
+  { "programaId": "alvaro-more", "personaId": "p-more", "rol": "invitado" }
+]
