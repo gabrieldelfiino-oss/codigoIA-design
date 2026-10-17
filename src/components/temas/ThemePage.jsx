@@ -5,6 +5,7 @@ import { getProgramasDeTema, getTema } from "../../servicios/temas";
 import { getVecinos } from "../../servicios/mapa";
 import { getYoutubeThumbnail } from "../../servicios/youtube";
 import { formatFecha } from "../../servicios/texto";
+import Footer from "../general/Footer";
 import Orbes from "../utils/Orbes";
 import PageHeader from "../utils/PageHeader";
 import RouterLink from "../utils/RouterLink";
@@ -39,6 +40,9 @@ export default function ThemePage({ id }) {
           <Contenido tema={tema} />
         )}
       </main>
+      <div className="pt-14">
+        <Footer />
+      </div>
     </div>
   );
 }
@@ -72,6 +76,7 @@ function Contenido({ tema }) {
     <>
       <div className="relative overflow-hidden bg-noche text-gris">
         <Orbes />
+        <div aria-hidden="true" className="tx tx-puntos absolute inset-0" />
         <div className="relative">
           <PageHeader conVolver={false} />
           <section>
@@ -118,7 +123,7 @@ function Contenido({ tema }) {
       </div>
 
       {citas.length > 0 && (
-        <section className="relative overflow-hidden bg-gris text-noche">
+        <section className="tx tx-puntos-claro relative overflow-hidden bg-gris text-noche">
           <div className="relative mx-auto max-w-5xl px-6 py-10 sm:px-10 sm:py-14">
             <h2 className={`${ETIQUETA} mb-8 inline-block text-azul`}>
               /Citas destacadas sobre {tema.nombre}

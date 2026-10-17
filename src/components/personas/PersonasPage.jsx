@@ -51,7 +51,7 @@ export default function PersonasPage({ persona, onCerrar }) {
         role="dialog"
         aria-modal="true"
         aria-label={persona.nombre}
-        className="relative w-full max-w-3xl rounded-3xl border border-gris/20 bg-noche/70 text-gris shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
+        className="tx tx-puntos relative w-full max-w-3xl rounded-3xl border border-gris/20 bg-noche/70 text-gris shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] backdrop-blur-xl"
       >
         <button
           ref={botonCerrar}

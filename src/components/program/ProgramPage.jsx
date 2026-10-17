@@ -11,6 +11,7 @@ import { getYoutubeEmbedUrl, getYoutubeId } from "../../servicios/youtube";
 import { iniciales } from "../../servicios/citas";
 import { formatFecha } from "../../servicios/texto";
 import PersonasPage from "../personas/PersonasPage";
+import Footer from "../general/Footer";
 import Orbes from "../utils/Orbes";
 import PageHeader from "../utils/PageHeader";
 import PersonBadge from "../utils/PersonBadge";
@@ -108,6 +109,7 @@ export default function ProgramPage({ id }) {
             {/* Título */}
             <div className="relative overflow-hidden bg-noche text-gris">
             <Orbes />
+            <div aria-hidden="true" className="tx tx-puntos absolute inset-0" />
             <div className="relative">
             <PageHeader conVolver={false} />
             <section>
@@ -206,7 +208,7 @@ export default function ProgramPage({ id }) {
                             <RouterLink
                               key={t.id}
                               to={`/temas/${t.id}`}
-                              className="rounded-full border border-gris/25 px-4 py-2 font-mono text-xs uppercase tracking-wider transition-colors hover:border-lima hover:text-lima"
+                              className="rounded-full border border-lila/50 bg-lila/10 px-4 py-2 font-mono text-xs uppercase tracking-wider text-lila transition-colors hover:border-lila hover:bg-lila hover:text-noche"
                             >
                               {t.nombre}
                             </RouterLink>
@@ -227,7 +229,7 @@ export default function ProgramPage({ id }) {
                           type="button"
                           onClick={() => setPersonaAbierta(persona)}
                           aria-label={`Ver perfil de ${persona.nombre}`}
-                          className="group overflow-hidden rounded-3xl border border-gris/15 bg-gris/5 text-left transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-lila/60"
+                          className="group overflow-hidden rounded-3xl border border-gris/15 bg-gris/5 text-left transition-[transform,border-color,box-shadow] duration-200 hover:-translate-y-1 hover:border-lila/60 hover:shadow-[0_18px_40px_-18px_rgba(193,114,255,0.55)]"
                         >
                           <div
                             className={`relative flex aspect-[2/1] items-center justify-center overflow-hidden font-display text-4xl font-semibold text-noche ${AVATARES[i % AVATARES.length]}`}
@@ -266,6 +268,10 @@ export default function ProgramPage({ id }) {
           </>
         )}
       </main>
+
+      <div className="pt-14">
+        <Footer />
+      </div>
 
       {personaAbierta && (
         <PersonasPage persona={personaAbierta} onCerrar={() => setPersonaAbierta(null)} />

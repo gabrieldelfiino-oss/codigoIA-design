@@ -8,7 +8,7 @@ export default function CitaCard({ cita, onReproducir }) {
   const temporada = getTemporada(programa.temporadaId);
 
   return (
-    <figure className="min-w-0 overflow-hidden rounded-3xl border border-noche/10 bg-white text-noche shadow-suave">
+    <figure className="min-w-0 overflow-hidden rounded-3xl border border-noche/10 bg-white text-noche shadow-suave transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-suave-lg">
       <figcaption className="flex flex-wrap items-center gap-3 p-5">
         <span
           aria-hidden
