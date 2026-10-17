@@ -65,7 +65,7 @@ function Episodio({ episodio, numero }) {
         >
           {String(numero).padStart(2, "0")}
         </span>
-        <span className="pt-1 text-right font-mono text-xs uppercase tracking-widest text-noche/55">
+        <span className="pt-1 text-right font-mono text-xs uppercase tracking-widest text-noche/70">
           {episodio.titulo}
         </span>
       </div>

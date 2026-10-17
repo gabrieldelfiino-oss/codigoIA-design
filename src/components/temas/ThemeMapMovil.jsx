@@ -316,16 +316,40 @@ const CHISPAS = Array.from({ length: 18 }, (_, i) => ({
  */
 function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
   const botonCerrar = useRef(null);
+  const dialogo = useRef(null);
 
   useEffect(() => {
     const previo = document.activeElement;
     const overflowPrevio = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const alTeclear = (e) => e.key === "Escape" && alCerrar();
+    // El resto de la página queda "inerte": ni foco ni lector de pantalla.
+    document.getElementById("root")?.setAttribute("inert", "");
+    const alTeclear = (e) => {
+      if (e.key === "Escape") {
+        alCerrar();
+        return;
+      }
+      if (e.key !== "Tab" || !dialogo.current) return;
+      // El foco da la vuelta adentro del diálogo.
+      const enfocables = [...dialogo.current.querySelectorAll("button, a[href]")].filter(
+        (el) => !el.disabled && el.offsetParent !== null
+      );
+      if (enfocables.length === 0) return;
+      const primero = enfocables[0];
+      const ultimo = enfocables[enfocables.length - 1];
+      if (e.shiftKey && document.activeElement === primero) {
+        e.preventDefault();
+        ultimo.focus();
+      } else if (!e.shiftKey && document.activeElement === ultimo) {
+        e.preventDefault();
+        primero.focus();
+      }
+    };
     window.addEventListener("keydown", alTeclear);
     botonCerrar.current?.focus();
     return () => {
       document.body.style.overflow = overflowPrevio;
+      document.getElementById("root")?.removeAttribute("inert");
       window.removeEventListener("keydown", alTeclear);
       previo?.focus?.();
     };
@@ -336,6 +360,7 @@ function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
       role="dialog"
       aria-modal="true"
       aria-label="Mapa de temas"
+      ref={dialogo}
       className="fixed inset-0 z-[80] overflow-y-auto"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}

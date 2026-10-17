@@ -6,7 +6,7 @@ const TIPOS = { correo: "email", mensaje: "textarea" }
 const AUTOCOMPLETE = { nombre: "name", correo: "email" }
 
 const CLASE_CAMPO =
-  "rounded-2xl border border-noche/15 bg-gris px-5 py-3 text-base text-noche transition-colors placeholder:text-noche/60 focus:border-noche focus:bg-white focus:outline-none"
+  "rounded-2xl border border-noche/15 bg-gris px-5 py-3 text-base text-noche transition-colors placeholder:text-noche/70 focus:border-noche focus:bg-white focus:outline-none"
 
 // "+" que se vuelve "−" al abrir el desplegable (el mismo de "Sobre el proyecto").
 const LINEA = "before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-noche before:content-[''] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-noche after:content-['']"
@@ -34,28 +34,21 @@ export default function ContactForm() {
           />
         </summary>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-6 pb-8 pt-1 sm:px-8">
-        {proyecto.contacto.campos.map((campo) =>
-          TIPOS[campo.id] === "textarea" ? (
-            <textarea
-              key={campo.id}
-              name={campo.id}
-              placeholder={campo.etiqueta}
-              aria-label={campo.etiqueta}
-              rows={4}
-              className={CLASE_CAMPO}
-            />
-          ) : (
-            <input
-              key={campo.id}
-              type={TIPOS[campo.id] ?? "text"}
-              name={campo.id}
-              placeholder={campo.etiqueta}
-              aria-label={campo.etiqueta}
-              autoComplete={AUTOCOMPLETE[campo.id]}
-              className={CLASE_CAMPO}
-            />
+        {proyecto.contacto.campos.map((campo) => {
+          const comun = { id: `campo-${campo.id}`, name: campo.id, className: CLASE_CAMPO }
+          return (
+            <div key={campo.id} className="flex flex-col gap-1.5">
+              <label htmlFor={comun.id} className="font-mono text-[11px] uppercase tracking-widest text-noche/70">
+                {campo.etiqueta}
+              </label>
+              {TIPOS[campo.id] === "textarea" ? (
+                <textarea {...comun} rows={4} />
+              ) : (
+                <input {...comun} type={TIPOS[campo.id] ?? "text"} autoComplete={AUTOCOMPLETE[campo.id]} />
+              )}
+            </div>
           )
-        )}
+        })}
         <button
           type="submit"
           className="mt-4 w-fit rounded-full bg-noche px-8 py-3.5 text-sm font-medium text-gris transition duration-200 hover:-translate-y-0.5 hover:bg-lima hover:text-noche"

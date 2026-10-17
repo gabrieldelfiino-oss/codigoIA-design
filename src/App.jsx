@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRoute } from "./servicios/router";
 import IntroHeader from "./components/general/IntroHeader";
 import ThemeSection from "./components/temas/ThemeSection";
@@ -29,19 +29,58 @@ export default function App() {
   const matchPrograma = pathname.match(RUTA_PROGRAMA);
   const matchTema = pathname.match(RUTA_TEMA);
 
+  // Accesibilidad en la navegación entre páginas (el router no recarga): al
+  // cambiar de ruta se mueve el foco al título de la página y se anuncia su
+  // nombre en una región "status" para lectores de pantalla.
+  const [anuncio, setAnuncio] = useState("");
+  const primeraCarga = useRef(true);
+  useEffect(() => {
+    if (primeraCarga.current) {
+      primeraCarga.current = false;
+      return;
+    }
+    const espera = setTimeout(() => {
+      const titulo = document.querySelector("main h1");
+      if (titulo) {
+        titulo.setAttribute("tabindex", "-1");
+        titulo.focus({ preventScroll: true });
+      }
+      setAnuncio(document.title);
+    }, 200);
+    return () => clearTimeout(espera);
+  }, [pathname]);
+
+  let contenido;
   if (matchPrograma) {
-    return <ProgramPage id={decodeURIComponent(matchPrograma[1])} />;
+    contenido = <ProgramPage id={decodeURIComponent(matchPrograma[1])} />;
+  } else if (matchTema) {
+    contenido = <ThemePage id={decodeURIComponent(matchTema[1])} />;
+  } else {
+    contenido = <Home />;
   }
 
-  if (matchTema) {
-    return <ThemePage id={decodeURIComponent(matchTema[1])} />;
-  }
-
-  return <Home />;
+  return (
+    <>
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-lima focus:px-5 focus:py-3 focus:text-sm focus:font-medium focus:text-noche"
+      >
+        Saltar al contenido
+      </a>
+      <div role="status" aria-live="polite" className="sr-only">
+        {anuncio}
+      </div>
+      {contenido}
+    </>
+  );
 }
 
 function Home() {
   const [introDone, setIntroDone] = useState(introYaVista);
+
+  useEffect(() => {
+    document.title = "Código.IA · El programa que te ayuda a no estar re perdido con la IA";
+  }, []);
 
   // Al volver desde otra página con un ancla (ej. "/#temas" desde ThemePage)
   // baja a esa sección una vez montada la home.
@@ -64,7 +103,7 @@ function Home() {
           de asentarse en el header. */}
       {introDone && (
         <>
-          <main className="pt-20 sm:pt-24">
+          <main id="contenido" tabIndex={-1} className="pt-20 outline-none sm:pt-24">
             <SeasonCarousel />
             <ThemeSection />
             <AditionalSection />

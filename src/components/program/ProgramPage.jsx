@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   getProgramaPorId,
   getProgramasPorTemporada,
@@ -75,6 +75,9 @@ function Desplegable({ titulo, abierto = true, ultimo = false, children }) {
 export default function ProgramPage({ id }) {
   const [personaAbierta, setPersonaAbierta] = useState(null);
   const programa = getProgramaPorId(id);
+  useEffect(() => {
+    document.title = programa ? `${programa.titulo} · Código.IA` : "Nos perdimos · Código.IA";
+  }, [programa]);
   const temporada = programa ? getTemporada(programa.temporadaId) : null;
   const delaTemporada = programa ? getProgramasPorTemporada(programa.temporadaId) : [];
   const numero = programa ? delaTemporada.findIndex((p) => p.id === programa.id) + 1 : 0;
@@ -87,7 +90,7 @@ export default function ProgramPage({ id }) {
 
   return (
     <div className="min-h-screen w-full bg-noche text-gris">
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         {!programa ? (
           <>
           <PageHeader conVolver={false} />

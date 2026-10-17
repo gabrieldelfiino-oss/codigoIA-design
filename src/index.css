@@ -25,6 +25,9 @@
 
 html {
   scroll-behavior: smooth;
+  /* La cabecera es fija: al enfocar con teclado o saltar a un ancla, el
+     elemento no queda tapado por ella (WCAG 2.4.11). */
+  scroll-padding-top: 6rem;
 }
 
 html, body, #root {

@@ -1,5 +1,5 @@
 import { getBajada, getTemporada } from "../../servicios/programas";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getCitasDeTema } from "../../servicios/citas";
 import { getProgramasDeTema, getTema } from "../../servicios/temas";
 import { getVecinos } from "../../servicios/mapa";
@@ -22,10 +22,13 @@ const BOTON =
  */
 export default function ThemePage({ id }) {
   const tema = getTema(id);
+  useEffect(() => {
+    document.title = tema ? `${tema.nombre} · Código.IA` : "Uy, acá no hay nada · Código.IA";
+  }, [tema]);
 
   return (
     <div className="min-h-screen w-full bg-noche text-gris">
-      <main>
+      <main id="contenido" tabIndex={-1} className="outline-none">
         {!tema ? (
           <>
           <PageHeader conVolver={false} />
@@ -243,7 +246,7 @@ function TarjetaPrograma({ programa }) {
                 rel="noopener noreferrer"
                 className={`${BOTON} border-gris text-gris hover:border-lima hover:bg-lima hover:text-noche`}
               >
-                ▶ Miralo en YouTube
+                ▶ Miralo en YouTube<span className="sr-only"> (abre en una pestaña nueva)</span>
               </a>
             )}
           </div>

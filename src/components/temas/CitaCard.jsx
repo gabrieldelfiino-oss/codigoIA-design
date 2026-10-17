@@ -19,7 +19,7 @@ export default function CitaCard({ cita, onReproducir }) {
         <div className="min-w-0 flex-1">
           <p className="font-display text-lg font-semibold leading-tight">{persona.nombre}</p>
           {persona.profesion && (
-            <p className="text-sm text-noche/60">{persona.profesion}</p>
+            <p className="text-sm text-noche/70">{persona.profesion}</p>
           )}
         </div>
         <button
@@ -33,7 +33,7 @@ export default function CitaCard({ cita, onReproducir }) {
       <blockquote className="px-6 pb-6 pt-1 font-serif text-xl italic leading-relaxed sm:text-2xl">
         “{cita.texto}”
       </blockquote>
-      <p className="border-t border-noche/10 bg-gris px-6 py-3 font-mono text-[11px] uppercase tracking-wider text-noche/60">
+      <p className="border-t border-noche/10 bg-gris px-6 py-3 font-mono text-[11px] uppercase tracking-wider text-noche/70">
         {temporada?.titulo} · {programa.titulo}
       </p>
     </figure>

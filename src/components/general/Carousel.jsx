@@ -38,16 +38,19 @@ export default function SeasonCarousel() {
   const slides = [HERO_SLIDE, ...episodios];
   const [index, setIndex] = useState(0);
   const [pausado, setPausado] = useState(false);
+  // Pausa explícita (botón): a diferencia de pausar con el cursor o el foco,
+  // dura hasta que la persona vuelve a iniciar la rotación (WCAG 2.2.2).
+  const [detenido, setDetenido] = useState(false);
   const [reducir] = useState(
     () => typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
 
   useEffect(() => {
-    if (slides.length < 2 || pausado || reducir) return;
+    if (slides.length < 2 || pausado || detenido || reducir) return;
     const duration = slides[index]?.tipo === "hero" ? HERO_ADVANCE_MS : AUTO_ADVANCE_MS;
     const timer = setTimeout(() => setIndex((i) => (i + 1) % slides.length), duration);
     return () => clearTimeout(timer);
-  }, [index, slides.length, pausado, reducir]);
+  }, [index, slides.length, pausado, detenido, reducir]);
 
   // Le avisa al header si se está viendo el banner del slogan (cuando no, el
   // slogan viaja al header) y vuelve al primer banner al tocar el logo.
@@ -64,6 +67,9 @@ export default function SeasonCarousel() {
   const actual = slides[index];
   if (!actual) return null;
 
+  // Mientras rota solo, los cambios de banner no se anuncian; detenido o con el
+  // foco adentro, sí (aria-live "polite").
+  const rotando = slides.length > 1 && !pausado && !detenido && !reducir;
   const anterior = () => setIndex((i) => (i - 1 + slides.length) % slides.length);
   const siguiente = () => setIndex((i) => (i + 1) % slides.length);
 
@@ -91,10 +97,27 @@ export default function SeasonCarousel() {
       onBlur={() => setPausado(false)}
       className="relative h-[min(560px,calc(100svh-5rem))] min-h-[520px] w-full overflow-hidden bg-noche text-gris sm:h-[74vh] sm:min-h-[500px]"
     >
+      <h1 className="sr-only">Código.IA: el programa que te ayuda a no estar re perdido con la IA</h1>
+      <button
+        type="button"
+        onClick={() => setDetenido((d) => !d)}
+        aria-label={detenido ? "Iniciar rotación de banners" : "Detener rotación de banners"}
+        className="absolute bottom-16 right-[calc(1.5rem+6.5rem)] z-10 grid h-11 w-11 place-items-center rounded-full border border-gris/30 text-gris transition-colors hover:bg-gris hover:text-noche sm:bottom-20 sm:right-[calc(3rem+6.5rem)]"
+      >
+        {detenido ? (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+        ) : (
+          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" /></svg>
+        )}
+      </button>
+      <div aria-live={rotando ? "off" : "polite"} aria-atomic="false" className="absolute inset-0">
       <AnimatePresence mode="wait">
         {actual.tipo === "hero" ? (
           <motion.div
             key={actual.id}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} de ${slides.length}`}
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.99 }}
@@ -140,6 +163,9 @@ export default function SeasonCarousel() {
         ) : (
           <motion.div
             key={actual.id}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} de ${slides.length}`}
             initial={{ opacity: 0, scale: 1.03 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.99 }}
@@ -182,7 +208,7 @@ export default function SeasonCarousel() {
                     className={BTN_SECUNDARIO}
                   >
                     <YoutubeIcon />
-                    Miralo en YouTube
+                    Miralo en YouTube<span className="sr-only"> (abre en una pestaña nueva)</span>
                   </a>
                 )}
               </div>
@@ -190,22 +216,27 @@ export default function SeasonCarousel() {
           </motion.div>
         )}
       </AnimatePresence>
+      </div>
 
       {/* Controles: puntos / anterior / siguiente */}
       <div className="absolute bottom-16 left-6 right-6 flex items-center justify-between gap-4 sm:bottom-20 sm:left-12 sm:right-12">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center">
           {slides.map((s, i) => (
             <button
               key={s.id}
               type="button"
               aria-label={s.tipo === "hero" ? "Ir a la presentación" : `Ir a ${s.titulo}`}
-              aria-current={i === index}
+              aria-current={i === index ? "true" : undefined}
               onClick={() => setIndex(i)}
-              className={[
-                "h-2 rounded-full transition-all duration-300",
-                i === index ? "w-8 bg-lima" : "w-2 bg-gris/40 hover:bg-gris/70",
-              ].join(" ")}
-            />
+              className="group flex h-6 min-w-6 items-center justify-center px-1"
+            >
+              <span
+                className={[
+                  "block h-2 rounded-full transition-all duration-300",
+                  i === index ? "w-8 bg-lima" : "w-2 bg-gris/40 group-hover:bg-gris/70",
+                ].join(" ")}
+              />
+            </button>
           ))}
         </div>
         <div className="flex gap-2">

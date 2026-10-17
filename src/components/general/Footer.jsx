@@ -18,7 +18,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-full border border-gris/25 px-4 py-2 transition-colors hover:border-lima hover:text-lima"
           >
-            /YouTube
+            /YouTube<span className="sr-only"> (abre en una pestaña nueva)</span>
           </a>
           <a
             href={proyecto.redes.instagram}
@@ -26,7 +26,7 @@ export default function Footer() {
             rel="noreferrer"
             className="rounded-full border border-gris/25 px-4 py-2 transition-colors hover:border-lima hover:text-lima"
           >
-            /Instagram
+            /Instagram<span className="sr-only"> (abre en una pestaña nueva)</span>
           </a>
         </div>
 

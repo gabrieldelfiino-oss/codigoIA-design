@@ -2,7 +2,8 @@ import { useState } from "react";
 import ThemeMap from "./ThemeMap";
 import ThemeMapMovil from "./ThemeMapMovil";
 import RouterLink from "../utils/RouterLink";
-import { TEMAS } from "../../servicios/temas";
+import { TEMAS, getTema } from "../../servicios/temas";
+import { getVecinos } from "../../servicios/mapa";
 
 // Un punto de color de la paleta por chip, rotando.
 const PUNTOS = ["bg-lila", "bg-lima", "bg-naranja", "bg-azul"];
@@ -43,11 +44,40 @@ export default function ThemeSection() {
           <ThemeMap inmersivo={inm} alCambiarInmersivo={setInm} />
         </div>
 
+        {/* Alternativa en texto del mapa (PC): la misma información, en una lista
+            que se recorre con teclado o lector de pantalla. */}
+        <details className="group/lista mt-4 hidden rounded-2xl border border-current/15 px-5 py-3 lg:block">
+          <summary className="cursor-pointer font-mono text-xs uppercase tracking-widest [&::-webkit-details-marker]:hidden">
+            Ver el mapa como lista
+          </summary>
+          <ul className="mt-5 grid gap-5 pb-2 lg:grid-cols-4">
+            {temas.map((t) => (
+              <li key={t.id}>
+                <RouterLink to={`/temas/${t.id}`} className="font-display text-base font-semibold underline-offset-4 hover:underline">
+                  {t.nombre}
+                </RouterLink>
+                <ul className="mt-1 grid gap-0.5 text-sm opacity-80">
+                  {getVecinos(t.id)
+                    .map(getTema)
+                    .filter(Boolean)
+                    .map((s) => (
+                      <li key={s.id}>
+                        <RouterLink to={`/temas/${s.id}`} className="underline-offset-4 hover:underline">
+                          {s.nombre}
+                        </RouterLink>
+                      </li>
+                    ))}
+                </ul>
+              </li>
+            ))}
+          </ul>
+        </details>
+
         <div className="mt-8 lg:hidden">
           <ThemeMapMovil />
         </div>
 
-        <p className="mt-8 font-mono text-xs uppercase tracking-widest text-noche/60 lg:hidden">/Lista de temas</p>
+        <p className="mt-8 font-mono text-xs uppercase tracking-widest text-noche/70 lg:hidden">/Lista de temas</p>
         <ul className="mt-3 flex flex-wrap gap-3 lg:hidden">
           {temas.map((t, i) => (
             <li key={t.id}>

@@ -31,6 +31,10 @@ export default function SearchBar() {
   const [indice, setIndice] = useState(-1);
   const [pasando, setPasando] = useState(false);
   const [enfocado, setEnfocado] = useState(false);
+  // Abierto con la lupa (clic, toque, Enter o Espacio): sirve donde no hay hover.
+  const [manual, setManual] = useState(false);
+  // Aviso para lectores de pantalla: cuántos resultados hay.
+  const [mensaje, setMensaje] = useState("");
   const raiz = useRef(null);
   const campo = useRef(null);
 
@@ -78,7 +82,28 @@ export default function SearchBar() {
 
   // En reposo solo se ve la lupa; la barra se despliega al pasar el cursor, al
   // enfocarla (teclado o toque en la lupa) o mientras haya texto escrito.
-  const expandido = pasando || enfocado || texto.length > 0;
+  const expandido = pasando || enfocado || manual || texto.length > 0;
+
+  // Al abrir con la lupa el foco pasa al campo.
+  useEffect(() => {
+    if (manual) campo.current?.focus();
+  }, [manual]);
+
+  // Anuncia la cantidad de resultados una vez que la persona dejó de escribir.
+  useEffect(() => {
+    if (!hayConsulta) {
+      setMensaje("");
+      return;
+    }
+    const espera = setTimeout(() => {
+      setMensaje(
+        resultados.length === 0
+          ? "Sin resultados"
+          : `${resultados.length} ${resultados.length === 1 ? "resultado" : "resultados"}`
+      );
+    }, 500);
+    return () => clearTimeout(espera);
+  }, [resultados, hayConsulta]);
 
   return (
     <div
@@ -88,11 +113,29 @@ export default function SearchBar() {
       onPointerEnter={(e) => e.pointerType === "mouse" && setPasando(true)}
       onPointerLeave={(e) => e.pointerType === "mouse" && setPasando(false)}
       onFocus={() => setEnfocado(true)}
-      onBlur={() => setEnfocado(false)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setEnfocado(false);
+          setManual(false);
+        }
+      }}
     >
+      {/* En reposo el control es un botón con la lupa: se abre con clic, toque,
+          Enter o Espacio. El campo de texto aparece al abrirlo. */}
+      {!expandido && (
+        <button
+          type="button"
+          aria-expanded="false"
+          aria-label="Buscar un programa, tema o invitado"
+          onClick={() => setManual(true)}
+          className="flex h-10 w-10 items-center justify-center rounded-full border border-gris/30 text-gris transition-colors hover:border-lima hover:bg-gris/10"
+        >
+          <LupaIcon />
+        </button>
+      )}
       <label
         className={`flex h-10 cursor-text items-center rounded-full border text-gris transition-[border-color,background-color,padding] duration-300 hover:border-lima ${
-          expandido ? "gap-2 border-gris/30 bg-gris/5 px-4" : "justify-center border-gris/30 px-0 hover:bg-gris/10"
+          expandido ? "gap-2 border-gris/30 bg-gris/5 px-4" : "hidden"
         } focus-within:border-lima`}
       >
         <LupaIcon />
@@ -105,6 +148,8 @@ export default function SearchBar() {
           role="combobox"
           aria-expanded={abierto && hayConsulta}
           aria-controls="resultados-busqueda"
+          aria-autocomplete="list"
+          aria-activedescendant={abierto && hayConsulta && indice >= 0 ? `busq-op-${indice}` : undefined}
           autoComplete="off"
           onChange={(event) => {
             setTexto(event.target.value);
@@ -118,6 +163,10 @@ export default function SearchBar() {
           }`}
         />
       </label>
+
+      <div role="status" className="sr-only">
+        {mensaje}
+      </div>
 
       {abierto && hayConsulta && (
         <ul
@@ -133,10 +182,14 @@ export default function SearchBar() {
             resultados.map((resultado, i) => {
               const activo = i === indice;
               return (
-                <li key={`${resultado.tipo}-${resultado.id}`} role="option" aria-selected={activo}>
+                <li key={`${resultado.tipo}-${resultado.id}`} role="presentation">
                   {/* Misma fila que en "Todos los programas": hover gris, título lima y flecha. */}
                   <a
                     href={resultado.to}
+                    id={`busq-op-${i}`}
+                    role="option"
+                    aria-selected={activo}
+                    tabIndex={-1}
                     onClick={(event) => {
                       event.preventDefault();
                       ir(resultado);
