@@ -10,16 +10,16 @@ export default function AboutSection() {
 
   return (
     <section id="sobre-el-proyecto" className="seccion-curva bg-gris text-noche">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-24">
+      <div className="mx-auto max-w-3xl px-6 py-14 sm:px-10 sm:py-20">
         <details className="group rounded-3xl border border-noche/10 bg-white shadow-suave">
-          <summary className="flex min-h-16 cursor-pointer list-none items-center justify-between gap-4 rounded-3xl px-6 py-5 font-display text-2xl font-semibold tracking-tight sm:px-9 sm:text-3xl [&::-webkit-details-marker]:hidden">
+          <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-3xl px-6 py-4 font-display text-xl font-semibold tracking-tight sm:px-8 sm:text-2xl [&::-webkit-details-marker]:hidden">
             Sobre el proyecto
             <span
               aria-hidden
-              className={`relative h-10 w-10 shrink-0 rounded-full bg-lima transition-transform duration-200 group-hover:scale-110 before:h-0.5 before:w-4 after:h-4 after:w-0.5 group-open:after:hidden ${LINEA}`}
+              className={`relative h-9 w-9 shrink-0 rounded-full bg-lima transition-transform duration-200 group-hover:scale-110 before:h-0.5 before:w-4 after:h-4 after:w-0.5 group-open:after:hidden ${LINEA}`}
             />
           </summary>
-          <div className="grid max-w-[75ch] gap-4 px-6 pb-8 pt-1 text-base leading-relaxed text-noche/80 sm:px-9 sm:text-lg">
+          <div className="grid max-w-[75ch] gap-4 px-6 pb-7 pt-1 text-base leading-relaxed text-noche/80 sm:px-8">
             <p>{sobre.proyecto}</p>
             <p>{sobre.efi}</p>
           </div>

@@ -76,7 +76,7 @@ export default function SeasonCarousel() {
       onMouseLeave={() => setPausado(false)}
       onFocus={() => setPausado(true)}
       onBlur={() => setPausado(false)}
-      className="relative h-[78vh] min-h-[540px] w-full overflow-hidden bg-noche text-gris sm:h-[85vh]"
+      className="relative h-[70vh] min-h-[500px] w-full overflow-hidden bg-noche text-gris sm:h-[74vh]"
     >
       <AnimatePresence mode="wait">
         {actual.tipo === "hero" ? (
@@ -104,7 +104,7 @@ export default function SeasonCarousel() {
                   mientras el slogan sale de acá y viaja al header. */}
               <h2
                 id="eslogan-hero"
-                className="max-w-4xl font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-7xl xl:text-[5.25rem]"
+                className="max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-tight sm:text-5xl xl:text-6xl"
                 style={{ opacity: "calc(1 - var(--eslogan-h2, 0))" }}
               >
                 El programa que te ayuda a no estar{" "}
@@ -142,7 +142,7 @@ export default function SeasonCarousel() {
               <span className="mb-4 inline-flex rounded-full bg-lila px-3.5 py-1 font-mono text-xs uppercase tracking-wider text-noche">
                 Programa {String(index).padStart(2, "0")}
               </span>
-              <h2 className="max-w-3xl font-display text-4xl font-semibold leading-[1] sm:text-6xl">
+              <h2 className="max-w-2xl font-display text-3xl font-semibold leading-[1.02] sm:text-5xl">
                 {actual.titulo}
               </h2>
               <p className="mt-4 max-w-xl text-base text-gris/85 sm:text-lg">{getBajada(actual)}</p>

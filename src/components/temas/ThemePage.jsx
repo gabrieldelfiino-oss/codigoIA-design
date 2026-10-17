@@ -54,11 +54,11 @@ function Contenido({ tema }) {
         <div className="relative">
           <PageHeader conVolver={false} />
           <section>
-            <div className="mx-auto max-w-7xl px-6 pb-14 pt-6 sm:px-10 sm:pb-16">
+            <div className="mx-auto max-w-5xl px-6 pb-10 pt-6 sm:px-10 sm:pb-12">
               <span className={`${ETIQUETA} mb-5 inline-block text-lila`}>
                 /Tema
               </span>
-              <h1 className="mb-4 font-display text-6xl font-semibold leading-[0.98] tracking-tight sm:text-8xl">
+              <h1 className="mb-4 font-display text-4xl font-semibold leading-[1.02] tracking-tight sm:text-6xl">
                 <span className="text-lima">{tema.nombre}</span>
               </h1>
               {tema.descripcion && (
@@ -73,7 +73,7 @@ function Contenido({ tema }) {
 
       {citas.length > 0 && (
         <section className="relative overflow-hidden bg-gris text-noche">
-          <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-10 sm:py-20">
+          <div className="relative mx-auto max-w-5xl px-6 py-10 sm:px-10 sm:py-14">
             <h2 className={`${ETIQUETA} mb-8 inline-block text-azul`}>
               /Citas destacadas sobre {tema.nombre}
             </h2>
@@ -87,7 +87,7 @@ function Contenido({ tema }) {
       )}
 
       <section>
-        <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
+        <div className="mx-auto max-w-5xl px-6 py-10 sm:px-10 sm:py-12">
           <h2 className={`${ETIQUETA} mb-8 inline-block text-lima`}>
             /Programas que tocan este tema · {programas.length}
           </h2>

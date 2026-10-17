@@ -30,17 +30,17 @@ function Chevron() {
  */
 export default function AllSection() {
   return (
-    <section id="todos-los-programas" className="seccion-curva w-full bg-noche py-20 text-gris sm:py-28">
-      <div className="mx-auto max-w-7xl px-6 sm:px-10">
+    <section id="todos-los-programas" className="seccion-curva w-full bg-noche py-14 text-gris sm:py-20">
+      <div className="mx-auto max-w-4xl px-6 sm:px-10">
         <p className="mb-4 font-mono text-xs uppercase tracking-widest text-lima">/Temporadas</p>
-        <h2 className="font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">
+        <h2 className="font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
           Todos los programas
         </h2>
-        <p className="mt-4 max-w-2xl text-base text-gris/70 sm:text-lg">
+        <p className="mt-3 max-w-xl text-base text-gris/70">
           Abrí una temporada para ver sus programas y entrar a cada ficha.
         </p>
 
-        <div className="mt-12 flex flex-col gap-4">
+        <div className="mt-8 flex flex-col gap-3">
           {GRUPOS.map((temporada, i) => (
             <Temporada key={temporada.id} temporada={temporada} indice={i} abierta={i === 0} />
           ))}
@@ -59,9 +59,9 @@ function Temporada({ temporada, indice, abierta }) {
       open={abierta}
       className="group rounded-3xl border border-gris/15 bg-gris/[0.04] transition-colors open:border-gris/25 open:bg-gris/[0.07]"
     >
-      <summary className="flex min-h-16 cursor-pointer list-none items-center gap-4 rounded-3xl px-5 py-5 sm:px-7 [&::-webkit-details-marker]:hidden">
-        <span aria-hidden className={`h-3 w-3 shrink-0 rounded-full ${acento}`} />
-        <span className="min-w-0 flex-1 font-display text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
+      <summary className="flex min-h-14 cursor-pointer list-none items-center gap-4 rounded-3xl px-5 py-4 sm:px-6 [&::-webkit-details-marker]:hidden">
+        <span aria-hidden className={`h-2.5 w-2.5 shrink-0 rounded-full ${acento}`} />
+        <span className="min-w-0 flex-1 font-display text-xl font-semibold leading-none tracking-tight sm:text-2xl">
           {temporada.titulo}
         </span>
         <span className="shrink-0 rounded-full border border-gris/20 px-3 py-1 font-mono text-xs uppercase tracking-wider text-gris/70">
@@ -87,9 +87,9 @@ function FilaPrograma({ programa }) {
   return (
     <RouterLink
       to={`/programa/${programa.id}`}
-      className="group/fila flex min-h-14 items-center gap-4 rounded-2xl px-4 py-3 transition-colors hover:bg-gris/10"
+      className="group/fila flex min-h-12 items-center gap-4 rounded-2xl px-4 py-2.5 transition-colors hover:bg-gris/10"
     >
-      <span className="min-w-0 flex-1 font-display text-lg font-medium leading-tight transition-colors group-hover/fila:text-lima">
+      <span className="min-w-0 flex-1 font-display text-base font-medium leading-tight transition-colors group-hover/fila:text-lima">
         {programa.titulo}
       </span>
       {programa.duracion && (

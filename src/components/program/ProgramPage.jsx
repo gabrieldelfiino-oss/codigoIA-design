@@ -111,13 +111,13 @@ export default function ProgramPage({ id }) {
             <div className="relative">
             <PageHeader conVolver={false} />
             <section>
-              <div className="mx-auto max-w-7xl px-6 pb-14 pt-6 sm:px-10 sm:pb-16">
+              <div className="mx-auto max-w-6xl px-6 pb-10 pt-6 sm:px-10 sm:pb-12">
                 <div className="flex max-w-4xl flex-col gap-5">
                   <span className={`${ETIQUETA} self-start text-lila`}>
                     /Programa {String(numero).padStart(2, "0")}
                     {temporada ? ` · ${temporada.titulo}` : ""}
                   </span>
-                  <h1 className="font-display text-5xl font-semibold leading-[0.98] tracking-tight sm:text-7xl">
+                  <h1 className="font-display text-3xl font-semibold leading-[1.02] tracking-tight sm:text-5xl">
                     <TituloResaltado texto={programa.titulo} />
                   </h1>
                   {programa.pregunta && (
@@ -146,7 +146,7 @@ export default function ProgramPage({ id }) {
 
             {/* Video grande + descripción · invitados al costado */}
             <section>
-              <div className="mx-auto grid max-w-7xl gap-12 px-6 pb-20 pt-12 sm:px-10 lg:grid-cols-12 lg:gap-6">
+              <div className="mx-auto grid max-w-6xl gap-10 px-6 pb-16 pt-10 sm:px-10 lg:grid-cols-12 lg:gap-6">
                 <div className="flex flex-col gap-8 lg:col-span-9">
                   <div className="aspect-video w-full overflow-hidden rounded-3xl border border-gris/15 bg-noche shadow-[0_30px_70px_-30px_rgba(193,114,255,0.5)]">
                     {programa.linkYoutube ? (

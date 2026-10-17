@@ -15,12 +15,12 @@ export default function ThemeSection() {
 
   return (
     <section id="temas" className="seccion-curva bg-gris text-noche">
-      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28">
+      <div className="mx-auto max-w-6xl px-6 py-14 sm:px-10 sm:py-20">
         <p className="mb-4 font-mono text-xs uppercase tracking-widest text-azul">/Mapa de temas</p>
-        <h2 className="max-w-4xl font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">
+        <h2 className="max-w-4xl font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
           Todo se conecta con la <span className="text-azul">IA</span>
         </h2>
-        <p className="mt-5 max-w-2xl text-base text-noche/75 sm:text-lg">
+        <p className="mt-4 max-w-xl text-base text-noche/75">
           <span className="hidden lg:inline">
             Pasá el cursor o tabulá por un nodo para iluminar sus caminos. Hacé
             clic en cualquiera para ver los programas de ese tema.
@@ -28,7 +28,7 @@ export default function ThemeSection() {
           <span className="lg:hidden">Elegí un tema para ver los programas que lo tocan.</span>
         </p>
 
-        <div className="mt-12 hidden overflow-hidden rounded-3xl shadow-suave-lg lg:block">
+        <div className="mt-10 hidden overflow-hidden rounded-3xl shadow-suave-lg lg:block">
           <ThemeMap />
         </div>
 

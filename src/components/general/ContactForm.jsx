@@ -6,7 +6,7 @@ const TIPOS = { correo: "email", mensaje: "textarea" }
 const AUTOCOMPLETE = { nombre: "name", correo: "email" }
 
 const CLASE_CAMPO =
-  "rounded-2xl border border-gris/30 bg-gris/10 px-5 py-3.5 text-base text-gris transition-colors placeholder:text-gris/70 focus:border-lima focus:bg-gris/15 focus:outline-none"
+  "rounded-2xl border border-gris/30 bg-gris/10 px-5 py-3 text-base text-gris transition-colors placeholder:text-gris/70 focus:border-lima focus:bg-gris/15 focus:outline-none"
 
 /**
  * Formulario de contacto: por ahora solo UI, sin envío real.
@@ -21,8 +21,8 @@ export default function ContactForm() {
 
   return (
     <section id="contacto" className="seccion-curva bg-azul text-gris">
-    <div className="mx-auto max-w-2xl px-6 py-20 sm:px-10 sm:py-28">
-      <h2 className="mb-10 font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">
+    <div className="mx-auto max-w-xl px-6 py-14 sm:px-10 sm:py-20">
+      <h2 className="mb-8 font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
         Contacto
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
