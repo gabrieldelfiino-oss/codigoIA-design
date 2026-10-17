@@ -77,7 +77,7 @@ export default function Nav() {
   return (
     <div
       ref={raiz}
-      className="relative"
+      className="relative -m-3 p-3"
       onPointerEnter={alEntrar}
       onPointerLeave={alSalir}
     >
@@ -118,7 +118,7 @@ export default function Nav() {
               setActivo(null)
             }}
             style={{ transformOrigin: 'top right' }}
-            className="absolute right-0 top-[calc(100%+1.5rem)] z-[60] w-64 rounded-[22px] border border-gris/15 bg-noche/70 p-2 shadow-[0_20px_50px_rgba(0,0,0,0.45)] backdrop-blur-xl"
+            className="absolute right-0 top-0 z-[59] w-64 rounded-[22px] border border-gris/15 bg-gradient-to-b from-gris/[0.12] to-noche/55 px-2 pb-2 pt-11 shadow-[0_20px_50px_rgba(0,0,0,0.35),inset_0_1px_0_rgba(250,250,250,0.12)] backdrop-blur-2xl"
           >
             {LINKS.map((link) => {
               const sel = activo === link.href

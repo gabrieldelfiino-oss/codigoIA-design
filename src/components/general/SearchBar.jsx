@@ -29,6 +29,8 @@ export default function SearchBar() {
   const [texto, setTexto] = useState("");
   const [abierto, setAbierto] = useState(false);
   const [indice, setIndice] = useState(-1);
+  const [pasando, setPasando] = useState(false);
+  const [enfocado, setEnfocado] = useState(false);
   const raiz = useRef(null);
   const campo = useRef(null);
 
@@ -74,16 +76,32 @@ export default function SearchBar() {
     }
   };
 
+  // En reposo solo se ve la lupa; la barra se despliega al pasar el cursor, al
+  // enfocarla (teclado o toque en la lupa) o mientras haya texto escrito.
+  const expandido = pasando || enfocado || texto.length > 0;
+
   return (
-    <div ref={raiz} role="search" className="relative w-28 sm:w-64">
-      <label className="flex items-center gap-2 rounded-full border border-gris/30 px-4 py-2 text-gris transition-colors focus-within:border-lima">
+    <div
+      ref={raiz}
+      role="search"
+      className={`relative transition-[width] duration-300 ease-out ${expandido ? "w-[min(16rem,58vw)]" : "w-10"}`}
+      onPointerEnter={(e) => e.pointerType === "mouse" && setPasando(true)}
+      onPointerLeave={(e) => e.pointerType === "mouse" && setPasando(false)}
+      onFocus={() => setEnfocado(true)}
+      onBlur={() => setEnfocado(false)}
+    >
+      <label
+        className={`flex h-10 cursor-text items-center rounded-full border text-gris transition-[border-color,background-color,padding] duration-300 hover:border-lima ${
+          expandido ? "gap-2 border-gris/30 bg-gris/5 px-4" : "justify-center border-gris/30 px-0 hover:bg-gris/10"
+        } focus-within:border-lima`}
+      >
         <LupaIcon />
         <span className="sr-only">Buscar un programa, tema o invitado</span>
         <input
           ref={campo}
           type="search"
           value={texto}
-          placeholder="Buscar programa, tema o invitado"
+          placeholder="Busca algo..."
           role="combobox"
           aria-expanded={abierto && hayConsulta}
           aria-controls="resultados-busqueda"
@@ -95,7 +113,9 @@ export default function SearchBar() {
           }}
           onFocus={() => setAbierto(true)}
           onKeyDown={alTeclear}
-          className="min-w-0 flex-1 bg-transparent font-mono text-xs uppercase tracking-wider text-gris outline-none placeholder:text-gris/50"
+          className={`min-w-0 bg-transparent font-mono text-xs tracking-wide text-gris outline-none transition-opacity duration-300 placeholder:text-gris/50 [&::-webkit-search-cancel-button]:hidden ${
+            expandido ? "flex-1 opacity-100" : "w-0 opacity-0"
+          }`}
         />
       </label>
 
