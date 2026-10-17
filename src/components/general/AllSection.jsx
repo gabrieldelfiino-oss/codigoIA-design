@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { getProgramasPorTemporada, getTemporadasRecientesPrimero } from '../../servicios/programas'
 import RouterLink from '../utils/RouterLink'
 
@@ -29,6 +30,9 @@ function Chevron() {
  * con todos sus programas; cada fila lleva a la ficha del programa.
  */
 export default function AllSection() {
+  // Acordeón exclusivo: al abrir una temporada se cierra la que estaba abierta.
+  const [abierta, setAbierta] = useState(GRUPOS[0]?.id ?? null)
+
   return (
     <section id="todos-los-programas" className="seccion-curva tx tx-puntos w-full bg-noche py-14 text-gris sm:py-20">
       <div className="mx-auto max-w-4xl px-6 sm:px-10">
@@ -42,7 +46,14 @@ export default function AllSection() {
 
         <div className="mt-8 flex flex-col gap-3">
           {GRUPOS.map((temporada, i) => (
-            <Temporada key={temporada.id} temporada={temporada} indice={i} abierta={i === 0} />
+            <Temporada
+              key={temporada.id}
+              temporada={temporada}
+              indice={i}
+              abierta={abierta === temporada.id}
+              alAbrir={() => setAbierta(temporada.id)}
+              alCerrar={() => setAbierta((actual) => (actual === temporada.id ? null : actual))}
+            />
           ))}
         </div>
       </div>
@@ -50,13 +61,14 @@ export default function AllSection() {
   )
 }
 
-function Temporada({ temporada, indice, abierta }) {
+function Temporada({ temporada, indice, abierta, alAbrir, alCerrar }) {
   const programas = getProgramasPorTemporada(temporada.id)
   const acento = ACENTOS[indice % ACENTOS.length]
 
   return (
     <details
       open={abierta}
+      onToggle={(e) => (e.currentTarget.open ? alAbrir() : alCerrar())}
       className="group rounded-3xl border border-gris/15 bg-gris/[0.04] transition-colors open:border-gris/25 open:bg-gris/[0.07]"
     >
       <summary className="flex min-h-14 cursor-pointer list-none items-center gap-4 rounded-3xl px-5 py-4 sm:px-6 [&::-webkit-details-marker]:hidden">

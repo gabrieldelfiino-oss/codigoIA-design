@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
+import { AnimatePresence, motion } from "framer-motion";
 import { ARISTAS, CENTRO, NODOS, getVecinos } from "../../servicios/mapa";
 import { getProgramasDeTema } from "../../servicios/temas";
 import RouterLink from "../utils/RouterLink";
 
-// Si la persona pidió menos movimiento, los trazos punteados quedan quietos.
+// Si la persona pidió menos movimiento, los trazos punteados quedan quietos y
+// no hay ondas ni chispas.
 const REDUCIR_MOVIMIENTO =
   typeof window !== "undefined" &&
   window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -82,21 +85,10 @@ const CONEXIONES = ARISTAS.filter((e) => e.de !== CENTRO.id).map((e) => {
 
 const pct = (v, total) => `${((v / total) * 100).toFixed(2)}%`;
 
-/**
- * Mapa de temas para celular: la misma red en vidrio y neón, pero en vertical
- * y pensada para el dedo. Un toque sobre un nodo ilumina sus caminos y abajo
- * aparece su ficha con el botón para abrir el tema; otro toque lo suelta.
- */
-export default function ThemeMapMovil() {
-  const [activo, setActivo] = useState(null);
-  const encendidos = new Set(activo ? [activo, ...getVecinos(activo)] : []);
-  const nodoActivo = NODOS.find((n) => n.id === activo);
-
-  const conexionEncendida = (c) => activo !== null && (c.tema === activo || c.sub === activo);
-
+/** Fondo "universo": noche profunda con nebulosas suaves y una cuadrícula fina. */
+function Universo() {
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-[#050512] shadow-suave-lg">
-      {/* Universo: noche profunda con nebulosas suaves y una cuadrícula fina. */}
+    <>
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
@@ -121,177 +113,365 @@ export default function ThemeMapMovil() {
           maskImage: "linear-gradient(180deg, #000, transparent 95%)",
         }}
       />
+    </>
+  );
+}
 
-      <div className="relative mx-auto w-full max-w-[420px] px-0 pt-2" style={{ aspectRatio: `${ANCHO} / ${ALTO}` }}>
-        <svg
-          viewBox={`0 0 ${ANCHO} ${ALTO}`}
-          preserveAspectRatio="none"
-          className="absolute inset-0 h-full w-full overflow-visible"
-          aria-hidden="true"
-        >
-          <defs>
-            <filter id="mapa-movil-neon" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="2.5" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
+/** La red: núcleo, tronco, conexiones y nodos. Un toque llama a `alElegir(id, evento)`. */
+function Red({ activo, alElegir }) {
+  const encendidos = new Set(activo ? [activo, ...getVecinos(activo)] : []);
+  const conexionEncendida = (c) => activo !== null && (c.tema === activo || c.sub === activo);
 
-          {/* Tronco que baja del núcleo y una rama hacia cada tema. */}
-          <line
-            x1={X_TRONCO}
-            y1={POS[CENTRO.id].y}
-            x2={X_TRONCO}
-            y2={Y_TRONCO_FIN}
-            stroke="#FAFAFA"
-            strokeWidth="1"
-            strokeLinecap="round"
-            style={{ opacity: activo ? 0.12 : 0.35 }}
-          />
-          {TEMAS.map((t) => {
-            const lit = encendidos.has(t.id);
-            const y = POS[t.id].y;
-            return (
-              <g key={t.id}>
-                <line
-                  x1={X_TRONCO}
-                  y1={y}
-                  x2={X_TEMA - ANCHO_TEMA / 2}
-                  y2={y}
-                  strokeWidth={lit ? 1.8 : 1}
-                  strokeLinecap="round"
-                  strokeDasharray={lit ? "6 5" : undefined}
-                  filter={lit ? "url(#mapa-movil-neon)" : undefined}
-                  className={lit ? "stroke-lima" : "stroke-gris"}
-                  style={{ opacity: lit ? 1 : activo ? 0.1 : 0.35 }}
-                >
-                  {lit && !REDUCIR_MOVIMIENTO && (
-                    <animate attributeName="stroke-dashoffset" from="0" to="-11" dur="0.7s" repeatCount="indefinite" />
-                  )}
-                </line>
-                <circle
-                  cx={X_TRONCO}
-                  cy={y}
-                  r={lit ? 3.5 : 2.5}
-                  className={lit ? "fill-lima" : "fill-gris"}
-                  style={{ opacity: lit ? 1 : activo ? 0.15 : 0.7 }}
-                />
-              </g>
-            );
-          })}
+  return (
+    <div className="relative mx-auto w-full max-w-[420px] px-0 pt-2" style={{ aspectRatio: `${ANCHO} / ${ALTO}` }}>
+      <svg
+        viewBox={`0 0 ${ANCHO} ${ALTO}`}
+        preserveAspectRatio="none"
+        className="absolute inset-0 h-full w-full overflow-visible"
+        aria-hidden="true"
+      >
+        <defs>
+          <filter id="mapa-movil-neon" x="-30%" y="-30%" width="160%" height="160%">
+            <feGaussianBlur stdDeviation="2.5" result="b" />
+            <feMerge>
+              <feMergeNode in="b" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
 
-          {/* Conexiones tema ↔ subtema: rectas, de borde a borde. */}
-          {CONEXIONES.map((c) => {
-            const lit = conexionEncendida(c);
-            const a = POS[c.tema];
-            const b = POS[c.sub];
-            return (
+        {/* Tronco que baja del núcleo y una rama hacia cada tema. */}
+        <line
+          x1={X_TRONCO}
+          y1={POS[CENTRO.id].y}
+          x2={X_TRONCO}
+          y2={Y_TRONCO_FIN}
+          stroke="#FAFAFA"
+          strokeWidth="1"
+          strokeLinecap="round"
+          style={{ opacity: activo ? 0.12 : 0.35 }}
+        />
+        {TEMAS.map((t) => {
+          const lit = encendidos.has(t.id);
+          const y = POS[t.id].y;
+          return (
+            <g key={t.id}>
               <line
-                key={`${c.tema}-${c.sub}`}
-                x1={a.x + ANCHO_TEMA / 2}
-                y1={a.y}
-                x2={b.x - ANCHO_SUB / 2}
-                y2={b.y}
+                x1={X_TRONCO}
+                y1={y}
+                x2={X_TEMA - ANCHO_TEMA / 2}
+                y2={y}
                 strokeWidth={lit ? 1.8 : 1}
                 strokeLinecap="round"
                 strokeDasharray={lit ? "6 5" : undefined}
                 filter={lit ? "url(#mapa-movil-neon)" : undefined}
                 className={lit ? "stroke-lima" : "stroke-gris"}
-                style={{ opacity: lit ? 1 : activo ? 0.08 : 0.3 }}
+                style={{ opacity: lit ? 1 : activo ? 0.1 : 0.35 }}
               >
                 {lit && !REDUCIR_MOVIMIENTO && (
                   <animate attributeName="stroke-dashoffset" from="0" to="-11" dur="0.7s" repeatCount="indefinite" />
                 )}
               </line>
-            );
-          })}
-        </svg>
-
-        {/* Núcleo */}
-        <span
-          className="mapa-vidrio absolute flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[20px] font-display text-xl font-semibold text-lima"
-          style={{
-            left: pct(POS[CENTRO.id].x, ANCHO),
-            top: pct(POS[CENTRO.id].y, ALTO),
-            "--tono": LIMA,
-            "--brillo": 0.5,
-            textShadow: "0 0 14px rgba(196,253,54,0.9)",
-          }}
-        >
-          {CENTRO.etiqueta}
-        </span>
-        <span
-          className="absolute -translate-y-1/2 font-mono text-[10px] font-semibold uppercase leading-tight tracking-[0.1em] text-gris/70"
-          style={{ left: pct(X_TRONCO + 44, ANCHO), top: pct(POS[CENTRO.id].y, ALTO), maxWidth: "9rem" }}
-        >
-          {CENTRO.leyenda}
-        </span>
-
-        {NODOS.map((nodo) => {
-          const tema = nodo.tipo === "tema";
-          const lit = encendidos.has(nodo.id);
-          const dim = activo !== null && !lit;
-          const elegido = activo === nodo.id;
-          return (
-            <button
-              key={nodo.id}
-              type="button"
-              aria-pressed={elegido}
-              aria-label={`${tema ? "Tema" : "Subtema"}: ${nodo.nombre}`}
-              onClick={() => setActivo(elegido ? null : nodo.id)}
-              data-lit={lit}
-              className={[
-                "mapa-vidrio absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center text-center leading-[1.15] transition-opacity duration-300",
-                tema
-                  ? "min-h-[44px] rounded-[16px] px-2 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.04em]"
-                  : "min-h-[44px] rounded-2xl px-2.5 py-2 font-sans text-[11px] font-medium",
-                lit ? "z-[2] text-lima" : "text-gris",
-                dim ? "opacity-30" : "opacity-100",
-              ].join(" ")}
-              style={{
-                left: pct(POS[nodo.id].x, ANCHO),
-                top: pct(POS[nodo.id].y, ALTO),
-                width: `${((tema ? ANCHO_TEMA : ANCHO_SUB) / ANCHO) * 100}%`,
-                "--tono": lit ? LIMA : tema ? LILA : BLANCO,
-                "--brillo": tema ? 0.3 : 0.1,
-                transform: `translate(-50%, -50%) scale(${elegido ? 1.06 : 1})`,
-                textShadow: lit ? "0 0 12px rgba(196,253,54,0.8)" : "0 1px 6px rgba(3,3,16,0.8)",
-              }}
-            >
-              {nodo.nombre}
-            </button>
+              <circle
+                cx={X_TRONCO}
+                cy={y}
+                r={lit ? 3.5 : 2.5}
+                className={lit ? "fill-lima" : "fill-gris"}
+                style={{ opacity: lit ? 1 : activo ? 0.15 : 0.7 }}
+              />
+            </g>
           );
         })}
+
+        {/* Conexiones tema ↔ subtema: rectas, de borde a borde. */}
+        {CONEXIONES.map((c) => {
+          const lit = conexionEncendida(c);
+          const a = POS[c.tema];
+          const b = POS[c.sub];
+          return (
+            <line
+              key={`${c.tema}-${c.sub}`}
+              x1={a.x + ANCHO_TEMA / 2}
+              y1={a.y}
+              x2={b.x - ANCHO_SUB / 2}
+              y2={b.y}
+              strokeWidth={lit ? 1.8 : 1}
+              strokeLinecap="round"
+              strokeDasharray={lit ? "6 5" : undefined}
+              filter={lit ? "url(#mapa-movil-neon)" : undefined}
+              className={lit ? "stroke-lima" : "stroke-gris"}
+              style={{ opacity: lit ? 1 : activo ? 0.08 : 0.3 }}
+            >
+              {lit && !REDUCIR_MOVIMIENTO && (
+                <animate attributeName="stroke-dashoffset" from="0" to="-11" dur="0.7s" repeatCount="indefinite" />
+              )}
+            </line>
+          );
+        })}
+      </svg>
+
+      {/* Núcleo */}
+      <span
+        className="mapa-vidrio absolute flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[20px] font-display text-xl font-semibold text-lima"
+        style={{
+          left: pct(POS[CENTRO.id].x, ANCHO),
+          top: pct(POS[CENTRO.id].y, ALTO),
+          "--tono": LIMA,
+          "--brillo": 0.5,
+          textShadow: "0 0 14px rgba(196,253,54,0.9)",
+        }}
+      >
+        {CENTRO.etiqueta}
+      </span>
+      <span
+        className="absolute -translate-y-1/2 font-mono text-[10px] font-semibold uppercase leading-tight tracking-[0.1em] text-gris/70"
+        style={{ left: pct(X_TRONCO + 44, ANCHO), top: pct(POS[CENTRO.id].y, ALTO), maxWidth: "9rem" }}
+      >
+        {CENTRO.leyenda}
+      </span>
+
+      {NODOS.map((nodo) => {
+        const tema = nodo.tipo === "tema";
+        const lit = encendidos.has(nodo.id);
+        const dim = activo !== null && !lit;
+        const elegido = activo === nodo.id;
+        return (
+          <button
+            key={nodo.id}
+            type="button"
+            aria-pressed={elegido}
+            aria-label={`${tema ? "Tema" : "Subtema"}: ${nodo.nombre}`}
+            onClick={(ev) => alElegir(nodo.id, ev)}
+            data-lit={lit}
+            className={[
+              "mapa-vidrio absolute flex items-center justify-center text-center leading-[1.15] transition-opacity duration-300",
+              tema
+                ? "min-h-[44px] rounded-[16px] px-2 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.04em]"
+                : "min-h-[44px] rounded-2xl px-2.5 py-2 font-sans text-[11px] font-medium",
+              lit ? "z-[2] text-lima" : "text-gris",
+              dim ? "opacity-30" : "opacity-100",
+            ].join(" ")}
+            style={{
+              left: pct(POS[nodo.id].x, ANCHO),
+              top: pct(POS[nodo.id].y, ALTO),
+              width: `${((tema ? ANCHO_TEMA : ANCHO_SUB) / ANCHO) * 100}%`,
+              "--tono": lit ? LIMA : tema ? LILA : BLANCO,
+              "--brillo": tema ? 0.3 : 0.1,
+              transform: `translate(-50%, -50%) scale(${elegido ? 1.06 : 1})`,
+              textShadow: lit ? "0 0 12px rgba(196,253,54,0.8)" : "0 1px 6px rgba(3,3,16,0.8)",
+            }}
+          >
+            {nodo.nombre}
+          </button>
+        );
+      })}
+    </div>
+  );
+}
+
+/** Ficha del nodo elegido: el toque ilumina, este botón abre el tema. */
+function Ficha({ activo, className = "" }) {
+  const nodo = NODOS.find((n) => n.id === activo);
+  return (
+    <div className={`relative border-t border-gris/10 bg-noche/60 px-4 py-4 backdrop-blur-md ${className}`} aria-live="polite">
+      {nodo ? (
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-lima">
+              /{nodo.tipo === "tema" ? "Tema" : "Subtema"} · {CANTIDAD[nodo.id]}{" "}
+              {CANTIDAD[nodo.id] === 1 ? "programa" : "programas"}
+            </p>
+            <p className="truncate font-display text-lg font-semibold leading-tight text-gris">{nodo.nombre}</p>
+          </div>
+          <RouterLink
+            to={`/temas/${nodo.id}`}
+            className="shrink-0 rounded-full bg-lima px-5 py-2.5 text-sm font-medium text-noche transition-transform duration-200 active:scale-95"
+          >
+            Ver tema →
+          </RouterLink>
+        </div>
+      ) : (
+        <p className="text-center font-mono text-[11px] uppercase tracking-widest text-gris/60">
+          Tocá un nodo para iluminar sus caminos
+        </p>
+      )}
+    </div>
+  );
+}
+
+// Chispas que titilan alrededor del panel: posiciones fijas repartidas por el
+// espacio (no al azar, para que no cambien entre renders).
+const CHISPAS = Array.from({ length: 18 }, (_, i) => ({
+  left: `${(i * 53 + 17) % 100}%`,
+  top: `${(i * 37 + 11) % 100}%`,
+  size: 2 + (i % 3),
+  delay: `${((i * 0.37) % 3.6).toFixed(2)}s`,
+  color: ["#C4FD36", "#C172FF", "#FAFAFA"][i % 3],
+}));
+
+/**
+ * Pantalla completa del mapa (celular): el fondo se oscurece y se desenfoca, una
+ * onda de luz sale del nodo tocado, aparece un panel de cristal con el mapa y
+ * titilan chispas alrededor. Se cierra con la cruz, Esc o tocando afuera.
+ */
+function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
+  const botonCerrar = useRef(null);
+
+  useEffect(() => {
+    const previo = document.activeElement;
+    const overflowPrevio = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const alTeclear = (e) => e.key === "Escape" && alCerrar();
+    window.addEventListener("keydown", alTeclear);
+    botonCerrar.current?.focus();
+    return () => {
+      document.body.style.overflow = overflowPrevio;
+      window.removeEventListener("keydown", alTeclear);
+      previo?.focus?.();
+    };
+  }, [alCerrar]);
+
+  return (
+    <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-label="Mapa de temas"
+      className="fixed inset-0 z-[80] overflow-y-auto"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.35 }}
+    >
+      {/* Fondo oscurecido y desenfocado */}
+      <div aria-hidden="true" className="fixed inset-0 bg-[#02020c]/85 backdrop-blur-xl" />
+
+      {/* Aura que se expande desde el centro */}
+      <div aria-hidden="true" className="pointer-events-none fixed left-1/2 top-1/2 h-[140vmax] w-[140vmax] -translate-x-1/2 -translate-y-1/2">
+        <motion.div
+          className="h-full w-full rounded-full"
+          initial={{ scale: 0.2, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            background:
+              "radial-gradient(circle, rgba(196,253,54,0.14) 0%, rgba(193,114,255,0.11) 22%, transparent 48%)",
+          }}
+        />
       </div>
 
-      {/* Ficha del nodo elegido: el toque ilumina, este botón abre el tema. */}
-      <div className="relative border-t border-gris/10 bg-noche/60 px-4 py-4 backdrop-blur-md" aria-live="polite">
-        {nodoActivo ? (
-          <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="font-mono text-[10px] uppercase tracking-widest text-lima">
-                /{nodoActivo.tipo === "tema" ? "Tema" : "Subtema"} · {CANTIDAD[nodoActivo.id]}{" "}
-                {CANTIDAD[nodoActivo.id] === 1 ? "programa" : "programas"}
-              </p>
-              <p className="truncate font-display text-lg font-semibold leading-tight text-gris">
-                {nodoActivo.nombre}
-              </p>
-            </div>
-            <RouterLink
-              to={`/temas/${nodoActivo.id}`}
-              className="shrink-0 rounded-full bg-lima px-5 py-2.5 text-sm font-medium text-noche transition-transform duration-200 active:scale-95"
-            >
-              Ver tema →
-            </RouterLink>
+      {/* Ondas de luz desde el nodo tocado y chispas (solo con movimiento normal) */}
+      {!REDUCIR_MOVIMIENTO && (
+        <>
+          {[0, 0.22, 0.44].map((retraso) => (
+            <span
+              key={retraso}
+              aria-hidden="true"
+              className="mapa-onda pointer-events-none fixed h-24 w-24 rounded-full border border-lima/60"
+              style={{ left: origen.x, top: origen.y, animationDelay: `${retraso}s` }}
+            />
+          ))}
+          <div aria-hidden="true" className="pointer-events-none fixed inset-0">
+            {CHISPAS.map((c, i) => (
+              <span
+                key={i}
+                className="mapa-chispa absolute rounded-full"
+                style={{
+                  left: c.left,
+                  top: c.top,
+                  width: c.size,
+                  height: c.size,
+                  background: c.color,
+                  boxShadow: `0 0 10px 2px ${c.color}`,
+                  animationDelay: c.delay,
+                }}
+              />
+            ))}
           </div>
-        ) : (
-          <p className="text-center font-mono text-[11px] uppercase tracking-widest text-gris/60">
-            Tocá un nodo para iluminar sus caminos
-          </p>
-        )}
+        </>
+      )}
+
+      <div
+        className="relative flex min-h-full items-center justify-center px-3 py-4"
+        onClick={(e) => e.target === e.currentTarget && alCerrar()}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.88, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.94, y: 12 }}
+          transition={{ type: "spring", stiffness: 230, damping: 26 }}
+          className="relative overflow-hidden rounded-[28px] border border-lima/30 bg-gradient-to-br from-gris/[0.14] via-gris/[0.04] to-gris/[0.08] shadow-[0_30px_90px_rgba(0,0,0,0.6),0_0_70px_rgba(196,253,54,0.16)] backdrop-blur-2xl"
+          style={{
+            width: `max(300px, min(calc(100vw - 1.5rem), calc((100svh - 11rem) * ${ANCHO / ALTO})))`,
+          }}
+        >
+          {/* Reflejo de cristal */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{ background: "linear-gradient(112deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 34%)" }}
+          />
+          <header className="relative flex items-center justify-between px-4 pt-3">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-gris/70">/Mapa de temas</p>
+            <button
+              ref={botonCerrar}
+              type="button"
+              onClick={alCerrar}
+              aria-label="Cerrar mapa"
+              className="grid h-11 w-11 place-items-center rounded-full border border-gris/30 bg-noche/40 font-mono text-base text-gris transition-colors hover:border-lima hover:bg-lima hover:text-noche"
+            >
+              ✕
+            </button>
+          </header>
+          <Red activo={activo} alElegir={alElegir} />
+          <Ficha activo={activo} className="sticky bottom-0" />
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
+  );
+}
+
+/**
+ * Mapa de temas para celular: la misma red en vidrio y neón, pero en vertical
+ * y pensada para el dedo. El primer toque sobre un nodo abre el mapa a pantalla
+ * completa (fondo oscurecido, cristal y destellos); ahí cada toque ilumina los
+ * caminos del nodo y la ficha de abajo abre el tema.
+ */
+export default function ThemeMapMovil() {
+  const [activo, setActivo] = useState(null);
+  const [abierto, setAbierto] = useState(false);
+  const [origen, setOrigen] = useState({ x: 0, y: 0 });
+
+  const cerrar = useCallback(() => setAbierto(false), []);
+
+  const elegir = (id, ev) => {
+    setActivo((actual) => (actual === id ? null : id));
+    if (!abierto) {
+      const r = ev.currentTarget.getBoundingClientRect();
+      setOrigen({ x: r.left + r.width / 2, y: r.top + r.height / 2 });
+      setAbierto(true);
+    }
+  };
+
+  return (
+    <>
+      <div
+        className="relative overflow-hidden rounded-3xl bg-[#050512] shadow-suave-lg"
+        inert={abierto ? "" : undefined}
+      >
+        <Universo />
+        <Red activo={activo} alElegir={elegir} />
+        <Ficha activo={activo} />
+      </div>
+
+      {typeof document !== "undefined" &&
+        createPortal(
+          <AnimatePresence>
+            {abierto && (
+              <PantallaCompleta activo={activo} alElegir={elegir} alCerrar={cerrar} origen={origen} />
+            )}
+          </AnimatePresence>,
+          document.body
+        )}
+    </>
   );
 }

@@ -177,6 +177,22 @@ html, body, #root {
   @keyframes mapa-girar {
     to { transform: rotate(360deg); }
   }
+  /* Mapa a pantalla completa (celular): ondas de luz que salen del nodo tocado
+     y chispas que titilan alrededor. */
+  @keyframes mapa-onda {
+    from { transform: translate(-50%, -50%) scale(0.15); opacity: 0.7; }
+    to { transform: translate(-50%, -50%) scale(4.2); opacity: 0; }
+  }
+  @keyframes mapa-chispa {
+    0%, 100% { opacity: 0; transform: translateY(0) scale(0.6); }
+    50% { opacity: 0.95; transform: translateY(-14px) scale(1); }
+  }
+  .mapa-onda {
+    animation: mapa-onda 1.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .mapa-chispa {
+    animation: mapa-chispa 3.6s ease-in-out infinite;
+  }
   .mapa-flotar {
     animation: mapa-flotar 6s ease-in-out infinite;
   }
