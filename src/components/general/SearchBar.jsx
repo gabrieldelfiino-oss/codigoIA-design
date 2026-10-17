@@ -76,7 +76,7 @@ export default function SearchBar() {
 
   return (
     <div ref={raiz} role="search" className="relative w-28 sm:w-64">
-      <label className="flex items-center gap-2 border-2 border-gris/40 px-3 py-1.5 text-gris transition-colors focus-within:border-lima">
+      <label className="flex items-center gap-2 rounded-full border border-gris/30 px-4 py-2 text-gris transition-colors focus-within:border-lima">
         <LupaIcon />
         <span className="sr-only">Buscar un programa, tema o invitado</span>
         <input
@@ -103,7 +103,7 @@ export default function SearchBar() {
         <ul
           id="resultados-busqueda"
           role="listbox"
-          className="absolute right-0 top-full z-10 mt-2 max-h-[70vh] w-80 max-w-[calc(100vw-3rem)] overflow-y-auto border-2 border-gris/30 bg-noche shadow-[6px_6px_0_0_#C4FD36]"
+          className="absolute right-0 top-full z-10 mt-2 max-h-[70vh] w-80 max-w-[calc(100vw-3rem)] overflow-y-auto rounded-2xl border border-gris/20 bg-noche shadow-[0_24px_50px_-20px_rgba(0,0,0,0.6)]"
         >
           {resultados.length === 0 ? (
             <li className="px-4 py-3 text-sm text-gris/70">

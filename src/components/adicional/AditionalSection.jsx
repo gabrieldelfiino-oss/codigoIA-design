@@ -5,8 +5,7 @@ import Texto from "../utils/Texto";
 /**
  * Los episodios de la última temporada, en formato editorial: a la izquierda
  * la temporada (título, pregunta y presentación, de temporadas.json) y
- * "Ver todos"; a la derecha una grilla de 2 columnas con una card por
- * episodio. Fondo lima con halftone.
+ * "Ver todos"; a la derecha una grilla de 2 columnas con una card por episodio.
  */
 export default function AditionalSection() {
   const temporada = getTemporada(TEMPORADAS.ULTIMA);
@@ -15,32 +14,28 @@ export default function AditionalSection() {
   if (episodios.length === 0) return null;
 
   return (
-    <section
-      id="cuarta-temporada"
-      className="relative overflow-hidden border-b-2 border-noche bg-lima text-noche"
-    >
-      <div aria-hidden className="halftone-noche halftone-fade pointer-events-none absolute inset-0 opacity-60" />
-      <div className="relative mx-auto max-w-7xl px-6 py-16 sm:px-10 sm:py-24">
+    <section id="cuarta-temporada" className="bg-white text-noche">
+      <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28">
         <div className="grid gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,2.1fr)] lg:gap-16">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <p className="mb-5 inline-block border-2 border-noche bg-noche px-3 py-1.5 font-mono text-xs uppercase tracking-widest text-lima">
+            <p className="mb-4 font-mono text-xs uppercase tracking-widest text-naranja">
               /{temporada?.titulo}
             </p>
-            <h2 className="font-display text-4xl font-semibold uppercase leading-[0.96] tracking-tight sm:text-5xl xl:text-6xl">
+            <h2 className="font-display text-4xl font-semibold leading-[1.02] tracking-tight sm:text-5xl">
               {temporada?.subtitulo}
             </h2>
-            <Texto className="mt-6 max-w-md text-base leading-relaxed text-noche/90 sm:text-lg">
+            <Texto className="mt-6 max-w-md text-base leading-relaxed text-noche/75 sm:text-lg">
               {temporada?.descripcion}
             </Texto>
             <a
               href="#todos-los-programas"
-              className="btn-brutal mt-10 inline-flex items-center gap-2 bg-noche px-5 py-3 font-mono text-xs font-semibold uppercase tracking-wider text-lima hover:bg-gris hover:text-noche sm:text-sm"
+              className="mt-10 inline-flex items-center gap-2 rounded-full bg-noche px-6 py-3 text-sm font-medium text-gris transition duration-200 hover:-translate-y-0.5 hover:bg-azul"
             >
               Ver todos <span aria-hidden>↓</span>
             </a>
           </div>
 
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
             {episodios.map((episodio, i) => (
               <Episodio key={episodio.id} episodio={episodio} numero={i + 1} />
             ))}
@@ -62,25 +57,24 @@ function Episodio({ episodio, numero }) {
   return (
     <RouterLink
       to={`/programa/${episodio.id}`}
-      className="group flex flex-col border-2 border-noche bg-white p-6 shadow-[6px_6px_0_0_#1A1A30] transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#1A1A30] active:translate-x-1 active:translate-y-1 active:shadow-[2px_2px_0_0_#1A1A30]"
+      className="group flex flex-col rounded-3xl border border-noche/10 bg-gris p-6 transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-suave-lg"
     >
       <div className="flex items-start justify-between gap-4">
         <span
-          className={`relative grid h-16 w-16 shrink-0 place-items-center overflow-hidden border-2 border-noche font-display text-4xl font-bold leading-none ${COLORES[(numero - 1) % COLORES.length]}`}
+          className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl font-display text-2xl font-semibold leading-none ${COLORES[(numero - 1) % COLORES.length]}`}
         >
-          <span aria-hidden className="halftone-noche absolute inset-0 opacity-50" />
-          <span className="relative">{String(numero).padStart(2, "0")}</span>
+          {String(numero).padStart(2, "0")}
         </span>
-        <span className="pt-1 text-right font-mono text-xs uppercase tracking-widest text-noche/70">
+        <span className="pt-1 text-right font-mono text-xs uppercase tracking-widest text-noche/55">
           {episodio.titulo}
         </span>
       </div>
-      <h3 className="mt-6 font-display text-3xl font-bold leading-[1.05] tracking-tight sm:text-4xl">
+      <h3 className="mt-6 font-display text-2xl font-semibold leading-[1.1] tracking-tight sm:text-3xl">
         {episodio.pregunta || episodio.titulo}
       </h3>
-      <Texto className="mt-4 text-base leading-relaxed text-noche/80">{episodio.resumen}</Texto>
-      <span className="mt-6 inline-flex w-fit items-center gap-2 border-b-2 border-noche pt-2 font-mono text-xs font-semibold uppercase tracking-widest transition-colors group-hover:border-naranja group-hover:text-naranja">
-        Ver programa <span aria-hidden>→</span>
+      <Texto className="mt-4 text-base leading-relaxed text-noche/70">{episodio.resumen}</Texto>
+      <span className="mt-6 inline-flex items-center gap-2 pt-2 text-sm font-medium transition-colors group-hover:text-azul">
+        Ver programa <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
       </span>
     </RouterLink>
   );

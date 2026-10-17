@@ -4,18 +4,19 @@ import RouterLink from '../utils/RouterLink'
 // De la más nueva a la más vieja (según `orden` en temporadas.json).
 const GRUPOS = getTemporadasRecientesPrimero()
 
-// Acento sutil por temporada (tira lateral y etiqueta), tomado de los colores del sitio.
-const ACENTOS = ['bg-lima text-noche', 'bg-lila text-noche', 'bg-naranja text-noche', 'bg-azul text-gris']
+// Punto de color por temporada, tomado de la paleta.
+const ACENTOS = ['bg-lima', 'bg-lila', 'bg-naranja', 'bg-azul']
 
 function Chevron() {
   return (
     <svg
-      className="h-7 w-7 shrink-0 transition-transform duration-300 group-open:rotate-180"
+      className="h-5 w-5 shrink-0 text-gris/70 transition-transform duration-300 group-open:rotate-180"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
-      strokeWidth="3"
-      strokeLinecap="square"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       aria-hidden="true"
     >
       <path d="M5 9l7 7 7-7" />
@@ -29,23 +30,17 @@ function Chevron() {
  */
 export default function AllSection() {
   return (
-    <section id="todos-los-programas" className="relative w-full overflow-hidden border-b-2 border-noche bg-noche py-20 text-gris sm:py-28">
-      <div aria-hidden className="halftone-gris halftone-fade pointer-events-none absolute inset-0 opacity-50" />
-      <div className="relative mx-auto max-w-7xl px-6 sm:px-10">
-        <p className="mb-5 inline-block bg-gris px-2.5 py-1.5 font-mono text-xs uppercase tracking-widest text-noche">
-          /Temporadas
-        </p>
-        <h2 className="font-display text-5xl font-semibold uppercase leading-[0.95] tracking-tight sm:text-7xl">
-          Todos los <span className="resaltado bg-lima text-noche">programas</span>
+    <section id="todos-los-programas" className="w-full bg-noche py-20 text-gris sm:py-28">
+      <div className="mx-auto max-w-7xl px-6 sm:px-10">
+        <p className="mb-4 font-mono text-xs uppercase tracking-widest text-lima">/Temporadas</p>
+        <h2 className="font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">
+          Todos los programas
         </h2>
-        <p className="mt-4 max-w-2xl text-base text-gris/80 sm:text-lg">
+        <p className="mt-4 max-w-2xl text-base text-gris/70 sm:text-lg">
           Abrí una temporada para ver sus programas y entrar a cada ficha.
         </p>
 
-        <h3 className="mb-5 mt-12 font-mono text-xs uppercase tracking-widest text-lima">
-          /Explorador de temporadas
-        </h3>
-        <div className="flex flex-col gap-5">
+        <div className="mt-12 flex flex-col gap-4">
           {GRUPOS.map((temporada, i) => (
             <Temporada key={temporada.id} temporada={temporada} indice={i} abierta={i === 0} />
           ))}
@@ -60,22 +55,24 @@ function Temporada({ temporada, indice, abierta }) {
   const acento = ACENTOS[indice % ACENTOS.length]
 
   return (
-    <details open={abierta} className="group border-2 border-gris bg-noche shadow-[6px_6px_0_0_rgba(250,250,250,0.18)] transition-shadow open:shadow-[8px_8px_0_0_#C4FD36]">
-      <summary className={`flex min-h-16 cursor-pointer list-none items-center gap-4 px-4 py-5 sm:gap-5 sm:px-6 [&::-webkit-details-marker]:hidden ${acento}`}>
-        <span className="flex min-w-0 flex-1 flex-col gap-1">
-          <span className="font-display text-2xl font-bold uppercase leading-none tracking-tight sm:text-4xl">
-            {temporada.titulo}
-          </span>
+    <details
+      open={abierta}
+      className="group rounded-3xl border border-gris/15 bg-gris/[0.04] transition-colors open:border-gris/25 open:bg-gris/[0.07]"
+    >
+      <summary className="flex min-h-16 cursor-pointer list-none items-center gap-4 rounded-3xl px-5 py-5 sm:px-7 [&::-webkit-details-marker]:hidden">
+        <span aria-hidden className={`h-3 w-3 shrink-0 rounded-full ${acento}`} />
+        <span className="min-w-0 flex-1 font-display text-2xl font-semibold leading-none tracking-tight sm:text-3xl">
+          {temporada.titulo}
         </span>
-        <span className="shrink-0 border-2 border-noche px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wider">
+        <span className="shrink-0 rounded-full border border-gris/20 px-3 py-1 font-mono text-xs uppercase tracking-wider text-gris/70">
           {programas.length} {programas.length === 1 ? 'EP' : 'EPs'}
         </span>
         <Chevron />
       </summary>
 
-      <div className="flex flex-col gap-3 px-4 py-5 sm:px-6">
+      <div className="flex flex-col gap-2 px-3 pb-4 sm:px-4">
         {programas.length === 0 ? (
-          <p className="border-2 border-dashed border-gris/25 p-4 text-sm text-gris/60">
+          <p className="rounded-2xl border border-dashed border-gris/25 p-4 text-sm text-gris/60">
             Todavía no hay programas en esta temporada.
           </p>
         ) : (
@@ -90,17 +87,15 @@ function FilaPrograma({ programa }) {
   return (
     <RouterLink
       to={`/programa/${programa.id}`}
-      className="group/fila flex min-h-14 items-center gap-4 border-2 border-gris/30 px-4 py-3 transition-colors hover:border-lima hover:bg-lima hover:text-noche"
+      className="group/fila flex min-h-14 items-center gap-4 rounded-2xl px-4 py-3 transition-colors hover:bg-gris/10"
     >
-      <span className="flex min-w-0 flex-1 flex-col">
-        <span className="font-display text-lg font-bold leading-tight transition-colors">
-          {programa.titulo}
-        </span>
+      <span className="min-w-0 flex-1 font-display text-lg font-medium leading-tight transition-colors group-hover/fila:text-lima">
+        {programa.titulo}
       </span>
       {programa.duracion && (
-        <span className="shrink-0 font-mono text-xs opacity-70">{programa.duracion}</span>
+        <span className="shrink-0 font-mono text-xs text-gris/55">{programa.duracion}</span>
       )}
-      <span aria-hidden className="shrink-0 font-mono opacity-70 transition-transform group-hover/fila:translate-x-1">
+      <span aria-hidden className="shrink-0 text-gris/55 transition-all group-hover/fila:translate-x-1 group-hover/fila:text-lima">
         →
       </span>
     </RouterLink>

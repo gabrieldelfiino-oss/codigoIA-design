@@ -6,7 +6,7 @@ const TIPOS = { correo: "email", mensaje: "textarea" }
 const AUTOCOMPLETE = { nombre: "name", correo: "email" }
 
 const CLASE_CAMPO =
-  "border-2 border-noche bg-gris px-4 py-3 text-base text-noche shadow-[4px_4px_0_0_#C4FD36] transition-shadow placeholder:text-noche/60 focus:shadow-[6px_6px_0_0_#C4FD36]"
+  "rounded-2xl border border-gris/30 bg-gris/10 px-5 py-3.5 text-base text-gris transition-colors placeholder:text-gris/70 focus:border-lima focus:bg-gris/15 focus:outline-none"
 
 /**
  * Formulario de contacto: por ahora solo UI, sin envío real.
@@ -20,11 +20,10 @@ export default function ContactForm() {
   }
 
   return (
-    <section id="contacto" className="relative overflow-hidden border-b-2 border-noche bg-azul text-gris">
-    <div aria-hidden className="halftone-lima halftone-fade pointer-events-none absolute inset-0 opacity-40" />
-    <div className="relative mx-auto max-w-2xl px-6 py-20 sm:px-10 sm:py-28">
-      <h2 className="mb-10 font-display text-5xl font-semibold uppercase leading-[0.95] tracking-tight sm:text-7xl">
-        <span className="resaltado bg-lima text-noche">Contacto</span>
+    <section id="contacto" className="bg-azul text-gris">
+    <div className="mx-auto max-w-2xl px-6 py-20 sm:px-10 sm:py-28">
+      <h2 className="mb-10 font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">
+        Contacto
       </h2>
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
         {proyecto.contacto.campos.map((campo) =>
@@ -51,7 +50,7 @@ export default function ContactForm() {
         )}
         <button
           type="submit"
-          className="btn-brutal mt-4 w-fit bg-lima px-7 py-3.5 font-mono text-sm font-semibold uppercase tracking-wider text-noche hover:bg-gris"
+          className="mt-4 w-fit rounded-full bg-lima px-8 py-3.5 text-sm font-medium text-noche transition duration-200 hover:-translate-y-0.5 hover:bg-gris"
         >
           Enviar
         </button>

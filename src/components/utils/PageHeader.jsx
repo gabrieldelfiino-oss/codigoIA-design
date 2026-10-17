@@ -14,7 +14,7 @@ export default function PageHeader({ conVolver = true, claro = false }) {
       {conVolver && (
       <RouterLink
         to="/"
-        className="border-2 border-gris px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider text-gris transition-colors duration-300 hover:border-lima hover:bg-lima hover:text-noche sm:text-sm"
+        className="rounded-full border border-gris px-5 py-2.5 font-mono text-xs font-medium uppercase tracking-wider text-gris transition-colors duration-300 hover:border-lima hover:bg-lima hover:text-noche sm:text-sm"
       >
         ← Volver
       </RouterLink>

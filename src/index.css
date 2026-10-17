@@ -82,63 +82,6 @@ html, body, #root {
       linear-gradient(90deg, rgba(26, 26, 48, 0.1) 1px, transparent 1px);
     background-size: 48px 48px;
   }
-  /* Halftone: puntos de la identidad (como los de las fotos del boceto) */
-  .halftone-noche {
-    background-image: radial-gradient(rgba(26, 26, 48, 0.28) 1.6px, transparent 1.9px);
-    background-size: 14px 14px;
-  }
-  .halftone-gris {
-    background-image: radial-gradient(rgba(250, 250, 250, 0.22) 1.6px, transparent 1.9px);
-    background-size: 14px 14px;
-  }
-  .halftone-lima {
-    background-image: radial-gradient(rgba(196, 253, 54, 0.55) 1.6px, transparent 1.9px);
-    background-size: 14px 14px;
-  }
-  /* Halftone que se desvanece hacia un costado: sirve de adorno en esquinas */
-  .halftone-fade {
-    -webkit-mask-image: linear-gradient(135deg, #000 0%, transparent 70%);
-    mask-image: linear-gradient(135deg, #000 0%, transparent 70%);
-  }
-
-  /* Sombras duras (un solo offset en todo el sitio) */
-  .sombra-noche { box-shadow: 6px 6px 0 0 var(--noche); }
-  .sombra-lima { box-shadow: 6px 6px 0 0 var(--lima); }
-  .sombra-gris { box-shadow: 6px 6px 0 0 var(--gris); }
-
-  /* Botón "físico": se levanta al pasar el cursor y se hunde al apretar */
-  .btn-brutal {
-    border: 2px solid var(--noche);
-    box-shadow: 4px 4px 0 0 var(--noche);
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.2s ease, color 0.2s ease;
-  }
-  .btn-brutal:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 6px 6px 0 0 var(--noche);
-  }
-  .btn-brutal:active {
-    transform: translate(3px, 3px);
-    box-shadow: 1px 1px 0 0 var(--noche);
-  }
-  .btn-brutal-gris { border-color: var(--gris); box-shadow: 4px 4px 0 0 var(--gris); }
-  .btn-brutal-gris:hover { box-shadow: 6px 6px 0 0 var(--gris); }
-  .btn-brutal-gris:active { box-shadow: 1px 1px 0 0 var(--gris); }
-
-  /* Resaltado tipo marcador: bloque de color detrás del texto */
-  .resaltado {
-    padding: 0 0.18em;
-    box-decoration-break: clone;
-    -webkit-box-decoration-break: clone;
-  }
-
-  /* Tira en movimiento (marquee) */
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
-  }
-  .animate-marquee { animation: marquee 38s linear infinite; }
-  .marquee:hover .animate-marquee { animation-play-state: paused; }
-
   .bg-grid-naranja {
     background-image:
       linear-gradient(rgba(255, 107, 59, 0.35) 1px, transparent 1px),
@@ -149,17 +92,14 @@ html, body, #root {
 
 /* Foco visible en todo el sitio (WCAG 2.4.7) */
 :focus-visible {
-  outline: 3px solid var(--azul);
+  outline: 2px solid var(--azul);
   outline-offset: 3px;
 }
-.on-dark :focus-visible,
 .bg-noche :focus-visible,
 .bg-azul :focus-visible {
   outline-color: var(--lima);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee { animation: none; }
-  .btn-brutal, .btn-brutal:hover, .btn-brutal:active { transition: none; }
   html { scroll-behavior: auto; }
 }

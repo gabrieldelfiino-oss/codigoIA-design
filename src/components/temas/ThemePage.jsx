@@ -4,6 +4,7 @@ import { getCitasDeTema } from "../../servicios/citas";
 import { getProgramasDeTema, getTema } from "../../servicios/temas";
 import { getYoutubeThumbnail } from "../../servicios/youtube";
 import { formatFecha } from "../../servicios/texto";
+import Orbes from "../utils/Orbes";
 import PageHeader from "../utils/PageHeader";
 import RouterLink from "../utils/RouterLink";
 import VideoFlotante from "../utils/VideoFlotante";
@@ -11,7 +12,7 @@ import CitaCard from "./CitaCard";
 
 const ETIQUETA = "font-mono text-xs uppercase tracking-widest";
 const BOTON =
-  "border-2 px-4 py-2 font-mono text-xs font-medium uppercase tracking-wider transition-colors duration-300 sm:text-sm";
+  "rounded-full border px-5 py-2.5 font-mono text-xs font-medium uppercase tracking-wider transition-colors duration-300 sm:text-sm";
 
 /**
  * Página de un tema o subtema (/temas/:id), a donde se llega desde el mapa:
@@ -48,20 +49,20 @@ function Contenido({ tema }) {
 
   return (
     <>
-      <div className="relative overflow-hidden border-b-2 border-gris/20 bg-lila text-noche">
-        <div aria-hidden className="halftone-noche halftone-fade pointer-events-none absolute inset-0 rotate-180 opacity-60" />
+      <div className="relative overflow-hidden bg-noche text-gris">
+        <Orbes />
         <div className="relative">
-          <PageHeader conVolver={false} claro />
+          <PageHeader conVolver={false} />
           <section>
             <div className="mx-auto max-w-7xl px-6 pb-14 pt-6 sm:px-10 sm:pb-16">
-              <span className={`${ETIQUETA} mb-5 inline-block border-2 border-noche bg-noche px-3 py-1.5 text-lima`}>
+              <span className={`${ETIQUETA} mb-5 inline-block text-lila`}>
                 /Tema
               </span>
-              <h1 className="mb-4 font-display text-6xl font-semibold uppercase leading-[0.9] tracking-tight sm:text-8xl">
-                <span className="resaltado bg-lima">{tema.nombre}</span>
+              <h1 className="mb-4 font-display text-6xl font-semibold leading-[0.98] tracking-tight sm:text-8xl">
+                <span className="text-lima">{tema.nombre}</span>
               </h1>
               {tema.descripcion && (
-                <p className="max-w-2xl text-lg sm:text-xl">
+                <p className="max-w-2xl text-lg text-gris/80 sm:text-xl">
                   {tema.descripcion}
                 </p>
               )}
@@ -71,10 +72,9 @@ function Contenido({ tema }) {
       </div>
 
       {citas.length > 0 && (
-        <section className="relative overflow-hidden border-b-2 border-noche bg-lima text-noche">
-          <div aria-hidden className="halftone-noche halftone-fade pointer-events-none absolute inset-0 opacity-60" />
+        <section className="relative overflow-hidden bg-gris text-noche">
           <div className="relative mx-auto max-w-7xl px-6 py-14 sm:px-10 sm:py-20">
-            <h2 className={`${ETIQUETA} mb-8 inline-block border-2 border-noche bg-noche px-3 py-1.5 text-lima`}>
+            <h2 className={`${ETIQUETA} mb-8 inline-block text-azul`}>
               /Citas destacadas sobre {tema.nombre}
             </h2>
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
@@ -88,7 +88,7 @@ function Contenido({ tema }) {
 
       <section>
         <div className="mx-auto max-w-7xl px-6 py-12 sm:px-10 sm:py-16">
-          <h2 className={`${ETIQUETA} mb-8 inline-block bg-gris px-3 py-1.5 text-noche`}>
+          <h2 className={`${ETIQUETA} mb-8 inline-block text-lima`}>
             /Programas que tocan este tema · {programas.length}
           </h2>
           {programas.length === 0 ? (
@@ -124,10 +124,10 @@ function TarjetaPrograma({ programa }) {
   const bajada = getBajada(programa);
 
   return (
-    <article className="grid gap-4 border-2 border-gris/40 bg-noche p-4 shadow-[6px_6px_0_0_rgba(250,250,250,0.18)] transition-[transform,box-shadow] duration-200 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[10px_10px_0_0_#C4FD36]">
+    <article className="grid gap-4 rounded-3xl border border-gris/15 bg-gris/5 p-4 transition-[transform,border-color] duration-200 hover:-translate-y-1 hover:border-lila/50">
       <div className="flex flex-wrap items-center gap-3">
         {temporada && (
-          <span className={`${ETIQUETA} bg-lima px-2 py-1 text-[11px] text-noche`}>
+          <span className={`${ETIQUETA} rounded-full bg-lima px-3 py-1 text-[11px] text-noche`}>
             {temporada.titulo}
           </span>
         )}
@@ -142,7 +142,7 @@ function TarjetaPrograma({ programa }) {
         <RouterLink
           to={`/programa/${programa.id}`}
           aria-label={`Ver ficha de «${programa.titulo}»`}
-          className="group relative block aspect-video w-full overflow-hidden border-2 border-gris/20 bg-noche transition-colors hover:border-lima md:col-span-4"
+          className="group relative block aspect-video w-full overflow-hidden rounded-2xl bg-noche md:col-span-4"
         >
           {thumb ? (
             <img
@@ -158,7 +158,7 @@ function TarjetaPrograma({ programa }) {
           )}
           <span
             aria-hidden
-            className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center border-2 border-noche bg-lima text-xl text-noche transition-colors group-hover:bg-naranja group-hover:text-white"
+            className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-lima text-xl text-noche transition-colors group-hover:bg-naranja group-hover:text-white"
           >
             ▶
           </span>
