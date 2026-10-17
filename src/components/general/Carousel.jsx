@@ -88,7 +88,16 @@ export default function SeasonCarousel() {
               <span className="mb-6 inline-flex w-fit items-center rounded-full border border-gris/25 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-gris/80">
                 Un programa de FIC · Udelar
               </span>
-              <h2 className="max-w-4xl font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-7xl xl:text-[5.25rem]">
+              {/* --eslogan (0 → 1) lo escribe IntroHeader al hacer scroll: el título se
+                  desvanece y sube mientras el slogan aparece en el header. */}
+              <h2
+                className="max-w-4xl origin-left font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-7xl xl:text-[5.25rem]"
+                style={{
+                  opacity: "calc(1 - var(--eslogan, 0) * 1.15)",
+                  transform:
+                    "translateY(calc(var(--eslogan, 0) * -40px)) scale(calc(1 - var(--eslogan, 0) * 0.1))",
+                }}
+              >
                 El programa que te ayuda a no estar{" "}
                 <Heartbeat className="text-lima">re perdido</Heartbeat> con la IA
               </h2>
