@@ -122,6 +122,26 @@ html, body, #root {
   }
 }
 
+/* ───────── Mapa de temas 3D ─────────
+   Las esferas flotan apenas y el halo del núcleo respira. Solo si la persona
+   no pidió menos movimiento. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes mapa-flotar {
+    0%, 100% { transform: translate3d(0, 0, 0); }
+    50% { transform: translate3d(0, -4px, 0); }
+  }
+  @keyframes mapa-respirar {
+    0%, 100% { opacity: 0.55; transform: scale(1); }
+    50% { opacity: 0.85; transform: scale(1.08); }
+  }
+  .mapa-flotar {
+    animation: mapa-flotar 6s ease-in-out infinite;
+  }
+  .mapa-respirar {
+    animation: mapa-respirar 5s ease-in-out infinite;
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) {
     @keyframes aparecer {
