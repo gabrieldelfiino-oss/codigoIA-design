@@ -51,26 +51,33 @@ for (let i = 0; i < 6; i++) {
   ordenTemas = [...ordenTemas].sort((a, b) => promedioIdx(a, ordenSubs) - promedioIdx(b, ordenSubs));
 }
 
-const POS = { [CENTRO.id]: { x: X_TRONCO, y: 46 } };
-ordenSubs.forEach((id, i) => {
-  POS[id] = { x: X_SUB, y: Y_INICIO + i * SEPARACION };
-});
-// Cada tema queda a la altura promedio de los subtemas que conecta, sin pisarse.
-const promedio = (tema) => {
-  const ys = ARISTAS.filter((e) => e.de === tema.id || e.a === tema.id)
-    .map((e) => (e.de === tema.id ? e.a : e.de))
-    .filter((id) => POS[id])
-    .map((id) => POS[id].y);
-  return ys.length ? ys.reduce((a, b) => a + b, 0) / ys.length : Y_INICIO;
-};
-let previo = Y_INICIO - SEPARACION;
-ordenTemas.forEach((id) => {
-  previo = Math.max(promedio({ id }), previo + SEPARACION);
-  POS[id] = { x: X_TEMA, y: previo };
-});
-const ALTO =
-  Math.max(...Object.values(POS).map((p) => p.y)) + SEPARACION - 8;
-const Y_TRONCO_FIN = Math.max(...TEMAS.map((t) => POS[t.id].y));
+// La geometría se calcula con dos medidas: la normal (tarjeta en la página) y la
+// compacta (pantalla completa), que junta las filas para que el mapa entero
+// entre en la pantalla del celular sin scroll.
+function calcularGeometria({ yInicio, separacion, yNucleo }) {
+  const pos = { [CENTRO.id]: { x: X_TRONCO, y: yNucleo } };
+  ordenSubs.forEach((id, i) => {
+    pos[id] = { x: X_SUB, y: yInicio + i * separacion };
+  });
+  // Cada tema queda a la altura promedio de los subtemas que conecta, sin pisarse.
+  const promedio = (id) => {
+    const ys = ARISTAS.filter((e) => e.de === id || e.a === id)
+      .map((e) => (e.de === id ? e.a : e.de))
+      .filter((v) => pos[v])
+      .map((v) => pos[v].y);
+    return ys.length ? ys.reduce((a, b) => a + b, 0) / ys.length : yInicio;
+  };
+  let previo = yInicio - separacion;
+  ordenTemas.forEach((id) => {
+    previo = Math.max(promedio(id), previo + separacion);
+    pos[id] = { x: X_TEMA, y: previo };
+  });
+  const alto = Math.max(...Object.values(pos).map((p) => p.y)) + separacion - 8;
+  const yTroncoFin = Math.max(...TEMAS.map((t) => pos[t.id].y));
+  return { pos, alto, yTroncoFin };
+}
+const GEO = calcularGeometria({ yInicio: 140, separacion: 60, yNucleo: 46 });
+const GEO_COMPACTA = calcularGeometria({ yInicio: 92, separacion: 42, yNucleo: 34 });
 
 const CANTIDAD = Object.fromEntries(
   NODOS.map((n) => [n.id, getProgramasDeTema(n.id).length])
@@ -81,7 +88,7 @@ const CONEXIONES = ARISTAS.filter((e) => e.de !== CENTRO.id).map((e) => {
   const tema = esTema(e.de) ? e.de : e.a;
   const sub = tema === e.de ? e.a : e.de;
   return { tema, sub };
-}).filter((c) => POS[c.tema] && POS[c.sub]);
+}).filter((c) => GEO.pos[c.tema] && GEO.pos[c.sub]);
 
 const pct = (v, total) => `${((v / total) * 100).toFixed(2)}%`;
 
@@ -118,7 +125,8 @@ function Universo() {
 }
 
 /** La red: núcleo, tronco, conexiones y nodos. Un toque llama a `alElegir(id, evento)`. */
-function Red({ activo, alElegir }) {
+function Red({ activo, alElegir, compacto = false }) {
+  const { pos: POS, alto: ALTO, yTroncoFin: Y_TRONCO_FIN } = compacto ? GEO_COMPACTA : GEO;
   const encendidos = new Set(activo ? [activo, ...getVecinos(activo)] : []);
   const conexionEncendida = (c) => activo !== null && (c.tema === activo || c.sub === activo);
 
@@ -212,7 +220,9 @@ function Red({ activo, alElegir }) {
 
       {/* Núcleo */}
       <span
-        className="mapa-vidrio absolute flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[20px] font-display text-xl font-semibold text-lima"
+        className={`mapa-vidrio absolute flex -translate-x-1/2 -translate-y-1/2 items-center justify-center font-display font-semibold text-lima ${
+          compacto ? "h-11 w-11 rounded-2xl text-base" : "h-14 w-14 rounded-[20px] text-xl"
+        }`}
         style={{
           left: pct(POS[CENTRO.id].x, ANCHO),
           top: pct(POS[CENTRO.id].y, ALTO),
@@ -246,8 +256,12 @@ function Red({ activo, alElegir }) {
             className={[
               "mapa-vidrio absolute flex items-center justify-center text-center leading-[1.15] transition-opacity duration-300",
               tema
-                ? "min-h-[44px] rounded-[16px] px-2 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.04em]"
-                : "min-h-[44px] rounded-2xl px-2.5 py-2 font-sans text-[11px] font-medium",
+                ? compacto
+                  ? "min-h-[36px] rounded-[14px] px-1.5 py-1 font-display text-[10px] font-semibold uppercase tracking-[0.03em]"
+                  : "min-h-[44px] rounded-[16px] px-2 py-2 font-display text-[11px] font-semibold uppercase tracking-[0.04em]"
+                : compacto
+                  ? "min-h-[36px] rounded-xl px-2 py-1 font-sans text-[10px] font-medium"
+                  : "min-h-[44px] rounded-2xl px-2.5 py-2 font-sans text-[11px] font-medium",
               lit ? "z-[2] text-lima" : "text-gris",
               dim ? "opacity-30" : "opacity-100",
             ].join(" ")}
@@ -270,10 +284,13 @@ function Red({ activo, alElegir }) {
 }
 
 /** Ficha del nodo elegido: el toque ilumina, este botón abre el tema. */
-function Ficha({ activo, className = "" }) {
+function Ficha({ activo, compacto = false, className = "" }) {
   const nodo = NODOS.find((n) => n.id === activo);
   return (
-    <div className={`relative border-t border-gris/10 bg-noche/60 px-4 py-4 backdrop-blur-md ${className}`} aria-live="polite">
+    <div
+      className={`relative border-t border-gris/10 bg-noche/60 px-4 backdrop-blur-md ${compacto ? "py-2.5" : "py-4"} ${className}`}
+      aria-live="polite"
+    >
       {nodo ? (
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
@@ -314,8 +331,29 @@ const CHISPAS = Array.from({ length: 18 }, (_, i) => ({
  * onda de luz sale del nodo tocado, aparece un panel de cristal con el mapa y
  * titilan chispas alrededor. Se cierra con la cruz, Esc o tocando afuera.
  */
+// Ancho del panel para que el mapa entero entre en la pantalla visible (con las
+// barras del navegador del celular): se mide el alto real, se descuentan la
+// cabecera y la ficha del panel y se respeta un ancho mínimo y máximo.
+const RESERVA_PANEL_PX = 158;
+function calcularAnchoPanel() {
+  const alto = window.visualViewport?.height ?? window.innerHeight;
+  const porAlto = ((alto - RESERVA_PANEL_PX) * ANCHO) / GEO_COMPACTA.alto;
+  const porAncho = Math.min(window.innerWidth - 24, 420);
+  return Math.round(Math.max(280, Math.min(porAlto, porAncho)));
+}
+
 function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
   const botonCerrar = useRef(null);
+  const [anchoPanel, setAnchoPanel] = useState(calcularAnchoPanel);
+  useEffect(() => {
+    const alRedimensionar = () => setAnchoPanel(calcularAnchoPanel());
+    window.addEventListener("resize", alRedimensionar);
+    window.visualViewport?.addEventListener("resize", alRedimensionar);
+    return () => {
+      window.removeEventListener("resize", alRedimensionar);
+      window.visualViewport?.removeEventListener("resize", alRedimensionar);
+    };
+  }, []);
 
   useEffect(() => {
     const previo = document.activeElement;
@@ -401,7 +439,7 @@ function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
           transition={{ type: "spring", stiffness: 230, damping: 26 }}
           className="relative overflow-hidden rounded-[28px] border border-lima/30 bg-gradient-to-br from-gris/[0.14] via-gris/[0.04] to-gris/[0.08] shadow-[0_30px_90px_rgba(0,0,0,0.6),0_0_70px_rgba(196,253,54,0.16)] backdrop-blur-2xl"
           style={{
-            width: `max(300px, min(calc(100vw - 1.5rem), calc((100svh - 11rem) * ${ANCHO / ALTO})))`,
+            width: anchoPanel,
           }}
         >
           {/* Reflejo de cristal */}
@@ -422,8 +460,8 @@ function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
               ✕
             </button>
           </header>
-          <Red activo={activo} alElegir={alElegir} />
-          <Ficha activo={activo} className="sticky bottom-0" />
+          <Red activo={activo} alElegir={alElegir} compacto />
+          <Ficha activo={activo} compacto className="sticky bottom-0" />
         </motion.div>
       </div>
     </motion.div>
