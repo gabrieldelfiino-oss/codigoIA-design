@@ -6,7 +6,10 @@ const TIPOS = { correo: "email", mensaje: "textarea" }
 const AUTOCOMPLETE = { nombre: "name", correo: "email" }
 
 const CLASE_CAMPO =
-  "rounded-2xl border border-noche/25 bg-gris/45 px-5 py-3 text-base text-noche transition-colors placeholder:text-noche/70 focus:border-noche focus:bg-gris/70 focus:outline-none"
+  "rounded-2xl border border-noche/15 bg-gris px-5 py-3 text-base text-noche transition-colors placeholder:text-noche/60 focus:border-noche focus:bg-white focus:outline-none"
+
+// "+" que se vuelve "−" al abrir el desplegable (el mismo de "Sobre el proyecto").
+const LINEA = "before:absolute before:left-1/2 before:top-1/2 before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:bg-noche before:content-[''] after:absolute after:left-1/2 after:top-1/2 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-noche after:content-['']"
 
 /**
  * Formulario de contacto: por ahora solo UI, sin envío real.
@@ -21,11 +24,16 @@ export default function ContactForm() {
 
   return (
     <section id="contacto" className="seccion-curva tx tx-cuadricula-claro bg-lila text-noche">
-    <div className="mx-auto max-w-xl px-6 py-14 sm:px-10 sm:py-20">
-      <h2 className="mb-8 font-display text-3xl font-semibold leading-[1.05] tracking-tight sm:text-4xl">
-        Contacto
-      </h2>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+    <div className="mx-auto max-w-3xl px-6 py-14 sm:px-10 sm:py-20">
+      <details className="group rounded-3xl border border-noche/10 bg-white shadow-suave">
+        <summary className="flex min-h-14 cursor-pointer list-none items-center justify-between gap-4 rounded-3xl px-6 py-4 font-display text-xl font-semibold tracking-tight sm:px-8 sm:text-2xl [&::-webkit-details-marker]:hidden">
+          Contacto
+          <span
+            aria-hidden
+            className={`relative h-9 w-9 shrink-0 rounded-full bg-lima transition-transform duration-200 group-hover:scale-110 before:h-0.5 before:w-4 after:h-4 after:w-0.5 group-open:after:hidden ${LINEA}`}
+          />
+        </summary>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4 px-6 pb-8 pt-1 sm:px-8">
         {proyecto.contacto.campos.map((campo) =>
           TIPOS[campo.id] === "textarea" ? (
             <textarea
@@ -55,6 +63,7 @@ export default function ContactForm() {
           Enviar
         </button>
       </form>
+      </details>
     </div>
     </section>
   )

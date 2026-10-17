@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, motion } from 'framer-motion'
 import BrandTitle from '../utils/BrandTitle'
+import Heartbeat from '../utils/Heartbeat'
 import Nav from './Nav'
 import SearchBar from './SearchBar'
 
@@ -132,7 +133,7 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
             style={{ opacity: 0 }}
             className="pointer-events-none absolute left-0 top-0 hidden whitespace-nowrap font-display text-[15px] font-medium text-gris xl:block"
           >
-            El programa que te ayuda a no estar <span className="text-lima">re perdido</span> con la IA
+            El programa que te ayuda a no estar <Heartbeat className="text-lima">re perdido</Heartbeat> con la IA
           </p>
         )}
 
