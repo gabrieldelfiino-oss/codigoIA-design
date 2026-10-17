@@ -84,7 +84,7 @@ export default function SeasonCarousel() {
               <Isotipo className="h-full w-full" />
             </Spin>
 
-            <div className="relative flex h-full flex-col justify-center px-6 pb-28 pt-8 sm:px-12 sm:pb-32">
+            <div className="relative flex h-full flex-col justify-center px-6 pb-40 pt-8 sm:px-12 sm:pb-44">
               <span className="mb-6 inline-flex w-fit items-center rounded-full border border-gris/25 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-gris/80">
                 Un programa de FIC · Udelar
               </span>
@@ -120,7 +120,7 @@ export default function SeasonCarousel() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-noche via-noche/60 to-transparent" />
 
-            <div className="absolute bottom-24 left-6 right-6 sm:bottom-28 sm:left-12 sm:right-12">
+            <div className="absolute bottom-36 left-6 right-6 sm:bottom-40 sm:left-12 sm:right-12">
               <span className="mb-4 inline-flex rounded-full bg-lila px-3.5 py-1 font-mono text-xs uppercase tracking-wider text-noche">
                 Programa {String(index).padStart(2, "0")}
               </span>
@@ -151,7 +151,7 @@ export default function SeasonCarousel() {
       </AnimatePresence>
 
       {/* Controles: puntos / anterior / siguiente */}
-      <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between gap-4 sm:bottom-8 sm:left-12 sm:right-12">
+      <div className="absolute bottom-16 left-6 right-6 flex items-center justify-between gap-4 sm:bottom-20 sm:left-12 sm:right-12">
         <div className="flex items-center gap-2">
           {slides.map((s, i) => (
             <button

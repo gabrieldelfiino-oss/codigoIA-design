@@ -103,3 +103,34 @@ html, body, #root {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* ───────── Transición entre secciones ─────────
+   Cada sección sube sobre la anterior con el borde superior curvo, así se
+   delimitan sin cortes secos. El contenido aparece suavemente al hacer scroll
+   (solo donde el navegador soporta animation-timeline; si no, se ve normal). */
+@layer components {
+  .seccion-curva {
+    position: relative;
+    margin-top: -2.5rem;
+    border-radius: 2.5rem 2.5rem 0 0;
+  }
+  @media (min-width: 640px) {
+    .seccion-curva {
+      margin-top: -3.5rem;
+      border-radius: 3.5rem 3.5rem 0 0;
+    }
+  }
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(32px); }
+      to { opacity: 1; transform: none; }
+    }
+    .seccion-curva > div {
+      animation: aparecer linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}

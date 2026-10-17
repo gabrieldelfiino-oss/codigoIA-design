@@ -30,7 +30,7 @@ function Chevron() {
  */
 export default function AllSection() {
   return (
-    <section id="todos-los-programas" className="w-full bg-noche py-20 text-gris sm:py-28">
+    <section id="todos-los-programas" className="seccion-curva w-full bg-noche py-20 text-gris sm:py-28">
       <div className="mx-auto max-w-7xl px-6 sm:px-10">
         <p className="mb-4 font-mono text-xs uppercase tracking-widest text-lima">/Temporadas</p>
         <h2 className="font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">

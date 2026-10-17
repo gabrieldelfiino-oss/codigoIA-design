@@ -14,7 +14,7 @@ export default function ThemeSection() {
   const temas = TEMAS.filter((t) => t.tipo === "tema");
 
   return (
-    <section id="temas" className="bg-gris text-noche">
+    <section id="temas" className="seccion-curva bg-gris text-noche">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:px-10 sm:py-28">
         <p className="mb-4 font-mono text-xs uppercase tracking-widest text-azul">/Mapa de temas</p>
         <h2 className="max-w-4xl font-display text-5xl font-semibold leading-[1] tracking-tight sm:text-6xl">

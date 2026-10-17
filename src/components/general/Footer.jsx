@@ -7,7 +7,7 @@ import Imagotipo from '../utils/Imagotipo'
  */
 export default function Footer() {
   return (
-    <footer className="w-full bg-noche px-6 py-12 text-gris sm:px-10">
+    <footer className="seccion-curva w-full bg-noche px-6 pb-12 pt-16 text-gris sm:px-10">
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
         <Imagotipo className="w-36 text-gris" label={proyecto.nombre} />
 
