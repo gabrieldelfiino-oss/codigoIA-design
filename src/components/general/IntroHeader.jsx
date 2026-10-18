@@ -43,7 +43,7 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
     const estado = { scroll: 0, slide: 0 }
     // Último lugar conocido del título (coordenadas del documento): sirve de
     // punto de partida aun cuando el banner del slogan no está a la vista.
-    const titulo = { x: 48, y: 380, ancho: 880 }
+    const titulo = { x: Math.max(0, (window.innerWidth - 880) / 2), y: 380, ancho: 880 }
     let viaje = null
 
     const pintar = () => {
@@ -64,8 +64,8 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
       let p = Math.max(estado.scroll, estado.slide)
       if (reducir.matches) p = p > 0.5 ? 1 : 0
       const w = el.offsetWidth || 1
-      const escala0 = Math.min(3, Math.max(1, (titulo.ancho * 0.92) / w))
-      const x0 = titulo.x + (w * escala0) / 2
+      const escala0 = Math.min(3.4, Math.max(1, (titulo.ancho * 0.92) / w))
+      const x0 = titulo.x + titulo.ancho / 2
       const y0 = titulo.y - window.scrollY
       const x1 = window.innerWidth / 2
       const y1 = (headerRef.current?.offsetHeight ?? 72) / 2
@@ -75,9 +75,14 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
       raiz.style.setProperty('--eslogan-h2', Math.min(1, p / 0.4).toFixed(3))
     }
 
+    let marco = 0
     const alScrollear = () => {
       estado.scroll = Math.min(1, Math.max(0, window.scrollY / RECORRIDO_SLOGAN_PX))
-      pintar()
+      if (marco) return
+      marco = requestAnimationFrame(() => {
+        marco = 0
+        pintar()
+      })
     }
     const alCambiarSlide = (ev) => {
       viaje?.stop()
@@ -97,6 +102,7 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
     window.addEventListener('carrusel-slide', alCambiarSlide)
     return () => {
       viaje?.stop()
+      cancelAnimationFrame(marco)
       window.removeEventListener('scroll', alScrollear)
       window.removeEventListener('resize', alScrollear)
       window.removeEventListener('carrusel-slide', alCambiarSlide)

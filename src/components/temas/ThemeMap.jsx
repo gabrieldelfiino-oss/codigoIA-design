@@ -77,6 +77,15 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
   // Modo inmersivo: con el mouse (o el teclado) adentro del mapa la sección se
   // oscurece y aparecen el aura y las chispas. Hay una pequeña espera para que
   // no se dispare si el cursor solo cruza el mapa.
+  // Los pulsos de luz solo corren con el mapa a la vista (fuera de pantalla no gastan nada).
+  const [visible, setVisible] = useState(true);
+  useEffect(() => {
+    const el = raiz.current;
+    if (!el || !("IntersectionObserver" in window)) return;
+    const io = new IntersectionObserver(([entrada]) => setVisible(entrada.isIntersecting));
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const intencion = useRef(null);
   const entrar = (ev) => {
     if (ev.pointerType && ev.pointerType !== "mouse") return;
@@ -100,19 +109,30 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
 
   // El mouse escribe su posición en variables CSS y el resto se resuelve con
   // calc() en los estilos: sin re-renders ni JS por cuadro.
+  const pendiente = useRef(null);
+  const marco = useRef(0);
   const mover = (ev) => {
     if (ev.pointerType !== "mouse" || !raiz.current) return;
-    const r = raiz.current.getBoundingClientRect();
-    const x = (ev.clientX - r.left) / r.width;
-    const y = (ev.clientY - r.top) / r.height;
-    const s = raiz.current.style;
-    s.setProperty("--px", `${(x * 100).toFixed(1)}%`);
-    s.setProperty("--py", `${(y * 100).toFixed(1)}%`);
-    if (REDUCIR_MOVIMIENTO) return;
-    s.setProperty("--mx", (x - 0.5).toFixed(3));
-    s.setProperty("--my", (y - 0.5).toFixed(3));
+    pendiente.current = { x: ev.clientX, y: ev.clientY };
+    if (marco.current) return;
+    // Se agrupa en un solo cálculo por cuadro (antes se recalculaba en cada evento).
+    marco.current = requestAnimationFrame(() => {
+      marco.current = 0;
+      if (!raiz.current || !pendiente.current) return;
+      const r = raiz.current.getBoundingClientRect();
+      const x = (pendiente.current.x - r.left) / r.width;
+      const y = (pendiente.current.y - r.top) / r.height;
+      const s = raiz.current.style;
+      s.setProperty("--px", `${(x * 100).toFixed(1)}%`);
+      s.setProperty("--py", `${(y * 100).toFixed(1)}%`);
+      if (REDUCIR_MOVIMIENTO) return;
+      s.setProperty("--mx", (x - 0.5).toFixed(3));
+      s.setProperty("--my", (y - 0.5).toFixed(3));
+    });
   };
   const soltar = () => {
+    cancelAnimationFrame(marco.current);
+    marco.current = 0;
     const s = raiz.current?.style;
     if (!s) return;
     ["--mx", "--my"].forEach((v) => s.setProperty(v, "0"));
@@ -234,23 +254,6 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
           className="absolute inset-0 h-full w-full overflow-visible"
           aria-hidden="true"
         >
-          <defs>
-            <filter id="mapa-neon" x="-30%" y="-30%" width="160%" height="160%">
-              <feGaussianBlur stdDeviation="3.5" result="b" />
-              <feMerge>
-                <feMergeNode in="b" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Órbitas: anillos casi invisibles que giran muy despacio alrededor del núcleo. */}
-          <g className="mapa-girar" fill="none" stroke="#FAFAFA">
-            <circle cx="600" cy="360" r="170" strokeOpacity="0.14" strokeDasharray="1 9" strokeLinecap="round" strokeWidth="2" />
-          </g>
-          <g className="mapa-girar-inverso" fill="none" stroke="#C4FD36">
-            <circle cx="600" cy="360" r="300" strokeOpacity="0.09" strokeDasharray="1 14" strokeLinecap="round" strokeWidth="2" />
-          </g>
 
           {ARISTAS.map((e, i) => {
             const lit = aristaEncendida(e);
@@ -259,12 +262,21 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
             const opacidad = lit ? 1 : activo ? 0.05 : 0.2 + prof * 0.28;
             return (
               <g key={`${e.de}-${e.a}`}>
+                {/* Brillo del camino encendido: un trazo ancho y translúcido (sin filtro de desenfoque). */}
+                {lit && (
+                  <path
+                    d={trazoRecto(e)}
+                    strokeWidth={7}
+                    strokeLinecap="round"
+                    className="fill-none stroke-lima"
+                    style={{ opacity: 0.22 }}
+                  />
+                )}
                 <path
                   d={trazoRecto(e)}
                   strokeWidth={lit ? 1.8 : 0.8 + prof * 0.5}
                   strokeDasharray={lit ? "7 6" : undefined}
                   strokeLinecap="round"
-                  filter={lit ? "url(#mapa-neon)" : undefined}
                   className={`fill-none transition-opacity duration-200 ${lit ? "stroke-lima" : "stroke-gris"}`}
                   style={{ opacity: opacidad }}
                 >
@@ -281,16 +293,15 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
                   )}
                 </path>
                 {/* Pulso de luz que recorre la línea de vez en cuando. */}
-                {!lit && !activo && !REDUCIR_MOVIMIENTO && (
+                {visible && !lit && !activo && !REDUCIR_MOVIMIENTO && (
                   <path
                     d={trazoRecto(e)}
                     pathLength="100"
-                    strokeWidth="1.8"
+                    strokeWidth="2.6"
                     strokeLinecap="round"
                     strokeDasharray="5 95"
-                    filter="url(#mapa-neon)"
                     className="fill-none stroke-lima"
-                    style={{ opacity: 0.55 }}
+                    style={{ opacity: 0.6 }}
                   >
                     <animate
                       attributeName="stroke-dashoffset"
@@ -306,6 +317,15 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
             );
           })}
         </svg>
+
+        {/* Órbitas: anillos casi invisibles que giran muy despacio alrededor del núcleo.
+            Son elementos HTML (no SVG) para que giren en el compositor del navegador. */}
+        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-[28.33%] -translate-x-1/2 -translate-y-1/2">
+          <div className="mapa-girar h-full w-full rounded-full border-2 border-dotted border-gris/15" />
+        </div>
+        <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/2 aspect-square w-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="mapa-girar-inverso h-full w-full rounded-full border-2 border-dotted border-lima/10" />
+        </div>
 
         {/* Núcleo: panel de cristal con un anillo que gira y un halo que respira. */}
         <span
@@ -328,7 +348,7 @@ export default function ThemeMap({ inmersivo = false, alCambiarInmersivo }) {
             className="mapa-girar absolute -inset-3.5 rounded-[40px] border border-dashed border-lima/40"
           />
           <span
-            className="mapa-vidrio relative flex h-24 w-24 items-center justify-center rounded-[30px] font-display text-[34px] font-semibold text-lima"
+            className="mapa-vidrio mapa-vidrio--blur relative flex h-24 w-24 items-center justify-center rounded-[30px] font-display text-[34px] font-semibold text-lima"
             style={{ "--tono": LIMA, "--brillo": 0.5, textShadow: "0 0 18px rgba(196,253,54,0.9)" }}
           >
             {CENTRO.etiqueta}

@@ -19,7 +19,7 @@ export default function BrandTitle({ variant = "large" }) {
       initial={isLarge ? { opacity: 0, scale: 0.4 } : false}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-      className="flex select-none items-center text-gris"
+      className="flex select-none items-center text-gris will-change-transform"
     >
       <Imagotipo
         className={isLarge ? "w-[78vw] sm:w-[48vw]" : "w-32 sm:w-36"}

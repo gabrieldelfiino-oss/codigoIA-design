@@ -138,15 +138,6 @@ function Red({ activo, alElegir, compacto = false }) {
         className="absolute inset-0 h-full w-full overflow-visible"
         aria-hidden="true"
       >
-        <defs>
-          <filter id="mapa-movil-neon" x="-30%" y="-30%" width="160%" height="160%">
-            <feGaussianBlur stdDeviation="2.5" result="b" />
-            <feMerge>
-              <feMergeNode in="b" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
 
         {/* Tronco que baja del núcleo y una rama hacia cada tema. */}
         <line
@@ -164,6 +155,18 @@ function Red({ activo, alElegir, compacto = false }) {
           const y = POS[t.id].y;
           return (
             <g key={t.id}>
+              {lit && (
+                <line
+                  x1={X_TRONCO}
+                  y1={y}
+                  x2={X_TEMA - ANCHO_TEMA / 2}
+                  y2={y}
+                  strokeWidth={6}
+                  strokeLinecap="round"
+                  className="stroke-lima"
+                  style={{ opacity: 0.22 }}
+                />
+              )}
               <line
                 x1={X_TRONCO}
                 y1={y}
@@ -172,7 +175,6 @@ function Red({ activo, alElegir, compacto = false }) {
                 strokeWidth={lit ? 1.8 : 1}
                 strokeLinecap="round"
                 strokeDasharray={lit ? "6 5" : undefined}
-                filter={lit ? "url(#mapa-movil-neon)" : undefined}
                 className={lit ? "stroke-lima" : "stroke-gris"}
                 style={{ opacity: lit ? 1 : activo ? 0.1 : 0.35 }}
               >
@@ -197,8 +199,20 @@ function Red({ activo, alElegir, compacto = false }) {
           const a = POS[c.tema];
           const b = POS[c.sub];
           return (
-            <line
-              key={`${c.tema}-${c.sub}`}
+            <g key={`${c.tema}-${c.sub}`}>
+              {lit && (
+                <line
+                  x1={a.x + ANCHO_TEMA / 2}
+                  y1={a.y}
+                  x2={b.x - ANCHO_SUB / 2}
+                  y2={b.y}
+                  strokeWidth={6}
+                  strokeLinecap="round"
+                  className="stroke-lima"
+                  style={{ opacity: 0.22 }}
+                />
+              )}
+              <line
               x1={a.x + ANCHO_TEMA / 2}
               y1={a.y}
               x2={b.x - ANCHO_SUB / 2}
@@ -206,7 +220,6 @@ function Red({ activo, alElegir, compacto = false }) {
               strokeWidth={lit ? 1.8 : 1}
               strokeLinecap="round"
               strokeDasharray={lit ? "6 5" : undefined}
-              filter={lit ? "url(#mapa-movil-neon)" : undefined}
               className={lit ? "stroke-lima" : "stroke-gris"}
               style={{ opacity: lit ? 1 : activo ? 0.08 : 0.3 }}
             >
@@ -214,6 +227,7 @@ function Red({ activo, alElegir, compacto = false }) {
                 <animate attributeName="stroke-dashoffset" from="0" to="-11" dur="0.7s" repeatCount="indefinite" />
               )}
             </line>
+            </g>
           );
         })}
       </svg>
@@ -288,7 +302,7 @@ function Ficha({ activo, compacto = false, className = "" }) {
   const nodo = NODOS.find((n) => n.id === activo);
   return (
     <div
-      className={`relative border-t border-gris/10 bg-noche/60 px-4 backdrop-blur-md ${compacto ? "py-2.5" : "py-4"} ${className}`}
+      className={`relative border-t border-gris/10 bg-noche/80 px-4 ${compacto ? "py-2.5" : "py-4"} ${className}`}
       aria-live="polite"
     >
       {nodo ? (
@@ -406,10 +420,10 @@ function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
       transition={{ duration: 0.35 }}
     >
       {/* Fondo oscurecido y desenfocado */}
-      <div aria-hidden="true" className="fixed inset-0 bg-[#02020c]/85 backdrop-blur-xl" />
+      <div aria-hidden="true" className="fixed inset-0 bg-[#02020c]/90" />
 
       {/* Aura que se expande desde el centro */}
-      <div aria-hidden="true" className="pointer-events-none fixed left-1/2 top-1/2 h-[140vmax] w-[140vmax] -translate-x-1/2 -translate-y-1/2">
+      <div aria-hidden="true" className="pointer-events-none fixed left-1/2 top-1/2 h-[110vmax] w-[110vmax] -translate-x-1/2 -translate-y-1/2">
         <motion.div
           className="h-full w-full rounded-full"
           initial={{ scale: 0.2, opacity: 0 }}
@@ -462,7 +476,7 @@ function PantallaCompleta({ activo, alElegir, alCerrar, origen }) {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.94, y: 12 }}
           transition={{ type: "spring", stiffness: 230, damping: 26 }}
-          className="relative overflow-hidden rounded-[28px] border border-lima/30 bg-gradient-to-br from-gris/[0.14] via-gris/[0.04] to-gris/[0.08] shadow-[0_30px_90px_rgba(0,0,0,0.6),0_0_70px_rgba(196,253,54,0.16)] backdrop-blur-2xl"
+          className="relative overflow-hidden rounded-[28px] border border-lima/30 bg-gradient-to-br from-gris/[0.14] via-gris/[0.04] to-gris/[0.08] bg-[#0c0c1f]/70 shadow-[0_30px_90px_rgba(0,0,0,0.6),0_0_70px_rgba(196,253,54,0.16)]"
           style={{
             width: anchoPanel,
           }}

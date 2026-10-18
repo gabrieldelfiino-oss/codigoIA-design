@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
 import { useRoute } from "./servicios/router";
 import IntroHeader from "./components/general/IntroHeader";
 import ThemeSection from "./components/temas/ThemeSection";
@@ -8,8 +8,9 @@ import AllSection from "./components/general/AllSection";
 import AboutSection from "./components/general/AboutSection";
 import ContactForm from "./components/general/ContactForm";
 import Footer from "./components/general/Footer";
-import ProgramPage from "./components/program/ProgramPage";
-import ThemePage from "./components/temas/ThemePage";
+// Las páginas internas se descargan recién cuando se entra a ellas (la home carga más liviana).
+const ProgramPage = lazy(() => import("./components/program/ProgramPage"));
+const ThemePage = lazy(() => import("./components/temas/ThemePage"));
 
 // Único "nivel de profundidad" por ahora: la ficha de un programa. El id es
 // el slug del programa en programas.json (ej. /programa/arte-e-ia).
@@ -39,13 +40,17 @@ export default function App() {
       primeraCarga.current = false;
       return;
     }
-    const espera = setTimeout(() => {
+    const enfocar = () => {
       const titulo = document.querySelector("main h1");
-      if (titulo) {
-        titulo.setAttribute("tabindex", "-1");
-        titulo.focus({ preventScroll: true });
-      }
+      if (!titulo) return false;
+      titulo.setAttribute("tabindex", "-1");
+      titulo.focus({ preventScroll: true });
       setAnuncio(document.title);
+      return true;
+    };
+    // La página interna puede tardar en descargarse: si no está a los 200 ms, se reintenta.
+    const espera = setTimeout(() => {
+      if (!enfocar()) setTimeout(enfocar, 600);
     }, 200);
     return () => clearTimeout(espera);
   }, [pathname]);
@@ -70,7 +75,7 @@ export default function App() {
       <div role="status" aria-live="polite" className="sr-only">
         {anuncio}
       </div>
-      {contenido}
+      <Suspense fallback={<div className="min-h-screen bg-noche" />}>{contenido}</Suspense>
     </>
   );
 }
@@ -99,22 +104,21 @@ function Home() {
         }}
       />
 
-      {/* El resto de la página no se monta hasta que "Código IA" termina
-          de asentarse en el header. */}
-      {introDone && (
-        <>
-          <main id="contenido" tabIndex={-1} className="pt-20 outline-none sm:pt-24">
-            <SeasonCarousel />
-            <ThemeSection />
-            <AditionalSection />
-            <AllSection />
-            <AboutSection />
-            <ContactForm />
-          </main>
+      {/* El resto de la página se arma mientras suena la intro (oculto) y se muestra
+          cuando "Código IA" termina de asentarse en el header: así el trabajo pesado
+          de montar todo no cae justo al final de la animación y no se traba. */}
+      <main id="contenido" tabIndex={-1} hidden={!introDone} className="pt-20 outline-none sm:pt-24">
+        <SeasonCarousel activo={introDone} />
+        <ThemeSection />
+        <AditionalSection />
+        <AllSection />
+        <AboutSection />
+        <ContactForm />
+      </main>
 
-          <Footer />
-        </>
-      )}
+      <div style={{ display: introDone ? "contents" : "none" }}>
+        <Footer />
+      </div>
     </div>
   );
 }

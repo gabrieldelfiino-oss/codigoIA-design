@@ -33,7 +33,7 @@ const BTN_SECUNDARIO =
  * Avanza solo (se pausa con el cursor encima, con el foco adentro o si la
  * persona pidió menos movimiento); los botones y los puntos permiten moverse.
  */
-export default function SeasonCarousel() {
+export default function SeasonCarousel({ activo = true }) {
   const episodios = getProgramasPorTemporada(TEMPORADAS.ULTIMA);
   const slides = [HERO_SLIDE, ...episodios];
   const [index, setIndex] = useState(0);
@@ -46,11 +46,11 @@ export default function SeasonCarousel() {
   );
 
   useEffect(() => {
-    if (slides.length < 2 || pausado || detenido || reducir) return;
+    if (!activo || slides.length < 2 || pausado || detenido || reducir) return;
     const duration = slides[index]?.tipo === "hero" ? HERO_ADVANCE_MS : AUTO_ADVANCE_MS;
     const timer = setTimeout(() => setIndex((i) => (i + 1) % slides.length), duration);
     return () => clearTimeout(timer);
-  }, [index, slides.length, pausado, detenido, reducir]);
+  }, [activo, index, slides.length, pausado, detenido, reducir]);
 
   // Le avisa al header si se está viendo el banner del slogan (cuando no, el
   // slogan viaja al header) y vuelve al primer banner al tocar el logo.
@@ -134,7 +134,7 @@ export default function SeasonCarousel() {
               <Isotipo className="h-full w-full" />
             </Spin>
 
-            <div className="relative flex h-full flex-col justify-center px-6 pb-40 pt-8 sm:px-12 sm:pb-44">
+            <div className="relative flex h-full flex-col items-center justify-center px-6 pb-40 pt-8 text-center sm:px-12 sm:pb-44">
               <span className="mb-6 inline-flex w-fit items-center rounded-full border border-gris/25 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-gris/80">
                 Un programa de FIC · Udelar
               </span>
@@ -142,14 +142,14 @@ export default function SeasonCarousel() {
                   mientras el slogan sale de acá y viaja al header. */}
               <h2
                 id="eslogan-hero"
-                className="max-w-3xl font-display text-4xl font-semibold leading-[1.02] tracking-tight sm:text-5xl xl:text-6xl"
+                className="max-w-5xl font-display text-[2.6rem] font-semibold leading-[1.02] tracking-tight sm:text-6xl xl:text-7xl"
                 style={{ opacity: "calc(1 - var(--eslogan-h2, 0))" }}
               >
                 El programa que te ayuda a no estar{" "}
                 <Heartbeat className="text-lima">re perdido</Heartbeat> con la IA
               </h2>
 
-              <div className="mt-9 flex flex-wrap items-center gap-3">
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
                 <a href="https://www.youtube.com/@ProyectoFIC_codigoIA" className={BTN_PRIMARIO}>
                   <YoutubeIcon />
                   Mirá los programas

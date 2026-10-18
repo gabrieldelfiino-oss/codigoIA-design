@@ -1,6 +1,8 @@
-import { useState } from "react";
-import ThemeMap from "./ThemeMap";
-import ThemeMapMovil from "./ThemeMapMovil";
+import { lazy, Suspense, useState } from "react";
+import { useMediaQuery } from "../../servicios/medios";
+// Cada mapa se descarga solo si la pantalla lo necesita (PC o celular).
+const ThemeMap = lazy(() => import("./ThemeMap"));
+const ThemeMapMovil = lazy(() => import("./ThemeMapMovil"));
 import RouterLink from "../utils/RouterLink";
 import { TEMAS, getTema } from "../../servicios/temas";
 import { getVecinos } from "../../servicios/mapa";
@@ -18,6 +20,7 @@ export default function ThemeSection() {
   // Modo inmersivo (PC): al interactuar con el mapa, la sección se oscurece y
   // el mapa muestra sus destellos. Lo maneja ThemeMap.
   const [inm, setInm] = useState(false);
+  const esEscritorio = useMediaQuery("(min-width: 1024px)");
 
   return (
     <section
@@ -41,7 +44,11 @@ export default function ThemeSection() {
         </p>
 
         <div className="mt-10 hidden overflow-hidden rounded-3xl shadow-suave-lg transition-shadow duration-700 group-data-[inmersivo=true]:shadow-[0_0_90px_rgba(196,253,54,0.2),0_30px_80px_rgba(0,0,0,0.5)] lg:block">
-          <ThemeMap inmersivo={inm} alCambiarInmersivo={setInm} />
+          {esEscritorio && (
+            <Suspense fallback={<div className="aspect-[1200/720] w-full bg-[#050512]" />}>
+              <ThemeMap inmersivo={inm} alCambiarInmersivo={setInm} />
+            </Suspense>
+          )}
         </div>
 
         {/* Alternativa en texto del mapa (PC): la misma información, en una lista
@@ -74,7 +81,11 @@ export default function ThemeSection() {
         </details>
 
         <div className="mt-8 lg:hidden">
-          <ThemeMapMovil />
+          {!esEscritorio && (
+            <Suspense fallback={<div className="h-[640px] w-full rounded-3xl bg-[#050512]" />}>
+              <ThemeMapMovil />
+            </Suspense>
+          )}
         </div>
 
         {/* Lista de temas en celular: la misma información del mapa, como desplegable
