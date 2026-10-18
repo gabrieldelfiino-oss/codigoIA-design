@@ -18,7 +18,12 @@ export default function BrandTitle({ variant = "large" }) {
       layoutId="brand"
       initial={isLarge ? { opacity: 0, scale: 0.4 } : false}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+      transition={{
+        duration: 1.1,
+        ease: [0.22, 1, 0.36, 1],
+        // El viaje del logo grande al header (animación de layout) es más lento y parejo.
+        layout: { duration: 2.2, ease: [0.65, 0, 0.35, 1] },
+      }}
       className="flex select-none items-center text-gris will-change-transform"
     >
       <Imagotipo

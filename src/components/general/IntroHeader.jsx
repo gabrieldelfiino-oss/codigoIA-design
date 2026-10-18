@@ -10,8 +10,8 @@ import SearchBar from './SearchBar'
 // difuminado (ver transition en BrandTitle, ~1.1s) para que no se corten.
 const INTRO_DURATION_MS = 2200
 
-// Cuántos px de scroll tarda el slogan en llegar al header.
-const RECORRIDO_SLOGAN_PX = 260
+// Cuántos px hay que bajar para que el slogan empiece su viaje al header.
+const UMBRAL_SLOGAN_PX = 10
 
 // `skip`: la intro ya se vio en esta carga (ej. al volver desde la ficha de un
 // programa); arranca directo en el header chico, sin animación ni espera.
@@ -69,19 +69,38 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
       const y0 = titulo.y - window.scrollY
       const x1 = window.innerWidth / 2
       const y1 = (headerRef.current?.offsetHeight ?? 72) / 2
-      const e = p * p * (3 - 2 * p)
+      const e = p // la suavidad ya la da la animación por tiempo (ease-out)
       el.style.transform = `translate(${(x0 + (x1 - x0) * e).toFixed(1)}px, ${(y0 + (y1 - y0) * e).toFixed(1)}px) translate(-50%, -50%) scale(${(escala0 + (1 - escala0) * e).toFixed(3)})`
       el.style.opacity = Math.min(1, p * 6).toFixed(3)
       raiz.style.setProperty('--eslogan-h2', Math.min(1, p / 0.4).toFixed(3))
     }
 
     let marco = 0
-    const alScrollear = () => {
-      estado.scroll = Math.min(1, Math.max(0, window.scrollY / RECORRIDO_SLOGAN_PX))
+    const programar = () => {
       if (marco) return
       marco = requestAnimationFrame(() => {
         marco = 0
         pintar()
+      })
+    }
+    // El viaje del slogan lo dispara el scroll pero lo mueve el tiempo: al pasar un
+    // umbral corre una animación fluida de 0,7 s (y la inversa al volver arriba).
+    // Así no depende de cuántos eventos de scroll lleguen (con la rueda del mouse
+    // llegan pocos y se veía a saltos).
+    let objetivoScroll = estado.scroll
+    let viajeScroll = null
+    const alScrollear = () => {
+      const objetivo = window.scrollY > UMBRAL_SLOGAN_PX ? 1 : 0
+      if (objetivo === objetivoScroll) return
+      objetivoScroll = objetivo
+      viajeScroll?.stop()
+      viajeScroll = animate(estado.scroll, objetivo, {
+        duration: reducir.matches ? 0 : 0.7,
+        ease: [0.22, 1, 0.36, 1],
+        onUpdate: (v) => {
+          estado.scroll = v
+          pintar()
+        },
       })
     }
     const alCambiarSlide = (ev) => {
@@ -96,15 +115,19 @@ export default function IntroHeader({ onIntroDone, skip = false }) {
       })
     }
 
-    alScrollear()
+    // Estado inicial (si la página carga ya scrolleada) sin animar.
+    estado.scroll = window.scrollY > UMBRAL_SLOGAN_PX ? 1 : 0
+    objetivoScroll = estado.scroll
+    programar()
     window.addEventListener('scroll', alScrollear, { passive: true })
-    window.addEventListener('resize', alScrollear)
+    window.addEventListener('resize', programar)
     window.addEventListener('carrusel-slide', alCambiarSlide)
     return () => {
       viaje?.stop()
+      viajeScroll?.stop()
       cancelAnimationFrame(marco)
       window.removeEventListener('scroll', alScrollear)
-      window.removeEventListener('resize', alScrollear)
+      window.removeEventListener('resize', programar)
       window.removeEventListener('carrusel-slide', alCambiarSlide)
       raiz.style.removeProperty('--eslogan-h2')
     }

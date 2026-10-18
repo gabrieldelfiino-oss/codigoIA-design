@@ -305,3 +305,27 @@ html, body, #root {
   -webkit-backdrop-filter: blur(10px) saturate(1.5);
   backdrop-filter: blur(10px) saturate(1.5);
 }
+
+/* Botón que no se ve pero sigue en el orden de tabulación y para lectores de pantalla;
+   aparece cuando recibe el foco con teclado. */
+.boton-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.boton-oculto:focus-visible {
+  position: static;
+  width: 2.75rem;
+  height: 2.75rem;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+  border: 1px solid rgba(250, 250, 250, 0.35);
+  background: rgba(26, 26, 48, 0.7);
+}

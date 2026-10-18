@@ -98,18 +98,29 @@ export default function SeasonCarousel({ activo = true }) {
       className="relative h-[min(560px,calc(100svh-5rem))] min-h-[520px] w-full overflow-hidden bg-noche text-gris sm:h-[74vh] sm:min-h-[500px]"
     >
       <h1 className="sr-only">Código.IA: el programa que te ayuda a no estar re perdido con la IA</h1>
-      <button
-        type="button"
-        onClick={() => setDetenido((d) => !d)}
-        aria-label={detenido ? "Iniciar rotación de banners" : "Detener rotación de banners"}
-        className="absolute bottom-16 right-[calc(1.5rem+6.5rem)] z-10 grid h-11 w-11 place-items-center rounded-full border border-gris/30 text-gris transition-colors hover:bg-gris hover:text-noche sm:bottom-20 sm:right-[calc(3rem+6.5rem)]"
-      >
-        {detenido ? (
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
-        ) : (
-          <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" /></svg>
-        )}
-      </button>
+      {/* Controles del carrusel: no se ven, pero siguen ahí para teclado y lector de
+          pantalla (aparecen al enfocarlos con Tab). Quien usa mouse o toque tiene los
+          puntos, el gesto de deslizar y la pausa al pasar el cursor. */}
+      <div className="absolute bottom-16 right-6 z-10 flex gap-2 sm:bottom-20 sm:right-12">
+        <button
+          type="button"
+          onClick={() => setDetenido((d) => !d)}
+          aria-label={detenido ? "Iniciar rotación de banners" : "Detener rotación de banners"}
+          className="boton-oculto grid place-items-center rounded-full text-gris"
+        >
+          {detenido ? (
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" /></svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor" aria-hidden="true"><path d="M7 5h4v14H7zM13 5h4v14h-4z" /></svg>
+          )}
+        </button>
+        <button type="button" onClick={anterior} aria-label="Banner anterior" className="boton-oculto grid place-items-center rounded-full text-gris">
+          ←
+        </button>
+        <button type="button" onClick={siguiente} aria-label="Banner siguiente" className="boton-oculto grid place-items-center rounded-full text-gris">
+          →
+        </button>
+      </div>
       <div aria-live={rotando ? "off" : "polite"} aria-atomic="false" className="absolute inset-0">
       <AnimatePresence mode="wait">
         {actual.tipo === "hero" ? (
@@ -238,24 +249,6 @@ export default function SeasonCarousel({ activo = true }) {
               />
             </button>
           ))}
-        </div>
-        <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={anterior}
-            aria-label="Slide anterior"
-            className="grid h-11 w-11 place-items-center rounded-full border border-gris/30 text-gris transition-colors hover:bg-gris hover:text-noche"
-          >
-            ←
-          </button>
-          <button
-            type="button"
-            onClick={siguiente}
-            aria-label="Slide siguiente"
-            className="grid h-11 w-11 place-items-center rounded-full border border-gris/30 text-gris transition-colors hover:bg-gris hover:text-noche"
-          >
-            →
-          </button>
         </div>
       </div>
     </section>
