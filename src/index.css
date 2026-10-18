@@ -329,3 +329,25 @@ html, body, #root {
   border: 1px solid rgba(250, 250, 250, 0.35);
   background: rgba(26, 26, 48, 0.7);
 }
+
+/* Intro: el fondo se desvanece durante el último tramo del viaje del logo (1,4 s → 2,2 s)
+   y la home aparece con un fundido corto cuando el logo ya llegó. */
+@keyframes desvanecer-intro {
+  to { opacity: 0; }
+}
+@keyframes entrada-home {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.intro-desvanecer {
+  animation: desvanecer-intro 0.8s ease-in 1.4s forwards;
+}
+.entrada-home {
+  animation: entrada-home 0.6s ease-out both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro-desvanecer,
+  .entrada-home {
+    animation: none;
+  }
+}

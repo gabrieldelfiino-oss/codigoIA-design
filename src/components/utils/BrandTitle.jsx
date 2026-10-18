@@ -10,12 +10,13 @@ import Imagotipo from "./Imagotipo";
  * En su primera aparición (variant="large") entra chico y transparente,
  * y crece hasta su tamaño final.
  */
-export default function BrandTitle({ variant = "large" }) {
+export default function BrandTitle({ variant = "large", alTerminarViaje }) {
   const isLarge = variant === "large";
 
   return (
     <motion.div
       layoutId="brand"
+      onLayoutAnimationComplete={alTerminarViaje}
       initial={isLarge ? { opacity: 0, scale: 0.4 } : false}
       animate={{ opacity: 1, scale: 1 }}
       transition={{

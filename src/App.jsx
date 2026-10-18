@@ -107,7 +107,7 @@ function Home() {
       {/* El resto de la página se arma mientras suena la intro (oculto) y se muestra
           cuando "Código IA" termina de asentarse en el header: así el trabajo pesado
           de montar todo no cae justo al final de la animación y no se traba. */}
-      <main id="contenido" tabIndex={-1} hidden={!introDone} className="pt-20 outline-none sm:pt-24">
+      <main id="contenido" tabIndex={-1} hidden={!introDone} className={`pt-20 outline-none sm:pt-24 ${introDone ? "entrada-home" : ""}`}>
         <SeasonCarousel activo={introDone} />
         <ThemeSection />
         <AditionalSection />
